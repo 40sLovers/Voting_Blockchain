@@ -17,6 +17,7 @@ class Blockchain:
 
     def minePendingTransactions(self):
         now = datetime.now()
+        #strftime=string format time
         now = now.strftime("%d/%m/%Y %H:%M:%S")
 
         block_nou = Block(now, self.pendingTransactions , self.getLatestBlock().hash)
@@ -30,7 +31,7 @@ class Blockchain:
         sold = 0
         for blocuri in self.chain:
             for tx in blocuri.transactions:
-                if tx.fromAdress == cheie_public:
+                if tx.fromAdress == cheie_publica:
                     sold = sold - tx.amount
                 if tx.ToAdress == cheie_publica:
                     sold = sold + tx.amount
@@ -54,9 +55,9 @@ class Blockchain:
     def getAllTransactionsForWallet(self, adress):
         lista_tranzactii = []
         for blocuri in self.chain:
-            for tranzaction in blocuri.transactions:
-                if tranzaction.toAdress == adress or tranzaction.fromAdress == adress:
-                    lista_tranzatii.append(transaction)
+            for transaction in blocuri.transactions:
+                if transaction.toAdress == adress or transaction.fromAdress == adress:
+                    lista_tranzactii.append(transaction)
 
         return lista_tranzactii
 

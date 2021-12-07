@@ -11,6 +11,6 @@ class Transaction:
         now = now.strftime("%d/%m/%Y %H:%M:%S")
         self.timestamp = now
 
-    def isValid():
+    def isValid(self):
         #vedeti sa o faceti
         return True
