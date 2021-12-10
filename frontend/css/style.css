@@ -140,7 +140,7 @@ ul#menu li a.current
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(90vh - 130px);
+	height: calc(100vh - 100px);
 	text-align: center;
 }
 
