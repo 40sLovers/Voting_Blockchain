@@ -10,10 +10,12 @@
   <script src="js/bootstrap-4.4.1.js" type="text/javascript"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-	<link rel="stylesheet" href="css/animatie.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="css/animatie.css" type="text/css" media="all" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap"
+    rel="stylesheet">
   <script src="Scripts/swfobject_modified.js" type="text/javascript"></script>
 </head>
 
@@ -25,101 +27,72 @@
         <img src="images/logo.svg" height="72px" />
         <div class="nameLogo">VoteBoat</div>
       </div><!-- End of Nav Div -->
-		<div class="header">
-      <div id="continut1">
-        <div style="padding:210px 210px 110px 210px;">
+      <div class="header">
+        <div id="continut1">
+          <div style="padding:210px 210px 110px 210px;">
 
 
-          <td style="padding-right:80px; padding-top:0px; padding-bottom:30px; ">
-            <div id="continut2">
-              <div style="padding:0px 20px 20px 20px;">
+            <td style="padding-right:80px; padding-top:0px; padding-bottom:30px; ">
+              <div id="continut2">
+                <div style="padding:0px 20px 20px 20px;">
 
 
-          </td>
+            </td>
 
-          <div id="login" class="login">
-            <h1 class="titlu">LOGARE</h1>
+            <div id="login" class="login">
+              <p class="titlu">AUTENTIFICARE</p>
 
-            </tr>
-            </table>
-            <div class="DateLogin">
-              <form action="action_page.php">
-                <table>
-                  <tr>
-                    <td class="forum"><label for="ad">Adresa e-uvt</label></td>
-                    <td class="forum"><input type="text" id="ad" class="txtfield" name="firstname"
-                        placeholder="Adresa e-uvt"></td>
-                  </tr>
-                  <tr>
-                    <td class="forum"><label for="nrm">Numar matricol</label></td>
-                    <td class="forum"><input type="text" id="nrm" class="txtfield" name="lastname"
-                        placeholder="Numar matricol"></td>
-                  </tr>
-                  <tr>
-                    <td class="forum"><label for="pass">Text-cheie</label></td>
-                    <td class="forum"><input type="password" id="pass" class="txtfield" name="pss"
-                        placeholder="********"></td>
-                  </tr>
-                </table>
+              </tr>
+              <div class="DateLogin">
+                <form>
+                  <div class="form-group">
+                    <label for="ad" class="forum">Adresă e-uvt</label>
+                    <input type="text" id="ad" class="form-control" name="firstname" placeholder="Adresă e-uvt">
+                  </div>
 
+                  <div class="form-group">
+                    <label for="nrm" class="forum">Număr matricol</label>
+                    <input type="text" id="nrm" class="form-control" name="lastname" placeholder="Număr matricol">
+                  </div>
 
-                <button type="submit" class="btn btn-primary btnAlignL">Logare</button>
-                <button type="submit" class="btn btn-primary btnAlignR">Inregistrare</button>
+                  <div class="form-group">
+                    <label for="pass" class="forum">Text-cheie</label>
+                    <input type="password" id="pass" class="form-control" name="pss" placeholder="********">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btnAlignL">Autentificare</button>
+                  <button type="submit" class="btn btn-primary btnAlignR">Înregistrare</button>
+                </form>
 
 
+              </div>
 
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  </div>
-	 
 
-      <!--Waves Container-->
-      <div>
-        <svg
-          class="waves"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 28"
-          preserveAspectRatio="none"
-          shape-rendering="auto"
-        >
-          <defs>
-            <path
-              id="gentle-wave"
-              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-            />
-          </defs>
-          <g class="parallax">
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="0"
-              fill="rgba(255,255,255,0.7"
-            />
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="3"
-              fill="rgba(255,255,255,0.5)"
-            />
-            <use
-              xlink:href="#gentle-wave"
-              x="48"
-              y="5"
-              fill="rgba(255,255,255,0.3)"
-            />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-          </g>
-        </svg>
-      </div>
-      <!--Waves end-->
+
+    <!--Waves Container-->
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
     </div>
-    <!--Header ends-->
-    <!-- partial -->
+    <!--Waves end-->
+  </div>
+  <!--Header ends-->
+  <!-- partial -->
   <script type="text/javascript">
 //<!--
 //swfobject.registerObject("FLVPlayer");
