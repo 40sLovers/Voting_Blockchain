@@ -105,13 +105,14 @@ td.forum
 
 .btnAlign
 {
+	margin-left: 20px;
 	margin-top: 20px;
 	bottom: 5px !important;
 }
 .btnAlign1
 {
 	margin-top: 20px;
-	margin-left: 15px;
+
 	bottom: 5px !important;
 }
 
