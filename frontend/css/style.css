@@ -2,7 +2,7 @@ body{ margin:0px;
       padding:0px; 
       
 	  background-repeat:repeat-x; background-attachment:fixed;
-	  background-color:#0099ff;}
+	  background-color:#FFF;}
 	  
 a{ color:#FFF; text-decoration:none; font-weight:bold; font-size:20px;}
 a:hover{ color: #06C; text-decoration:none;font-weight:bold; font-size:20px;}
@@ -66,7 +66,7 @@ ul#menu li a.current
 {
 	border-radius: 15px;
 	background-color: rgba(255,255,255,0.6);
-	height: 320px;
+	height: 350px;
 	width: 400px;
 	vertical-align: center;
 	text-align: center;
@@ -90,18 +90,28 @@ td.forum
 {
 	height: 100px;
 	background-color: #FFF;
+	display: flex;
+	align-items: center;
+	margin-left: 80px;
 }
 
 .nameLogo
 {
-	font-size: 3em;
+	font-size: 48px;
 	vertical-align: middle;
 	display: inline;
-	font-family:'Ink Free';
+	font-family: 'Libre Baskerville', 'serif';
 }
 
 .btnAlign
 {
+	margin-left: 20px;
+	margin-top: 20px;
+	bottom: 5px !important;
+}
+.btnAlign1
+{
+	margin-top: 20px;
 
 	bottom: 5px !important;
 }
@@ -111,6 +121,11 @@ td.forum
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(100vh - 150px);
+	height: calc(90vh - 130px);
 	text-align: center;
+}
+
+.noScroll
+{
+	overflow: hidden;
 }
