@@ -1,8 +1,9 @@
-body{ margin:0px; 
-      padding:0px; 
-      
-	  background-repeat:repeat-x; background-attachment:fixed;
-	  background-color:#FFF;}
+body{ 
+	margin:0px; 
+    padding:0px;  
+	background-repeat:repeat-x; background-attachment:fixed;
+	background-color:#FFF;
+	}
 	  
 a{ color:#FFF; text-decoration:none; font-weight:bold; font-size:20px;}
 a:hover{ color: #06C; text-decoration:none;font-weight:bold; font-size:20px;}
@@ -64,7 +65,7 @@ ul#menu li a.current
 
 .login
 {
-	border-radius: 15px;
+	border-radius: 5px;
 	background-color: rgba(255,255,255,0.6);
 	height: 350px;
 	width: 400px;
@@ -84,6 +85,17 @@ ul#menu li a.current
 td.forum
 {
 	padding: 10px;
+	color: #000000;
+	font-size: 17px;
+	font-weight: 500;
+	font-family: 'Roboto', 'serif';
+}
+
+.titlu
+{
+	font-family: 'Roboto', 'serif';
+	text-shadow: 2px 2px 6px #FFF;
+	color: #000000;
 }
 
 .menu
@@ -101,18 +113,20 @@ td.forum
 	vertical-align: middle;
 	display: inline;
 	font-family: 'Libre Baskerville', 'serif';
+	padding-top: 6px;
 }
 
-.btnAlign
+.btnAlignL
 {
-	margin-left: 20px;
-	margin-top: 20px;
+	margin-left: 0px;
+	margin-top: 30px;
 	bottom: 5px !important;
 }
-.btnAlign1
-{
-	margin-top: 20px;
 
+.btnAlignR
+{
+	margin-left: 90px;
+	margin-top: 30px;
 	bottom: 5px !important;
 }
 
@@ -129,3 +143,4 @@ td.forum
 {
 	overflow: hidden;
 }
+
