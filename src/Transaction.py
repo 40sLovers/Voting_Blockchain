@@ -14,13 +14,13 @@ class Transaction:
 
     def SignTransaction(self,signingKey):
         #signingKey e o cheie privata.
-        if signingKey.get_public_key() != self.fromAdress:
+        if signingKey.get_public_key().x != self.fromAdress.x or \
+        signingKey.get_public_key().y != self.fromAdress.y:
             raise Exception("Nu poti semna tranzactii pentru alte portofele")
         hashTx= self.calculateHash()
         signer = ECDSA()
         sig = signer.sign(hashTx,signingKey)
         self.signature = sig
-
 
     def isValid(self):
         # If the transaction doesn't have a from address we assume it's a

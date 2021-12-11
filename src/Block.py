@@ -13,7 +13,7 @@ class Block:
     def calculateHash(self):
         return GoodToUseScripts.updatehash(self.timestamp, self.transactions, self.previousHash)
 
-    def mineBlock(self, difficulty):
+    def mineBlock(self, difficulty=2):
         while self.hash[0, difficulty] != [0] * difficulty:
             self.nonce += 1
             self.hash = self.calculateHash()
