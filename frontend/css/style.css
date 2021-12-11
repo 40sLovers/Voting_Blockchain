@@ -278,9 +278,10 @@ ul#menu li a.current
 	margin-right: 5vw;
 }
 
-#continutRezultate_detalii li
+#continutRezultate_detalii li, span
 {
-	text-align:left;
+	color:rgb(24, 37, 82);
+	text-align: left;
 }
 
 #despre

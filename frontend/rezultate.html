@@ -34,10 +34,9 @@
                 <div id="continut1">
                     <div id="continutRezultate">
                         <h1>Rezultate</h1>
-                        <h3>Alegeri pentru postul de manager</h3>
+                        <h3><span id="titlu"></span></h3>
                         <hr>
-                        <p>Acest vot a fost creat cu scopul de a alege cel mai favorabil candidat pentru postul de
-                            manager. Candidații sunt: Ion, Dan, Elena, Ana.</p>
+                        <p><span id="descriere"></span></p>
                         <h5>Diagramă</h5>
                         
 
@@ -52,9 +51,8 @@
                         <div id="continutRezultate_detalii">
                             <p>Nr. total de voturi: <span id="nrTotalVoturi">test</span> </p>
                             <p>Voturi</p>
-                            <ul id="listaCandidati">
-                            </ul>
-                            <p>Castigator: Ana</p>
+                            <p><span id="listaItemi"></span></p>
+                            <p><b><span id="castigator"></span></b></p>
                         </div>
 
 
@@ -62,17 +60,27 @@
                         <script>
                                                         
                             // exemplu pentru query parameters
-                            // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
+                            // ?vot_titlu=Alegeri pentru postul de manager&vot_descriere=Acest vot a fost creat cu scopul de a alege noul manager al echipei.&vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
+
+                            let urlParams = new URLSearchParams(window.location.search);
+
+
+                            // ----Titlul si descrierea votului----
+                            let vot_titlu       = urlParams.get('vot_titlu');
+                            let vot_descriere   = urlParams.get('vot_descriere');
+
+                            document.getElementById('titlu').innerText      = vot_titlu;
+                            document.getElementById('descriere').innerText  = vot_descriere;
 
 
                             // ----Afisarea tabelului----
                             // Chart.js
                             let chart = document.getElementById('chart_voturi').getContext('2d');
 
-                            let vot_itemi = urlParams.get('vot_itemi');
-                            let vot_numar = urlParams.get('vot_numar');
-                            vot_itemi=JSON.parse(vot_itemi);
-                            vot_numar=JSON.parse(vot_numar);
+                            let vot_itemi   = urlParams.get('vot_itemi');
+                            let vot_numar   = urlParams.get('vot_numar');
+                            vot_itemi       = JSON.parse(vot_itemi);
+                            vot_numar       = JSON.parse(vot_numar);
 
                             
                             let votesChart = new Chart(chart, {
@@ -116,21 +124,25 @@
 
                             document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 
-                            /*
-                            let listaCandidati = document.getElementById("listaCandidati");
-                            var node = document.createElement("li");
-                            var textnode = document.createTextNode("Test");
-                            node.appendChild(textnode);
-                            listaCandidati.appendChild(node);
-                            */
 
-                            /*
-                            for(let item in vot_itemi)
-                                var node = document.createElement("LI");
-                                var textnode = document.createTextNode(String(item));
-                                node.appendChild(textnode);
-                                listaCandidati.appendChild(node);
-                            */
+                            // Numarul de voturi pentru fiecare item
+
+                            var list = document.createElement('ul');
+
+                            for (var i = 0; i < vot_itemi.length; i++) {
+                                var item = document.createElement('li');
+                                item.appendChild(document.createTextNode(vot_itemi[i]+": "+vot_numar[i]));
+                                list.appendChild(item);
+                            }
+
+                            document.getElementById('listaItemi').appendChild(list);
+
+
+                            // Determinare castigator
+                            var indexCastigator = vot_numar.findIndex((element) => element == Math.max(...vot_numar))
+
+                            document.getElementById('castigator').innerText = "Castigator: " + vot_itemi[indexCastigator];
+
 
                         </script>
                         <!-- End of Chart script -->
