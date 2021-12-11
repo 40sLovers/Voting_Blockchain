@@ -46,56 +46,98 @@
 
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                             <canvas id="chart_voturi">
-
-                            <!-- Chart script -->
-                            <script>
-                                let chart = document.getElementById('chart_voturi').getContext('2d');
-                                
-                                let votesChart = new Chart(chart, {
-                                    type:'bar',
-                                    data:{
-                                        labels:['Ion', 'Dan', 'Elena', 'Ana'],
-                                        datasets:[{
-                                            label:'Voturi',
-                                            data:[61, 64, 72, 73],
-
-                                            backgroundColor: [
-                                                'rgba(89, 133, 255, 0.5)',
-                                                'rgba(255, 89, 133, 0.5)',
-                                            ],
-                                        }],
-                                    },
-                                    options: {
-                                        plugins: {
-                                            title: {
-                                                display: true,
-                                                text: 'Rezultatele votului',
-                                                font:{size:18,},
-                                                padding:{top:30, bottom:20},
-                                                color:'#182552'
-                                            },
-                                            legend:{
-                                                display:false
-                                            }
-                                        }
-                                    }
-                                })
-                            </script>
-                            <!-- End of Chart script -->
                         </div>
                         
                         <h5>Detalii</h5>
                         <div id="continutRezultate_detalii">
-                            <p>Nr. total de voturi: ...</p>
+                            <p>Nr. total de voturi: <span id="nrTotalVoturi">test</span> </p>
                             <p>Voturi</p>
-                            <ul>
-                                <li>Ion: ... (...%)</li>
-                                <li>Dan: ... (...%)</li>
-                                <li>Elena: ... (...%)</li>
-                                <li>Ana: ... (...%)</li>
+                            <ul id="listaCandidati">
                             </ul>
                             <p>Castigator: Ana</p>
                         </div>
+
+
+                        <!-- Chart script -->
+                        <script>
+                                                        
+                            // exemplu pentru query parameters
+                            // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
+
+
+                            // ----Afisarea tabelului----
+                            // Chart.js
+                            let chart = document.getElementById('chart_voturi').getContext('2d');
+
+                            let urlParams = new URLSearchParams(window.location.search);
+                            let vot_itemi = urlParams.get('vot_itemi');
+                            let vot_numar = urlParams.get('vot_numar');
+                            vot_itemi=JSON.parse(vot_itemi);
+                            vot_numar=JSON.parse(vot_numar);
+
+                            
+                            let votesChart = new Chart(chart, {
+                                type:'bar',
+                                data:{
+                                    labels:vot_itemi,
+                                    datasets:[{
+                                        label:'Voturi',
+                                        data:vot_numar,
+
+                                        backgroundColor: [
+                                            'rgba(89, 133, 255, 0.5)',
+                                            'rgba(255, 89, 133, 0.5)',
+                                        ],
+                                    }],
+                                },
+                                options: {
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Rezultatele votului',
+                                            font:{size:18},
+                                            padding:{top:30, bottom:20},
+                                            color:'#182552'
+                                        },
+                                        legend:{
+                                            display:false
+                                        }
+                                    }
+                                }
+                            })
+
+
+                            // ----Calcularea voturilor----
+
+                            // Numarul total de voturi
+                            var nrTotalVoturi = 0;
+
+                            for(let i in vot_numar)
+                                nrTotalVoturi += vot_numar[i];
+
+                            document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
+
+                            /*
+                            let listaCandidati = document.getElementById("listaCandidati");
+                            var node = document.createElement("li");
+                            var textnode = document.createTextNode("Test");
+                            node.appendChild(textnode);
+                            listaCandidati.appendChild(node);
+                            */
+
+                            /*
+                            for(let item in vot_itemi)
+                                var node = document.createElement("LI");
+                                var textnode = document.createTextNode(String(item));
+                                node.appendChild(textnode);
+                                listaCandidati.appendChild(node);
+                            */
+
+                        </script>
+                        <!-- End of Chart script -->
+
+
+
                     </div>
                 </div>
 
