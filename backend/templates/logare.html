@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href= "{{ url_for('static',filename='css/animatie.css') }}"type="text/css" media="all" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">  
 </head>
 
 <body class="noScroll">
@@ -125,8 +125,8 @@
 //swfobject.registerObject("FLVPlayer");
 //-->
   </script>
-  <script src = "../static/js/jsfrontend/testInregistrare.js">
-  </script>
+ 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jsfrontend/testInregistrare.js')}}"></script>
 </body>
 
 </html>
