@@ -1,5 +1,5 @@
 from hashlib import sha256
-
+from datetime import datetime
 def updatehash(*args):
     hashing = ""
     h = sha256()
@@ -20,9 +20,9 @@ class Block(object):
     def hash(self):
         return updatehash(self.previous_hash, self.index, self.data, self.nonse,self.time)
 
-    #def __str__(self): //AM FOLOSIT PENTRU TESTING
-    #    return str("Block#: %s\nHash: %s\nPrevious: %s\nData: %s\nNonse: %s\n" % (
-    #        self.index, self.hash(), self.previous_hash, self.data, self.nonse))
+    def __str__(self):
+        return str("Block#: %s\nHash: %s\nPrevious: %s\nData: %s\nNonse: %s\nTime: %s\n" % (
+            self.index, self.hash(), self.previous_hash, self.data, self.nonse, self.time))
 
 
 class Blockchain(object):
@@ -34,8 +34,8 @@ class Blockchain(object):
     def add(self, block):
         self.chain.append(block)
 
-    #def remove(self, block): ASTA E DOAR IN CAZ VA TREBUI SA STERGEM UN BLOCK
-        #self.chain.remove(block)
+    def remove(self, block):
+        self.chain.remove(block)
 
     def mine(self, block):
         try:
@@ -67,14 +67,14 @@ class Transaction(object):
 
 def main():
     blockchain = Blockchain()
-    #database = ["hello world", "ciao", "aurevoir", "bye"] AM FOLOSIT SA VAD DACA MERGE
-    #num = 0
-    #for data in database:
-        #num += 1
-        #blockchain.mine(Block(data, num))
-    #for block in blockchain.chain:
-        #print(block)
-    #print(blockchain.isValid())
+    database = ["hello world", "ciao", "aurevoir", "bye"]
+    num = 0
+    for data in database:
+        num += 1
+        blockchain.mine(Block(data, num))
+    for block in blockchain.chain:
+        print(block)
+    print(blockchain.isValid())
 
 if __name__ == '__main__':
     main()
