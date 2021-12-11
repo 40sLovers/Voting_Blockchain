@@ -153,13 +153,19 @@ ul#menu li a.current
 #continutRezultate
 {
 	width: 80vw;
-	height: calc(100vh - 100px);
+	top: 100px;
 	
 	color:rgb(0, 0, 0);
 
-	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0.8);
 
-	overflow: auto;
+	position: fixed;
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	height: 100vh;
+
+	z-index: 1;
 }
 
 #continutRezultate hr {
