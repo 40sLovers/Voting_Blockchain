@@ -2,15 +2,14 @@ from flask import Flask,request,render_template
 
 app = Flask(__name__)
 @app.route('/')
-def login():
+def login3():
     return render_template('logare.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login2():
     registerData = request.get_json()
-    registerData.adresa
-    return "A mers"
+    return registerData
 
 @app.route('/<name>')
 def login(name):

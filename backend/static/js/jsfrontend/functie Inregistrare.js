@@ -23,9 +23,8 @@ buton1.addEventListener("click", function () {
   const adresa = document.getElementById("ad");
   const numarMatricol = document.getElementById("nrm");
   const cuvantCheie = document.getElementById("pass");
-  const cryptare = concat(adresa, numarMatricol, cuvantCheie);
-  console.log(cryptare);
   console.log(adresa, numarMatricol, cuvantCheie);
+
   postData("http://127.0.0.1:5000/login", {
     adresa: adresa,
     numarMatricol: numarMatricol,
