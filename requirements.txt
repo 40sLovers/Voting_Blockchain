@@ -1,0 +1,3 @@
+Pentru python:
+pip install Flask
+pip install ellipticpy
