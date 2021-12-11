@@ -69,7 +69,6 @@
                             // Chart.js
                             let chart = document.getElementById('chart_voturi').getContext('2d');
 
-                            let urlParams = new URLSearchParams(window.location.search);
                             let vot_itemi = urlParams.get('vot_itemi');
                             let vot_numar = urlParams.get('vot_numar');
                             vot_itemi=JSON.parse(vot_itemi);
