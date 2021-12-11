@@ -271,3 +271,137 @@ ul#menu li a.current
 	margin-right: 2vw;
 	text-align: left;
 }
+#despre
+{
+	width: 80vw;
+	top: 100px;
+	
+	color:rgb(0, 0, 0);
+
+	background-color: rgba(255, 255, 255, 0.8);
+
+	position: fixed;
+	overflow-y: scroll;
+	overflow-x: hidden;
+
+	height: 74vh;
+
+	z-index: 1;
+}
+#despre hr {
+
+	
+    width: 270px;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    
+    border: 0;
+    height: 1px;
+}
+
+#despre h1
+{
+	margin-top: 16px;
+	margin-bottom: 32px;
+	color:rgb(37, 59, 136);
+	text-align: left;
+}
+
+#despre h3
+{
+	margin-top: 16px;
+	margin-bottom: 16px;
+	margin-left: 5vw;
+	margin-right: 2vw;
+	color:rgb(24, 37, 82);
+	
+}
+
+#despre h5
+{
+	margin-top: 64px;
+	margin-bottom: 16px;
+	margin-left: 2vw;
+	margin-right: 2vw;
+	color:rgb(24, 37, 82);
+	
+}
+
+#despre p
+{
+	color:rgb(24, 37, 82);
+	margin-left: 2vw;
+	margin-right: 2vw;
+
+}
+#despreFE{
+	margin-top: 100px;
+	width: 400px;
+	text-align: left;
+}
+#despreFE hr {
+    width: 270pxpx;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    border: 0;
+    height: 1px;
+}
+#despreFE p
+{
+	color:rgb(24, 37, 82);
+	margin-left: 6vw;
+	margin-right: 2vw;
+
+}
+#despreTL hr {
+    width: 270px;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    border: 0;
+    height: 1px;
+	
+}
+#CEO hr {
+    width: 100px;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    border: 0;
+    height: 1px;
+}
+#CEO p
+{
+	
+	color:rgb(24, 37, 82);
+	margin-left: 6vw;
+	margin-right: 2vw;
+
+}
+#CEO{
+	margin-bottom:100px
+}
+#despreBC{
+	margin-top:-289px;
+}
+#despreBC hr {
+    width: 250px;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    border: 0;
+    height: 1px;
+}
+#despreBC p
+{
+	color:rgb(24, 37, 82);
+	margin-left: 6vw;
+	margin-right: 2vw;
+
+}
+#despreBK{
+	width: 400;
+	text-align: right;
+	margin-right: 50px;
+	margin-top:-288px;
+}
+#despreBK hr
+{
+	width: 200px;
+    background-image: linear-gradient(9deg, rgb(24, 37, 82), transparent);
+    border: 0;
+    height: 1px;
+	margin-right:-5px;
+}
