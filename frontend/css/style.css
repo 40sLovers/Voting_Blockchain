@@ -1,3 +1,25 @@
+::-webkit-scrollbar
+{
+	width: 12px;
+}
+
+::-webkit-scrollbar-track
+{
+	box-shadow: 0 0 5px grey inset;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background: rgb(0, 120, 240);
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+	background: rgb(0, 102, 204);
+}
+
 body{ 
 	margin:0px; 
     padding:0px;  
@@ -183,11 +205,11 @@ ul#menu li a.current
 	overflow: hidden;
 }
 
-
 #continutRezultate
 {
+	border-radius: 5px;
 	width: 80vw;
-	top: 100px;
+	top: 130px;
 	
 	color:rgb(0, 0, 0);
 
@@ -197,7 +219,7 @@ ul#menu li a.current
 	overflow-y: scroll;
 	overflow-x: hidden;
 
-	height: 100vh;
+	height: 75vh;
 
 	z-index: 1;
 }
