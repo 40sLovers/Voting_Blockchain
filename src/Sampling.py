@@ -15,5 +15,5 @@ pv_key = ECPrivateKey(0xfb26a4e75eec75544c0f44e937dcf5ee6355c7176600b9688c667e5c
 
 print(pu_key,pv_key)
 signer = ECDSA()
-sig    = signer.sign(b'01234567890123456789012345678912',pv_key)
-assert(signer.verify(b'01234567890123456789012345678912',sig,pu_key))
+sig    = signer.sign(str.encode("asd"),pv_key)
+assert(signer.verify(str.encode("asd"),sig,pu_key))
