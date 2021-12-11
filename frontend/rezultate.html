@@ -40,32 +40,63 @@
                         <p>Acest vot a fost creat cu scopul de a alege cel mai favorabil candidat pentru postul de
                             manager. Candidații sunt: Ion, Dan, Elena, Ana.</p>
                         <h5>Diagramă</h5>
-                        <p>...</p>
+                        
+
+                        <!-- Container chart -->
+                        <div>
+
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <canvas id="chart_voturi">
+
+                            <!-- Chart script -->
+                            <script>
+                                let chart = document.getElementById('chart_voturi').getContext('2d');
+                                
+                                let votesChart = new Chart(chart, {
+                                    type:'bar',
+                                    data:{
+                                        labels:['Ion', 'Dan', 'Elena', 'Ana'],
+                                        datasets:[{
+                                            label:'Voturi',
+                                            data:[61, 64, 72, 73],
+
+                                            backgroundColor: [
+                                                'rgba(89, 133, 255, 0.5)',
+                                                'rgba(255, 89, 133, 0.5)',
+                                            ],
+                                        }],
+                                    },
+                                    options: {
+                                        plugins: {
+                                            title: {
+                                                display: true,
+                                                text: 'Rezultatele votului',
+                                                font:{size:18,},
+                                                padding:{top:30, bottom:20},
+                                                color:'#182552'
+                                            },
+                                            legend:{
+                                                display:false
+                                            }
+                                        }
+                                    }
+                                })
+                            </script>
+                            <!-- End of Chart script -->
+                        </div>
+                        
                         <h5>Detalii</h5>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
+                        <div id="continutRezultate_detalii">
+                            <p>Nr. total de voturi: ...</p>
+                            <p>Voturi</p>
+                            <ul>
+                                <li>Ion: ... (...%)</li>
+                                <li>Dan: ... (...%)</li>
+                                <li>Elena: ... (...%)</li>
+                                <li>Ana: ... (...%)</li>
+                            </ul>
+                            <p>Castigator: Ana</p>
+                        </div>
                     </div>
                 </div>
 
