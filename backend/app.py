@@ -3,7 +3,7 @@ from flask import Flask,request,render_template
 app = Flask(__name__)
 @app.route('/')
 def login3():
-    return render_template('logare.html')
+    return render_template('logareC.html')
 
 
 @app.route('/', methods=['POST'])
@@ -14,7 +14,7 @@ def login2():
 @app.route('/<name>')
 def login(name):
     if(name=="inregistrare"):
-             return render_template('inregistrare.html')
+        return render_template('inregistrare.html')
     elif name=='detalii':
         return render_template('detalii.html')
     elif name=='confirmare':
