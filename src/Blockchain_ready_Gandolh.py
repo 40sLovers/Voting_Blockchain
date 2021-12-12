@@ -16,7 +16,7 @@ class Blockchain:
         return self.chain[-1]
 
     def minePendingTransactions(self,minningRewardAdress):
-        rewardTx = Transaction(None,minningRewardAdress,self.miningReward)
+        rewardTx = Transaction(None,minningRewardAdress.__str__(),self.miningReward)
         self.pendingTransactions.append(rewardTx)
 
         now = datetime.now()
@@ -32,11 +32,12 @@ class Blockchain:
 
     def getBallanceFromAdress(self, cheie_publica):
         sold = 0
+
         for blocuri in self.chain:
             for tx in blocuri.transactions:
-                if tx.fromAdress!=None and tx.fromAdress == cheie_publica:
+                if tx.fromAdress!=None and tx.fromAdress == cheie_publica.__str__():
                     sold = sold - tx.amount
-                if tx.toAdress == cheie_publica:
+                if tx.toAdress == cheie_publica.__str__():
                     sold = sold + tx.amount
 
         return sold
@@ -89,7 +90,7 @@ class Blockchain:
 
 class Block:
     def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4())):
-        # timestmap = cand a fost creat
+        # timestamp = cand a fost creat
         self.timestamp = timestamp
         self.transactions = transactions
         self.previousHash = previousHash
