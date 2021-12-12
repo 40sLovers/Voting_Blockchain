@@ -6,8 +6,7 @@ class Blockchain:
     def __init__(self):
         self.chain = [self.createGenesisBlock(),]
         self.pendingTransactions = []
-        self.difficulty=2
-        self.miningReward=100
+
     def createGenesisBlock(self):
         bloc_geneza = Block("26/07/2002 00:00:00", [], None)
         return bloc_geneza
@@ -15,16 +14,13 @@ class Blockchain:
     def getLatestBlock(self):
         return self.chain[-1]
 
-    def minePendingTransactions(self,minningRewardAdress):
-        rewardTx = Transaction(None,minningRewardAdress,self.miningReward)
-        self.pendingTransactions.append(rewardTx)
-
+    def minePendingTransactions(self):
         now = datetime.now()
         #strftime=string format time
         now = now.strftime("%d/%m/%Y %H:%M:%S")
 
         block_nou = Block(now, self.pendingTransactions , self.getLatestBlock().hash)
-        block_nou.mineBlock(self.difficulty)
+        #block_nou.mineBlock()
 
         self.chain.append(block_nou)
 
@@ -34,9 +30,9 @@ class Blockchain:
         sold = 0
         for blocuri in self.chain:
             for tx in blocuri.transactions:
-                if tx.fromAdress!=None and tx.fromAdress == cheie_publica:
+                if tx.fromAdress == cheie_publica:
                     sold = sold - tx.amount
-                if tx.toAdress == cheie_publica:
+                if tx.ToAdress == cheie_publica:
                     sold = sold + tx.amount
 
         return sold
@@ -50,7 +46,7 @@ class Blockchain:
             raise Exception("Tranzactie Invalida")
         if transaction.amount <= 0:
             raise Exception("Suma invalida")
-        if self.getBallanceFromAdress(transaction.fromAdress) < transaction.amount:
+        if self.getBallanceFromAdress(transaction.fromAdress) <= transaction.amount:
             raise Exception("Fonduri insuficiente")
 
         self.pendingTransactions.append(transaction)
@@ -82,10 +78,6 @@ class Blockchain:
             
         return True
 
-    def __repr__(self) -> str:
-        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
-    def ___str__(self):
-        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
 
 class Block:
     def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4())):
@@ -94,18 +86,16 @@ class Block:
         self.transactions = transactions
         self.previousHash = previousHash
         self.guid= guid
-        self.nonce = 0
         self.hash = self.calculateHash()
+        self.nonce = 0
 
     def calculateHash(self):
-        return GoodToUseScripts.updatehash(self.timestamp, self.transactions, self.previousHash,self.nonce,self.guid)
+        return GoodToUseScripts.updatehash(self.timestamp, self.transactions, self.previousHash)
 
     def mineBlock(self, difficulty=2):
-        difficulty= int(difficulty)
-        while self.hash[0: difficulty] != '0' * difficulty:
+        while self.hash[0, difficulty] != [0] * difficulty:
             self.nonce += 1
             self.hash = self.calculateHash()
-            # print(str(self.hash[0: difficulty]),'0' * difficulty)
 
     def hasValidTransactions(self):
         for tx in self.transactions:
@@ -113,12 +103,8 @@ class Block:
                 return False
         return True
 
-    def __repr__(self) -> str:
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
-    def ___str__(self):
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+    def __repr__(self):
+        return (self.timestamp + " " + str(self.transactions) + " " + str(self.previousHash))
 
 
 class Transaction:
@@ -134,7 +120,8 @@ class Transaction:
 
     def SignTransaction(self,signingKey):
         #signingKey e o cheie privata.
-        if str(signingKey.get_public_key()) != str(self.fromAdress) :
+        if signingKey.get_public_key().x != self.fromAdress.x or \
+        signingKey.get_public_key().y != self.fromAdress.y:
             raise Exception("Nu poti semna tranzactii pentru alte portofele")
         hashTx= self.calculateHash()
         signer = ECDSA()
@@ -144,15 +131,8 @@ class Transaction:
     def isValid(self):
         # If the transaction doesn't have a from address we assume it's a
         # mining reward and that it's valid. 
-        if self.fromAdress == None:
-             return True
+        if self.fromAddress == None: return True
         if not self.signature:
             raise Exception("Nici-o semnatura in aceasta tranzactie")
         signer = ECDSA()
-        return signer.verify(self.calculateHash(), self.signature, self.fromAdress)
-    def __repr__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
-    def __str__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
+        return signer.verify(self.calculateHash(), self.sig, self.fromAdress)
