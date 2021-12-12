@@ -14,7 +14,7 @@ def login2():
 @app.route('/<name>')
 def login(name):
     if(name=="inregistrare"):
-        return render_template('inregistrare.html')
+             return render_template('inregistrare.html')
     elif name=='detalii':
         return render_template('detalii.html')
     elif name=='confirmare':
@@ -23,8 +23,6 @@ def login(name):
         return render_template("index.html")
     elif name=='rezultate':
         return render_template("rezultate.html")
-    elif name=='logare-copy':
-        return render_template('logare-copy.html')
     return render_template("error404.html")
 
 if __name__=="__main__":
