@@ -3,7 +3,6 @@ from GoodToUseScripts import keyFromHash,updatehash
 import unittest
 import random
 
-
 class TestBlockchain(unittest.TestCase):
 
     @classmethod
@@ -24,7 +23,31 @@ class TestBlockchain(unittest.TestCase):
         IACoin = Blockchain()
 
     def rand_str(self, str_size):
-        return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))        
+        return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
+
+    def test_keygeneration(self):
+        print('Testing key generation...')
+        # Check if same input results in the same hash
+        self.assertEqual(key.d,key_copy.d)
+
+        # Check if the get public key works
+        self.assertEqual(key.get_public_key().W,key_copy.get_public_key().W)
+
+    def test_mineGenesisBlock(self):
+        print('Testing genesis block...')
+        len_before = len(IACoin.chain)
+        IACoin.minePendingTransactions(key.get_public_key())
+        #todo add more tests
+        self.assertGreater(len(IACoin.chain),len_before)
+
+    def test_transactions(self):
+        print('Testing transactions...')
+        print(IACoin.getBallanceFromAdress(key.get_public_key()))
+        tx = Transaction(key.get_public_key(),key2.get_public_key(),100)
+        tx.SignTransaction(key)
+        IACoin.addTransaction(tx)
+        # Mine block
+        print(IACoin)
 
 if __name__ == '__main__':
     unittest.main()
