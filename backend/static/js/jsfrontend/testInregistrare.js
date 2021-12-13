@@ -20,6 +20,7 @@ async function postData(url = "", data = {}) {
 const butonInregistrare = document.getElementById("ButonInregistrare");
 
 butonInregistrare.addEventListener("click", function () {
+  // if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
   var adresa = document.getElementById("ad").value;
   var numarMatricol = document.getElementById("nrm").value;
   var cuvantCheie = document.getElementById("pass").value;
@@ -27,7 +28,7 @@ butonInregistrare.addEventListener("click", function () {
   console.log(concatenare);
   var criptare = SHA256(concatenare);
   console.log(criptare);
-  postData("http://127.0.0.1:5000/inregistrare", {
+  postData("http://127.0.0.1:5000", {
     adresa: adresa,
     numarMatricol: numarMatricol,
     cuvantCheie: cuvantCheie,
@@ -35,12 +36,14 @@ butonInregistrare.addEventListener("click", function () {
   }).then((data) => {
     console.log(data);
   });
+  // }
 });
 
-const butonLogareInregistrare = document.getElementById("ButonInregistrare");
+const butonInregistrare2 = document.getElementById("ButonInregistrare");
 
-butonInregistrare.addEventListener("click", function () {
-  window.location.href = "http://127.0.0.1:5000/inregistrare";
+butonInregistrare2.addEventListener("click", function () {
+  //if (window.location.href == "http://127.0.0.1:5000")
+  //window.location.href = "http://127.0.0.1:5000/inregistrare";
 });
 
 function SHA256(s) {

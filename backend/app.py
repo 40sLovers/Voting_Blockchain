@@ -30,8 +30,6 @@ def login(name):
         return render_template("index.html")
     elif name=='rezultate':
         return render_template("rezultate.html")
-    elif name=='rezultate':
-        return render_template("rezultate.html")
     elif name=='confirmare':
         return render_template("confirmare.html")
     else:
