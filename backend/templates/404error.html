@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/404error.css') }} >
+    </head>
+
+    <body>
+        <div id="b">
+                <h1>404</h1>
+                <div id="d" />
+        </div>
+        <div id="right">
+            <h3>Adresa URL solicitată nu a fost gasită pe acest server.</h3>
+            <img id="f" src="{{ url_for('static',filename='images/sad.png') }}">
+            </div>
+        </div>
+    </body>
+
+</html>

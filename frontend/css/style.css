@@ -32,6 +32,18 @@ a:hover{ color: #06C; text-decoration:none;font-weight:bold; font-size:20px;}
 
 #continut{ width:800px; font-family: "Times new roman"; font-size:20px; margin:0px; padding:0px; text-align:left; color:#000000;}
 
+h1 {
+	font-family: "Lato", sans-serif;
+	font-weight: 300;
+	letter-spacing: 2px;
+	font-size: 48px;
+  }
+  p {
+	font-family: "Raleway", sans-serif;
+	letter-spacing: 1px;
+	font-size: 14px;
+	color: #333333;
+  }
 
 ul#menu
 {
@@ -91,7 +103,6 @@ ul#menu li a.current
 	background-color: rgba(255,255,255,0.6);
 	height: 450px;
 	width: 400px;
-	vertical-align: center;
 	text-align: center;
     display: flex;
     justify-content: center;
@@ -105,7 +116,6 @@ ul#menu li a.current
 	background-color: rgba(255,255,255,0.6);
 	height: 200px;
 	width: 550px;
-	vertical-align: center;
 	text-align: center;
     display: flex;
     justify-content: center;
@@ -119,7 +129,19 @@ ul#menu li a.current
 	background-color: rgba(255,255,255,0.6);
 	height: 450px;
 	width: 400px;
-	vertical-align: center;
+	text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.poll
+{
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.6);
+	height: 500px;
+	width: 400px;
 	text-align: center;
     display: flex;
     justify-content: center;
@@ -153,6 +175,16 @@ ul#menu li a.current
 	font-weight: 600;
 }
 
+.titluP
+{
+	font-family: 'Roboto', 'serif';
+	color: #000000;
+	font-size: 38px;
+	font-weight: 600;
+	margin-top: -60px;
+	margin-bottom: 0;
+}
+
 .menu
 {
 	height: 100px;
@@ -162,6 +194,20 @@ ul#menu li a.current
 	margin-left: 20px;
 }
 
+.menuItems
+{
+	position: absolute;
+	align-items: center;
+	text-align: center;
+	right: 50px;
+	top: 15px;
+}
+
+.svgGreen
+{
+	filter: invert(40%) sepia(92%) saturate(3132%) hue-rotate(97deg) brightness(91%) contrast(101%);
+}
+
 .nameLogo
 {
 	font-size: 48px;
@@ -169,6 +215,11 @@ ul#menu li a.current
 	display: inline;
 	font-family: 'Libre Baskerville', 'serif';
 	padding-top: 6px;
+}
+
+a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
+{
+	color: #000;
 }
 
 .btnAlignL
@@ -189,6 +240,12 @@ ul#menu li a.current
 {
 	margin-top: 25px;
 	margin-left: 33%;
+}
+
+.btnAlignCreate
+{
+	margin-top: 10px;
+	margin-left: 38%;
 }
 
 #continut1
