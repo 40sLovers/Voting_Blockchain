@@ -30,7 +30,12 @@ def login(name):
         return render_template("index.html")
     elif name=='rezultate':
         return render_template("rezultate.html")
-    return "not found"
+    elif name=='rezultate':
+        return render_template("rezultate.html")
+    elif name=='confirmare':
+        return render_template("confirmare.html")
+    else:
+        return render_template("error404.html")
 
 if __name__=="__main__":
     app.run(debug=True)
