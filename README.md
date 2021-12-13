@@ -1,9 +1,5 @@
 # Voting_Blockchain
-another test :(
-pls work
-why
-last one
-actual last one
-this
-aa
-APA PLATA
+Rulati comanda de mai jos pentru a instala librariile necesare pentru proiect
+pip install -r requirements.txt
+
+da

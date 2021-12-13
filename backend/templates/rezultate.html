@@ -2,30 +2,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css"> -->
-    <link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css" />
-    <!-- <script src="js/bootstrap.bundle.js"></script> -->
-    <script src="js/bootstrap-4.4.1.js" type="text/javascript"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/animatie.css" type="text/css" media="all" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap"
-        rel="stylesheet">
-    <script src="Scripts/swfobject_modified.js" type="text/javascript"></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Favicon code-->
+  <link rel="apple-touch-icon" sizes="180x180" href= "{{ url_for('static',filename='images/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href= "{{ url_for('static',filename='images/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href= "{{ url_for('static',filename='images/favicon-16x16.png') }}">
+  <link rel="manifest" href= "{{ url_for('static',filename='images/site.webmanifest') }}">
+  <link rel="mask-icon" href= "{{ url_for('static',filename='images/safari-pinned-tab.svg') }}" color="#0066cc">
+  <link rel="shortcut icon" href= "{{ url_for('static',filename='images/favicon.ico') }}">
+  <meta name="apple-mobile-web-app-title" content="VoteBoat">
+  <meta name="application-name" content="VoteBoat">
+  <meta name="msapplication-TileColor" content="#0066cc">
+  <meta name="msapplication-config" content= "{{ url_for('static',filename='images/browserconfig.xml') }}">
+  <meta name="theme-color" content="#ffffff">
+  <!--Favicon code end-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap-4.4.1.js" type="text/javascript"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href= "{{ url_for('static',filename='css/style.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href= "{{ url_for('static',filename='css/animatie.css') }}" type="text/css" media="all" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
+  <title>VoteBoat</title>
 </head>
 
 <body class="noScroll">
-    <div>
-        <div id="container">
-            <div id="banner"></div>
-            <div class="menu">
-                <img src="images/logo.svg" height="72px" />
-                <div class="nameLogo">VoteBoat</div>
+  <div>
+    <div id="container">
+      <div id="banner"></div>
+      <div class="menu">
+        <img src= "{{ url_for('static',filename='images/logo.svg') }}" height="72px" />
+        <div class="nameLogo">VoteBoat</div>
             </div><!-- End of Nav Div -->
             <div class="header">
 
@@ -35,47 +46,140 @@
                 <div id="continut1">
                     <div id="continutRezultate">
                         <h1>Rezultate</h1>
-                        <h3>Poll #0000: Alegeri pentru postul de manager</h3>
+                        <h3>Alegeri pentru postul de manager</h3>
                         <hr>
-                        <p>Acest vot a fost creat cu scopul de a alege cel mai favorabil candidat pentru postul de manager. Candidații sunt: Ion, Dan, Elena, Ana.</p>
+                        <p>Acest vot a fost creat cu scopul de a alege cel mai favorabil candidat pentru postul de
+                            manager. Candidații sunt: Ion, Dan, Elena, Ana.</p>
                         <h5>Diagramă</h5>
-                        <p>...</p>
+                        
+
+                        <!-- Container chart -->
+                        <div>
+
+                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                            <canvas id="chart_voturi">
+                        </div>
+                        
                         <h5>Detalii</h5>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
-                        <p>...</p>
+                        <div id="continutRezultate_detalii">
+                            <p>Nr. total de voturi: <span id="nrTotalVoturi">test</span> </p>
+                            <p>Voturi</p>
+                            <ul id="listaCandidati">
+                            </ul>
+                            <p>Castigator: Ana</p>
+                        </div>
+
+
+                        <!-- Chart script -->
+                        <script>
+                                                        
+                            // exemplu pentru query parameters
+                            // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
+
+
+                            // ----Afisarea tabelului----
+                            // Chart.js
+                            let chart = document.getElementById('chart_voturi').getContext('2d');
+
+                            let urlParams = new URLSearchParams(window.location.search);
+                            let vot_itemi = urlParams.get('vot_itemi');
+                            let vot_numar = urlParams.get('vot_numar');
+                            vot_itemi=JSON.parse(vot_itemi);
+                            vot_numar=JSON.parse(vot_numar);
+
+                            
+                            let votesChart = new Chart(chart, {
+                                type:'bar',
+                                data:{
+                                    labels:vot_itemi,
+                                    datasets:[{
+                                        label:'Voturi',
+                                        data:vot_numar,
+
+                                        backgroundColor: [
+                                            'rgba(89, 133, 255, 0.5)',
+                                            'rgba(255, 89, 133, 0.5)',
+                                        ],
+                                    }],
+                                },
+                                options: {
+                                    plugins: {
+                                        title: {
+                                            display: true,
+                                            text: 'Rezultatele votului',
+                                            font:{size:18},
+                                            padding:{top:30, bottom:20},
+                                            color:'#182552'
+                                        },
+                                        legend:{
+                                            display:false
+                                        }
+                                    }
+                                }
+                            })
+
+
+                            // ----Calcularea voturilor----
+
+                            // Numarul total de voturi
+                            var nrTotalVoturi = 0;
+
+                            for(let i in vot_numar)
+                                nrTotalVoturi += vot_numar[i];
+
+                            document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
+
+                            /*
+                            let listaCandidati = document.getElementById("listaCandidati");
+                            var node = document.createElement("li");
+                            var textnode = document.createTextNode("Test");
+                            node.appendChild(textnode);
+                            listaCandidati.appendChild(node);
+                            */
+
+                            /*
+                            for(let item in vot_itemi)
+                                var node = document.createElement("LI");
+                                var textnode = document.createTextNode(String(item));
+                                node.appendChild(textnode);
+                                listaCandidati.appendChild(node);
+                            */
+
+                        </script>
+                        <!-- End of Chart script -->
+
+
+
                     </div>
                 </div>
 
+
+                <!--Waves Container-->
+                <div>
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                        </g>
+                    </svg>
+                </div>
             </div>
+            
+                <!--Waves end aici a fost Denis-->
+
         </div>
-
-
-
-    </div>
+    </div> 
     <!--Header ends-->
     <!-- partial -->
-    <script type="text/javascript">
-//<!--
-//swfobject.registerObject("FLVPlayer");
-//-->
-    </script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
