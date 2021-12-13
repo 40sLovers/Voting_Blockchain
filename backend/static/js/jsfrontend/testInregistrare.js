@@ -37,11 +37,11 @@ butonInregistrare.addEventListener("click", function () {
   });
 });
 
-//const butonLogareInregistrare = document.getElementById("ButonInregistrare");
+const butonLogareInregistrare = document.getElementById("ButonInregistrare");
 
-//butonInregistrare.addEventListener("click", function () {
-//window.location.href = "http://127.0.0.1:5000/inregistrare";
-//});
+butonInregistrare.addEventListener("click", function () {
+  window.location.href = "http://127.0.0.1:5000/inregistrare";
+});
 
 function SHA256(s) {
   var chrsz = 8;
