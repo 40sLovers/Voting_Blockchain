@@ -41,10 +41,10 @@
           <div class="nameLogo">VoteBoat</div>
         </a>
         <div class="menuItems">
-          <a href="Despre.html" title="Creează un vot nou">
+          <a href="Despre.html" title="Creează un poll nou">
             <img src="images/addPoll.svg" height="50px" class="svgGreen"/>
           </a>
-          <p>Creează un vot nou</p>
+          <p>Creează un poll now</p>
         </div>
       </div><!-- End of Nav Div -->
       <div class="header">
@@ -54,29 +54,32 @@
               <div style="padding:0px 20px 20px 20px;">
 
 
-                <div id="login" class="login">
+                <div id="login" class="poll">
 
-                  <p class="titlu">AUTENTIFICARE</p>
+                  <p class="titluP">Poll nou</p>
 
                   <div class="DateLogin">
                     <form style="width: 316.64px; height: 330.5px;">
                       <div class="form-group">
-                        <label for="ad" class="forum">Adresă e-uvt</label>
-                        <input type="text" id="ad" class="form-control" name="firstname" placeholder="Adresă e-uvt">
+                        <label for="titluPoll" class="forum">Titlu</label>
+                        <input type="text" id="titluPoll" class="form-control" name="PollTitle" placeholder="Titlu">
                       </div>
 
                       <div class="form-group">
-                        <label for="nrm" class="forum">Număr matricol</label>
-                        <input type="text" id="nrm" class="form-control" name="lastname" placeholder="Număr matricol">
+                        <label for="op1" class="forum">Opțiune 1</label>
+                        <input type="text" id="op1" class="form-control" name="option1" placeholder="Opțiune">
                       </div>
 
                       <div class="form-group">
-                        <label for="pass" class="forum">Text-cheie</label>
-                        <input type="password" id="pass" class="form-control" name="pss" placeholder="********">
+                        <label for="op2" class="forum">Opțiune 2</label>
+                        <input type="text" id="op2" class="form-control" name="option2" placeholder="Opțiune">
                       </div>
 
-                      <button type="submit" class="btn btn-primary btnAlignL">Autentificare</button>
-                      <button type="submit" class="btn btn-primary btnAlignR">Înregistrare</button>
+                      <div class="form-group">
+                        <label for="opt3" class="forum">Opțiune 3</label>
+                        <input type="text" id="opt3" class="form-control" name="option3" placeholder="Opțiune">
+                      </div>
+                      <button type="submit" class="btn btn-primary btnAlignCreate">Creează</button>
                     </form>
 
 
