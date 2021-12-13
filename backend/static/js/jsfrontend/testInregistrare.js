@@ -21,14 +21,13 @@ const butonInregistrare = document.getElementById("ButonInregistrare");
 
 butonInregistrare.addEventListener("click", function () {
   var adresa = document.getElementById("ad").value;
-
   var numarMatricol = document.getElementById("nrm").value;
   var cuvantCheie = document.getElementById("pass").value;
   const concatenare = adresa.concat(numarMatricol, cuvantCheie);
   console.log(concatenare);
   var criptare = SHA256(concatenare);
   console.log(criptare);
-  postData("http://127.0.0.1:5000/", {
+  postData("http://127.0.0.1:5000/inregistrare", {
     adresa: adresa,
     numarMatricol: numarMatricol,
     cuvantCheie: cuvantCheie,
@@ -38,11 +37,11 @@ butonInregistrare.addEventListener("click", function () {
   });
 });
 
-const butonLogareInregistrare = document.getElementById("ButonInregistrare");
+//const butonLogareInregistrare = document.getElementById("ButonInregistrare");
 
-butonInregistrare.addEventListener("click", function () {
-  window.location.href = "http://127.0.0.1:5000/inregistrare";
-});
+//butonInregistrare.addEventListener("click", function () {
+//window.location.href = "http://127.0.0.1:5000/inregistrare";
+//});
 
 function SHA256(s) {
   var chrsz = 8;
