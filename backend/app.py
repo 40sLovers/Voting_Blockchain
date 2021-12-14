@@ -31,23 +31,15 @@ def login2():
     WhiteList.append( criptare)
     return criptare
 @app.route("/inregistrare", methods=['POST','GET'])
-def log(result):
+def log():
    validareemail=request.json_get("validareemail",None)
    if request.method == 'POST' and validareemail==True:
      email = request.json_get("adresa", None)
      msg=Message(request.form.get("hi"),sender="p1project@gmail.com",recipients=email)
      msg.body="buna ce mai faci Onisim<3?"
      mail.send(msg)
-     
-@app.route("/inregistrare")
-def inregistrare()
-{
-    if request.method == 'POST':
-        result['email']=request.form['email'].replace(" "," ").lower()
-        result['message']=request.form['message']
-        log(result)
-        return render_template("confirmare.html")
-}  
+     return render_template("confirmare.html")
+
 @app.route('/<name>')
 def login(name):
     if(name=="inregistrare"):
