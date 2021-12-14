@@ -1,6 +1,7 @@
 from flask import Flask,request,render_template, flash
 from flask_mail import Mail,Message
 import socket
+import json
 socket.getaddrinfo('127.0.0.1', 8080)
 WhiteList = []
 
@@ -13,29 +14,26 @@ mail=Mail(app)
 
 @app.route('/')
 def login3():
-    return render_template('inregistrare.html')
+    return render_template('logareC.html')
 
-
-@app.route('/', methods=['POST'])
-def login2():
-    #registerData = request.get_json()
-    # validareemail=request.json_get("validareemail",None)
-    criptare = request.json_get("criptare", None)
-    email = request.json_get("adresa", None)
-    numarMatricol = request.json_get("numarMatricol", None)
-    cuvantCheie = request.json_get("cuvantCheie", None)
-    WhiteList.append( criptare)
-    return criptare
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
     if request.method == 'POST':
+        #registerData = request.json_get()
+        #email = request.json_get("adresa", None)
+        #numarMatricol = request.json_get("numarMatricol", None)
+        #cuvantCheie = request.json_get("cuvantCheie", None)
+        #WhiteList.append( criptare)
         data = request.get_json()
         email=data['adresa']
+        numarMatricol=data['numarMatricol']
+        print(data)
         msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
         msg.body="buna ce mai faci Onisim<3?"
         mail.send(msg)
-        return render_template("confirmare.html")
-    else: return render_template("inregistrare.html")
+        return json.dumps("ok")
+    else: 
+        return render_template("inregistrare.html")
 
 @app.route('/<name>')
 def login(name):

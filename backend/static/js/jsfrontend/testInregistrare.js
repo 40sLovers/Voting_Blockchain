@@ -1,24 +1,8 @@
-const email = "@e-uvt.ro";
-function Email() {
-  var istrue = false;
-  var adresa = document.getElementById("ad").value;
-  var t = 0,
-    ok = 0;
-  var adresa2 = 0;
-  for (let i = 0; i < adresa.length; i++) {
-    if (adresa[i] == ".") ok++;
-    if (adresa[i] == "@") {
-      t = i;
-      break;
-    }
-  }
-  for (let i = t; i < adresa.lenght; i++) adresa2 = adresa2 + i;
-  if (adresa2 == email) ok++;
-  if (ok == 2) istrue = true;
-  return istrue;
-}
-
-var validareemail = Email();
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(/[a-zA-Z]*.[a-zA-Z]*[0-9]*@e-uvt.ro/);
+};
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -39,10 +23,9 @@ async function postData(url = "", data = {}) {
 
 const butonInregistrare = document.getElementById("ButonInregistrare");
 
-
 butonInregistrare.addEventListener("click", function () {
   if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
-    if (validareemail == false) {
+    if (validateEmail(document.getElementById("ad").value) == false) {
       alert("Adresa de email este invalidă!");
       document.getElementById("ad").value = "";
     } else {
@@ -60,15 +43,13 @@ butonInregistrare.addEventListener("click", function () {
         criptare: criptare,
       }).then((data) => {
         console.log(data);
+        if (data == "ok") {
+          window.location.href = "http://127.0.0.1:5000/confirmare";
+        }
       });
     }
   } else window.location.href = "http://127.0.0.1:5000/inregistrare";
 });
-
-//butonInregistrare.addEventListener("click", function () {
-// if (window.location.href == "http://127.0.0.1:5000")
-// window.location.href = "http://127.0.0.1:5000/inregistrare";
-//});
 
 function SHA256(s) {
   var chrsz = 8;
