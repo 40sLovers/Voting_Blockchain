@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+<desc>Created with Fabric.js 1.7.22</desc>
+<defs>
+</defs>
+<g transform="translate(128 128) scale(0.72 0.72)" style="">
+	<g style="stroke: rgb(77, 139, 186); stroke-width: 0; stroke-dasharray: rgb(77, 139, 186); stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(77, 139, 186); fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05) scale(3.89 3.89)" >
+	<path d="M 83.483 77.535 H 6.517 C 2.918 77.535 0 74.618 0 71.018 V 18.982 c 0 -3.599 2.918 -6.517 6.517 -6.517 h 76.966 c 3.599 0 6.517 2.918 6.517 6.517 v 52.037 C 90 74.618 87.082 77.535 83.483 77.535 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(159, 217, 241); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<polygon points="90,55.81 70.59,44.03 90,33.13 90,22.96 45,48.25 0,22.96 0,33.13 19.41,44.03 0,55.81 0,66.17 28.28,49.02 45,58.41 61.72,49.02 90,66.17 " style="stroke: rgb(77, 139, 186); stroke-width: 1; stroke-dasharray: rgb(77, 139, 186); stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: rgb(77, 139, 186); opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+</g>
+</g>
+</svg>

@@ -32,7 +32,7 @@ def log():
         numarMatricol=data['numarMatricol']
         # print(data)
         msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-        msg.body="buna ce mai faci Onisim<3?"
+        msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href=\"http://127.0.0.1:5000/confirmare?email={email}\"> Apasa-ma</a>"
         mail.send(msg)
         return json.dumps("ok")
     else: 
@@ -54,6 +54,8 @@ def login(name):
         return render_template("votPoll.html")
     elif name=='newPoll':
         return render_template("newPoll.html")
+    elif name=='verificaEmail':
+        return render_template("verificaEmail.html")
     else:
         return render_template("error404.html")
 
