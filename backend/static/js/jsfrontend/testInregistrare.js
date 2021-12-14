@@ -20,40 +20,6 @@ function Email() {
 
 var validareemail = Email();
 
-const email ="@e-uvt.ro"
-function Email()
-{
-  var istrue=false;
-  var adresa = document.getElementById("ad").value;
-  var t=0,ok=0;
-  var adresa2=0;
-  for (let i = 0; i < adresa.length; i++) 
-  {
-     if(adresa[i]=='.')
-     {
-       ok++;
-     }
-     if(adresa[i]=='@')
-     {
-     t=i;
-     break;
-     }
-  }
-  for(let i=t;i<adresa.lenght;i++)
-  {
-   adresa2=adresa2+i;
-  }
-  if(adresa2==email)
-  {
-    ok++;
-  }
-  if (ok==2)
-  {
-    istrue=true;
-  }
-  return istrue;
-}
-
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -75,7 +41,6 @@ const butonInregistrare = document.getElementById("ButonInregistrare");
 
 
 butonInregistrare.addEventListener("click", function () {
-<<<<<<< Updated upstream
   if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
     if (validareemail == false) {
       alert("Adresa de email este invalidă!");
@@ -104,38 +69,6 @@ butonInregistrare.addEventListener("click", function () {
 // if (window.location.href == "http://127.0.0.1:5000")
 // window.location.href = "http://127.0.0.1:5000/inregistrare";
 //});
-=======
-  var validareemail=Email();
-if(validareemail==false)
-{
- alert("Adresa de email este invalidă!");
-document.getElementById("ad").value="";
-}
-  var adresa = document.getElementById("ad").value;
-  var numarMatricol = document.getElementById("nrm").value;
-  var cuvantCheie = document.getElementById("pass").value;
-  const concatenare = adresa.concat(numarMatricol, cuvantCheie);
-  console.log(concatenare);
-  var criptare = SHA256(concatenare);
-  console.log(criptare);
-  postData("http://127.0.0.1:5000/inregistrare", {
-    validareemail:validareemail,
-    adresa: adresa,
-    numarMatricol: numarMatricol,
-    cuvantCheie: cuvantCheie,
-    criptare: criptare,
-  }).then((data) => {
-    console.log(data);
-  });
-});
-
-
-const butonLogareInregistrare = document.getElementById("ButonInregistrare");
-
-butonInregistrare.addEventListener("click", function () {
-  window.location.href = "http://127.0.0.1:5000/inregistrare";
-});
->>>>>>> Stashed changes
 
 function SHA256(s) {
   var chrsz = 8;
