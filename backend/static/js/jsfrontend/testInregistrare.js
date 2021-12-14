@@ -1,4 +1,24 @@
-//import { SHA256 } from "./main.js";
+const email = "@e-uvt.ro";
+function Email() {
+  var istrue = false;
+  var adresa = document.getElementById("ad").value;
+  var t = 0,
+    ok = 0;
+  var adresa2 = 0;
+  for (let i = 0; i < adresa.length; i++) {
+    if (adresa[i] == ".") ok++;
+    if (adresa[i] == "@") {
+      t = i;
+      break;
+    }
+  }
+  for (let i = t; i < adresa.lenght; i++) adresa2 = adresa2 + i;
+  if (adresa2 == email) ok++;
+  if (ok == 2) istrue = true;
+  return istrue;
+}
+
+var validareemail = Email();
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -20,31 +40,34 @@ async function postData(url = "", data = {}) {
 const butonInregistrare = document.getElementById("ButonInregistrare");
 
 butonInregistrare.addEventListener("click", function () {
-  // if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
-  var adresa = document.getElementById("ad").value;
-  var numarMatricol = document.getElementById("nrm").value;
-  var cuvantCheie = document.getElementById("pass").value;
-  const concatenare = adresa.concat(numarMatricol, cuvantCheie);
-  console.log(concatenare);
-  var criptare = SHA256(concatenare);
-  console.log(criptare);
-  postData("http://127.0.0.1:5000", {
-    adresa: adresa,
-    numarMatricol: numarMatricol,
-    cuvantCheie: cuvantCheie,
-    criptare: criptare,
-  }).then((data) => {
-    console.log(data);
-  });
-  // }
+  if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
+    if (validareemail == false) {
+      alert("Adresa de email este invalidă!");
+      document.getElementById("ad").value = "";
+    } else {
+      var adresa = document.getElementById("ad").value;
+      var numarMatricol = document.getElementById("nrm").value;
+      var cuvantCheie = document.getElementById("pass").value;
+      const concatenare = adresa.concat(numarMatricol, cuvantCheie);
+      console.log(concatenare);
+      var criptare = SHA256(concatenare);
+      console.log(criptare);
+      postData("http://127.0.0.1:5000/inregistrare", {
+        adresa: adresa,
+        numarMatricol: numarMatricol,
+        cuvantCheie: cuvantCheie,
+        criptare: criptare,
+      }).then((data) => {
+        console.log(data);
+      });
+    }
+  } else window.location.href = "http://127.0.0.1:5000/inregistrare";
 });
 
-const butonInregistrare2 = document.getElementById("ButonInregistrare");
-
-butonInregistrare2.addEventListener("click", function () {
-  //if (window.location.href == "http://127.0.0.1:5000")
-  //window.location.href = "http://127.0.0.1:5000/inregistrare";
-});
+//butonInregistrare.addEventListener("click", function () {
+// if (window.location.href == "http://127.0.0.1:5000")
+// window.location.href = "http://127.0.0.1:5000/inregistrare";
+//});
 
 function SHA256(s) {
   var chrsz = 8;

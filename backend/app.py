@@ -1,6 +1,7 @@
 from flask import Flask,request,render_template
 
 WhiteList = []
+EmailList=[]
 
 app = Flask(__name__)
 @app.route('/')
@@ -8,14 +9,15 @@ def login3():
     return render_template('logareC.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/inregistrare', methods=['POST'])
 def login2():
-    #registerData = request.get_json()
+    registerData = request.get_json()
     criptare = request.json_get("criptare", None)
     email = request.json_get("adresa", None)
     numarMatricol = request.json_get("numarMatricol", None)
     cuvantCheie = request.json_get("cuvantCheie", None)
     WhiteList.append( criptare)
+    EmailList.append( email)
     return criptare
 
 @app.route('/<name>')
@@ -32,6 +34,8 @@ def login(name):
         return render_template("rezultate.html")
     elif name=='confirmare':
         return render_template("confirmare.html")
+    elif name=='newPoll':
+        return render_template("newPoll.html")
     else:
         return render_template("error404.html")
 
