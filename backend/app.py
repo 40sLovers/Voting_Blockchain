@@ -1,6 +1,21 @@
 from flask import Flask,request,render_template
+from flask_mail import Mail,Message
 
 WhiteList = []
+
+
+app = Flask(__name__)
+mail=Mail(app)
+app.config["MAIL_SERVER"]="smpt.gmail.com"
+app.config["MAIL_PORT"]=465
+app.config["MAIL_USERNAME"]="p1projectprogram@gmail.com"
+app.config["MAIL_PASSWORD"]="Project123"
+app.config['MAIL_USE_SSL'] = True
+
+
+
+mail=Mail(app)
+
 
 app = Flask(__name__)
 @app.route('/')
@@ -8,15 +23,34 @@ def login3():
     return render_template('logareC.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/inregistrare', methods=['POST'])
 def login2():
-    #registerData = request.get_json()
+    registerData = request.get_json()
     criptare = request.json_get("criptare", None)
     email = request.json_get("adresa", None)
     numarMatricol = request.json_get("numarMatricol", None)
     cuvantCheie = request.json_get("cuvantCheie", None)
     WhiteList.append( criptare)
     return criptare
+
+
+@app.route("/inregistrare", methods=['POST','GET'])
+def log():
+   #validareemail=request.json_get("validareemail",None)
+   if request.method == 'POST':
+        registerData = request.get_json()
+        criptare = request.json_get("criptare", None)
+        email = request.json_get("adresa", None)
+        numarMatricol = request.json_get("numarMatricol", None)
+        cuvantCheie = request.json_get("cuvantCheie", None)
+        WhiteList.append( criptare)
+        msg=Message(request.form.get("hi"),sender="p1project@gmail.com",recipients=email)
+        msg.body="buna ce mai faci Onisim<3?"
+        mail.send(msg)    
+        return render_template("confirmare.html")
+   else:
+        return render_template("inregistrare.html")
+
 
 @app.route('/<name>')
 def login(name):

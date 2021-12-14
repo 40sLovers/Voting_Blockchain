@@ -78,16 +78,24 @@
         <div id="banner"></div>
         <div class="menu">
           <a href="/" class="linkLogo">
-            <img src="{{ url_for('static',filename='images/logo.svg') }}" height="72px" />
+            <img
+              src="{{ url_for('static',filename='images/logo.svg') }}"
+              height="72px"
+            />
             <div class="nameLogo">VoteBoat</div>
           </a>
           <div class="menuItems">
             <a href="newPoll" title="Creează un poll nou">
-              <img src="{{ url_for('static',filename='images/addPoll.svg') }}" height="50px" class="svgGreen"/>
+              <img
+                src="{{ url_for('static',filename='images/addPoll.svg') }}"
+                height="50px"
+                class="svgGreen"
+              />
             </a>
             <p>Creează un poll now</p>
           </div>
-        </div><!-- End of Nav Div -->
+        </div>
+        <!-- End of Nav Div -->
         <div class="header">
           <div id="continut1">
             <div style="padding: 210px 210px 110px 210px">
@@ -97,7 +105,10 @@
                     <p class="titlu">ÎNREGISTRARE</p>
 
                     <div class="DateLogin">
-                      <form style="width: 316.64px; height: 330.5px">
+                      <form
+                        style="width: 316.64px; height: 330.5px"
+                        onsubmit="return false"
+                      >
                         <div class="form-group">
                           <label for="ad" class="forum">Adresă e-uvt</label>
                           <input
