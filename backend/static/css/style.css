@@ -97,6 +97,20 @@ ul#menu li a.current
 	margin:0;
 }
 
+.About
+{
+	position: absolute;
+	bottom: 5px;
+	right: 15px;
+	border-radius: 5px;
+}
+
+#About
+{
+	font-size: 16px;
+	color:rgb(0, 0, 0);
+}
+
 .login
 {
 	border-radius: 5px;
@@ -181,7 +195,7 @@ ul#menu li a.current
 	color: #000000;
 	font-size: 38px;
 	font-weight: 600;
-	margin-top: -80px;
+	margin-top: -70px;
 }
 
 .menu
@@ -243,7 +257,7 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 
 .btnAlignCreate
 {
-	margin-top: 25px;
+	margin-top: 15px;
 	margin-left: 38%;
 }
 
