@@ -15,7 +15,6 @@ mail=Mail(app)
 IACoin = Blockchain()
 
 
-
 @app.route('/')
 def login3():
     return render_template('logareC.html')
@@ -27,11 +26,11 @@ def log():
         #email = request.json_get("adresa", None)
         #numarMatricol = request.json_get("numarMatricol", None)
         #cuvantCheie = request.json_get("cuvantCheie", None)
-        #WhiteList.append( criptare)
+        #WhiteList.append( criptare)8
         data = request.get_json()
         email=data['adresa']
         numarMatricol=data['numarMatricol']
-        print(data)
+        # print(data)
         msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
         msg.body="buna ce mai faci Onisim<3?"
         mail.send(msg)
