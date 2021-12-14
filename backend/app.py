@@ -2,7 +2,8 @@ from flask import Flask,request,render_template, flash
 from flask_mail import Mail,Message
 import socket
 import json
-socket.getaddrinfo('127.0.0.1', 8080)
+from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
+from GoodToUseScripts import keyFromHash,updatehash
 WhiteList = []
 
 
@@ -11,6 +12,9 @@ app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
                    MAIL_PASSWORD = "Project123")
 mail=Mail(app)
+IACoin = Blockchain()
+
+
 
 @app.route('/')
 def login3():
