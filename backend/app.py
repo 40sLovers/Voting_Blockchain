@@ -1,20 +1,16 @@
-from flask import Flask,request,render_template
+from flask import Flask,request,render_template, flash
 from flask_mail import Mail,Message
-
+import socket
+socket.getaddrinfo('127.0.0.1', 8080)
 WhiteList = []
 
 
 app = Flask(__name__)
+app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
+                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
+                   MAIL_PASSWORD = "Project123")
 mail=Mail(app)
-app.config["MAIL_SERVER"]="smpt.gmail.com"
-app.config["MAIL_PORT"]=465
-app.config["MAIL_USERNAME"]="p1projectprogram@gmail.com"
-app.config["MAIL_PASSWORD"]="Project123"
-app.config['MAIL_USE_SSL'] = True
 
-
-
-mail=Mail(app)
 @app.route('/')
 def login3():
     return render_template('inregistrare.html')
@@ -23,7 +19,7 @@ def login3():
 @app.route('/', methods=['POST'])
 def login2():
     #registerData = request.get_json()
-    validareemail=request.json_get("validareemail",None)
+    # validareemail=request.json_get("validareemail",None)
     criptare = request.json_get("criptare", None)
     email = request.json_get("adresa", None)
     numarMatricol = request.json_get("numarMatricol", None)
@@ -32,13 +28,14 @@ def login2():
     return criptare
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
-   validareemail=request.json_get("validareemail",None)
-   if request.method == 'POST' and validareemail==True:
-     email = request.json_get("adresa", None)
-     msg=Message(request.form.get("hi"),sender="p1project@gmail.com",recipients=email)
-     msg.body="buna ce mai faci Onisim<3?"
-     mail.send(msg)
-     return render_template("confirmare.html")
+    if request.method == 'POST':
+        data = request.get_json()
+        email=data['adresa']
+        msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
+        msg.body="buna ce mai faci Onisim<3?"
+        mail.send(msg)
+        return render_template("confirmare.html")
+    else: return render_template("inregistrare.html")
 
 @app.route('/<name>')
 def login(name):
