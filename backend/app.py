@@ -15,42 +15,30 @@ app.config['MAIL_USE_SSL'] = True
 
 
 mail=Mail(app)
-
-
-app = Flask(__name__)
 @app.route('/')
 def login3():
-    return render_template('logareC.html')
+    return render_template('inregistrare.html')
 
 
-@app.route('/inregistrare', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login2():
-    registerData = request.get_json()
+    #registerData = request.get_json()
+    validareemail=request.json_get("validareemail",None)
     criptare = request.json_get("criptare", None)
     email = request.json_get("adresa", None)
     numarMatricol = request.json_get("numarMatricol", None)
     cuvantCheie = request.json_get("cuvantCheie", None)
     WhiteList.append( criptare)
     return criptare
-
-
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
-   #validareemail=request.json_get("validareemail",None)
-   if request.method == 'POST':
-        registerData = request.get_json()
-        criptare = request.json_get("criptare", None)
-        email = request.json_get("adresa", None)
-        numarMatricol = request.json_get("numarMatricol", None)
-        cuvantCheie = request.json_get("cuvantCheie", None)
-        WhiteList.append( criptare)
-        msg=Message(request.form.get("hi"),sender="p1project@gmail.com",recipients=email)
-        msg.body="buna ce mai faci Onisim<3?"
-        mail.send(msg)    
-        return render_template("confirmare.html")
-   else:
-        return render_template("inregistrare.html")
-
+   validareemail=request.json_get("validareemail",None)
+   if request.method == 'POST' and validareemail==True:
+     email = request.json_get("adresa", None)
+     msg=Message(request.form.get("hi"),sender="p1project@gmail.com",recipients=email)
+     msg.body="buna ce mai faci Onisim<3?"
+     mail.send(msg)
+     return render_template("confirmare.html")
 
 @app.route('/<name>')
 def login(name):

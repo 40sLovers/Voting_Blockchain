@@ -39,6 +39,7 @@ async function postData(url = "", data = {}) {
 
 const butonInregistrare = document.getElementById("ButonInregistrare");
 
+
 butonInregistrare.addEventListener("click", function () {
   if (window.location.href == "http://127.0.0.1:5000/inregistrare") {
     if (validareemail == false) {
