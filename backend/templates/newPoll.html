@@ -92,11 +92,11 @@
               <div id="continut2">
                 <div style="padding: 0px 20px 20px 20px">
                   <div id="login" class="poll">
-                    <p class="titluP">Vot nou</p>
+                    <p class="titluP">Creare vot</p>
 
-                    <div class="DateLogin">
+                    <div class="vot">
                       <form
-                        style="width: 316.64px; height: 330.5px"
+                        style="width: 250px; height: 330.5px"
                         onsubmit="return false;"
                       >
                         <div class="form-group">
@@ -110,46 +110,48 @@
                           />
                         </div>
 
-                        <div class="form-group">
-                          <label for="op1" class="forum">Opțiune 1</label>
-                          <input
-                            type="text"
-                            id="op1"
-                            class="form-control"
-                            name="option1"
-                            placeholder="Opțiune"
-                          />
-                        </div>
-
-                        <div class="form-group">
-                          <label for="op2" class="forum">Opțiune 2</label>
-                          <input
-                            type="text"
-                            id="op2"
-                            class="form-control"
-                            name="option2"
-                            placeholder="Opțiune"
-                          />
-                        </div>
-
-                        <div class="form-group">
-                          <label for="opt3" class="forum">Opțiune 3</label>
-                          <input
-                            type="text"
-                            id="opt3"
-                            class="form-control"
-                            name="option3"
-                            placeholder="Opțiune"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          class="btn btn-primary btnAlignCreate"
-                        >
-                          Creează
-                        </button>
+                        
+                      <div class="form-group">
+                        <ul class="lista">
+						  <li>
+							  <span class="numeopt">Gusi si mama lui onisim presedinte</span>
+							  <span class="ics">&#10005;</span>
+							</li>
+							<li>
+							  <span class="numeopt">Onisim presedinte</span>
+								<span class="ics">&#10005;</span>
+							</li>
+							<li>
+							  <span class="numeopt">Paul presedinte</span>
+								<span class="ics">&#10005;</span>
+							</li>
+							<li>
+							  <span class="numeopt">Thomas presedinte</span>
+								<span class="ics">&#10005;</span>
+							</li>
+						  </ul>
+                      </div>
+						<div class="formbutoane">
+						<div class="inputopt">
+							<input type="text" id="addoptiune">
+							</div>
+						<div class="btnopt">
+							<button type="button" id="addBtn" class="btn btn-primary">Adaugare Optiune</button>
+							</div>
+							
+						</div>
                       </form>
                     </div>
+					  <div class="barasep">
+						   <hr>
+						   </div>
+					  <div class="conectarevot">
+						   <p class="titluS">Participa la vot</p>
+					  <div class="btnconectare">
+						  <input type="text" id="conectare">
+							<button type="button" id="addBtn" class="btn btn-primary btncnt">Conectare</button>
+							</div>
+					  </div>
                   </div>
                 </div>
               </div>
@@ -221,3 +223,4 @@
     <!--Bootstrap scripts end-->
   </body>
 </html>
+	
