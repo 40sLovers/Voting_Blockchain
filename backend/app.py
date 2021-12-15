@@ -5,7 +5,7 @@ import json
 from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
 from GoodToUseScripts import keyFromHash,updatehash
 WhiteList = []
-
+EmailList = []
 
 app = Flask(__name__)
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
@@ -23,21 +23,33 @@ def login3():
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
     if request.method == 'POST':
-        #registerData = request.json_get()
-        #email = request.json_get("adresa", None)
-        #numarMatricol = request.json_get("numarMatricol", None)
-        #cuvantCheie = request.json_get("cuvantCheie", None)
-        #WhiteList.append( criptare)
         data = request.get_json()
-        email=data['adresa']
-        numarMatricol=data['numarMatricol']
+        email = data['adresa']
+        numarMatricol = data['numarMatricol']
+        cuvantCheie = data['cuvantCheie']
+        criptare = data['criptare']
+        WhiteList.append( criptare )
+        EmailList.append( email ) #criptez email in plus
         print(data)
         msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-        msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href=\"http://127.0.0.1:5000/confirmare?email={email}\"> Apasa-ma</a>"
+        msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
         mail.send(msg)
         return json.dumps("ok")
     else: 
         return render_template("inregistrare.html")
+  
+@app.route("/",methods=['POST','GET'])
+def autentificare():
+    if request.method == 'POST':
+        data = request.get_json()
+        email = data['adresa']
+        numarMatricol = data['numarMatricol']
+        cuvantCheie = data['cuvantCheie']
+        criptare = data['criptare']
+        if criptare in WhiteList:
+            return json.dumps("ok")
+    #else:
+        #return render_template("logareC.html")
 
 @app.route('/<name>')
 def login(name):
