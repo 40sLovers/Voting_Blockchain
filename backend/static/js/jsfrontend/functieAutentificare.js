@@ -15,7 +15,7 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-const ButonAutentificare = document.getElementsById("ButonAutentificare");
+const ButonAutentificare = document.getElementById("ButonAutentificare");
 
 ButonAutentificare.addEventListener("click", function () {
   var adresa = document.getElementById("ad").value;
@@ -23,19 +23,18 @@ ButonAutentificare.addEventListener("click", function () {
   var cuvantCheie = document.getElementById("pass").value;
   const concatenare = adresa.concat(numarMatricol, cuvantCheie);
   var criptare = SHA256(concatenare);
-  postData(
-    window.location.protocol + "//" + window.location.host + "/inregistrare",
-    {
-      criptare: criptare,
-    }
-  ).then((data) => {
+  postData(window.location.protocol + "//" + window.location.host + "/", {
+    criptare: criptare,
+  }).then((data) => {
     console.log(data);
     if (data == "ok") {
       window.location.href =
-        window.location.protocol + "//" + window.location.host + "/newPol";
+        window.location.protocol + "//" + window.location.host + "/newPoll";
     }
     if (data == "notok") {
       alert("Datele introduse sunt gresite!");
+      window.location.href =
+        window.location.protocol + "//" + window.location.host + "/";
     }
   });
 });

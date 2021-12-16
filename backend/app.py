@@ -32,7 +32,7 @@ def log():
             EmailList.append( emailCriptat ) 
             print(data)
             msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-           #msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
+            msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
             mail.send(msg)
             return json.dumps("ok")
         else:
@@ -40,17 +40,14 @@ def log():
     else: 
         return render_template("inregistrare.html")
   
-@app.route("/",methods=['POST','GET'])
+@app.route("/",methods=['POST', 'GET'])
 def autentificare():
-   if request.method == 'POST':
-        data = request.get_json()
-        criptare = data['criptare']
-        if criptare in WhiteList:
-            return json.dumps("ok")
-        else:
-            return json.dumps("notok")
-   else:
-        return render_template("logareC.html")
+    data = request.get_json()
+    criptare = data['criptare']
+    if criptare in WhiteList:
+        return json.dumps("ok")
+    else:
+        return json.dumps("notok")
 
 @app.route('/<name>')
 def login(name):
