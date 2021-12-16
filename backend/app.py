@@ -25,31 +25,32 @@ def log():
     if request.method == 'POST':
         data = request.get_json()
         email = data['adresa']
-        numarMatricol = data['numarMatricol']
-        cuvantCheie = data['cuvantCheie']
         criptare = data['criptare']
+        emailCriptat = data['adresaCriptata']
         WhiteList.append( criptare )
-        EmailList.append( email ) #criptez email in plus
-        print(data)
-        msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-        msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
-        mail.send(msg)
-        return json.dumps("ok")
+        if emailCriptat not in EmailList:
+            EmailList.append( emailCriptat ) 
+            print(data)
+            msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
+           #msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
+            mail.send(msg)
+            return json.dumps("ok")
+        else:
+            return json.dumps("EmailFolosit")    
     else: 
         return render_template("inregistrare.html")
   
 @app.route("/",methods=['POST','GET'])
 def autentificare():
-    if request.method == 'POST':
+   if request.method == 'POST':
         data = request.get_json()
-        email = data['adresa']
-        numarMatricol = data['numarMatricol']
-        cuvantCheie = data['cuvantCheie']
         criptare = data['criptare']
         if criptare in WhiteList:
             return json.dumps("ok")
-    #else:
-        #return render_template("logareC.html")
+        else:
+            return json.dumps("notok")
+   else:
+        return render_template("logareC.html")
 
 @app.route('/<name>')
 def login(name):
