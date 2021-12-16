@@ -187,15 +187,29 @@ ul#menu li a.current
 	font-weight: 600;
 }
 
+#titluri
+{
+	display: flex;
+	flex-direction: row;
+	margin-top: -50px;
+}
+
 .titluP
 {
 	font-family: 'Roboto', 'serif';
 	color: #000000;
 	font-size: 38px;
 	font-weight: 600;
-	margin-top: 20px;
-	margin-left: 75px;
-	text-align: left;
+	width: 50%;
+}
+
+.titluS
+{
+	font-family: 'Roboto', 'serif';
+	color: #000000;
+	font-size: 38px;
+	font-weight: 600;
+	width: 50%;
 }
 
 .menu
@@ -528,45 +542,98 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 {
 	text-align: center;
 }
+
 .vot
 {
 	text-align: left;
 	margin-left: 50px;
 }
-.barasep hr{
-	margin-top: -185px;
-	width: 50%;
-    background-image: linear-gradient(90deg, transparent, rgb(24, 37, 82));
-    border: 0;
-    height: 1px;
-	transform: rotate(90deg);
 
+#newContent
+{
+	display: flex;
+	flex-direction: row;
 }
-.ics{
+
+.vot
+{
+	width: 50%;
+}
+
+.barasep
+{
+	width: 1px;
+	height: auto;
+	background-image: linear-gradient(transparent, rgb(24, 37, 82));
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.conectarevot
+{
+	width: 50%;
+	align-items: center;
+	margin-right: 50px;
+}
+
+.ics
+{
 	color: red;
 }
-.btnopt{
-	position: relative;
-	left:200px;
-	bottom:35px;
-	
-}
-.btncnt{
-	margin-left:11px;
-}
-.btnconectare{
-	position: relative;
-	top:33px;
-	left:250px;
-	
-}
-.titluS{
-	font-family: 'Roboto', 'serif';
-	color: #000000;
-	font-size: 38px;
-	font-weight: 600;
-	margin-top: -400px;
-	margin-right:60px;
-	text-align: right;
+
+.formbutoane
+{
+	display: flex;
+	flex-direction: column;
 }
 
+.btnopt{
+	margin-top: 25px;
+	display: flex;
+	flex-direction: row;
+}
+
+.btncnt
+{
+	margin-left:11px;
+}
+
+.btnconectare
+{
+	align-content: center;
+	flex-direction: column;
+}
+
+#addBtn
+{
+	margin-top: 25px;
+}
+
+.btnAlignLNP
+{
+	margin-left: 0px;
+	margin-top: 25px;
+	width: 200px;
+	height: fit-content;
+}
+
+.btnAlignRNP
+{
+	margin-left: 90px;
+	margin-top: 25px;
+	width: 100px;
+	height: fit-content;
+}
+
+.optionsSCR
+{
+	overflow-y: auto;
+	overflow-y: hidden;
+}
+
+.lista
+{
+	color: #000000;
+	list-style-type: none;
+	font-size: 18px;
+}
