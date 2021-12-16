@@ -155,11 +155,9 @@ ul#menu li a.current
 	border-radius: 5px;
 	background-color: rgba(255,255,255,0.6);
 	height: 500px;
-	width: 400px;
-	text-align: center;
+	width: 850px;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -195,7 +193,9 @@ ul#menu li a.current
 	color: #000000;
 	font-size: 38px;
 	font-weight: 600;
-	margin-top: -70px;
+	margin-top: 20px;
+	margin-left: 75px;
+	text-align: left;
 }
 
 .menu
@@ -528,3 +528,45 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 {
 	text-align: center;
 }
+.vot
+{
+	text-align: left;
+	margin-left: 50px;
+}
+.barasep hr{
+	margin-top: -185px;
+	width: 50%;
+    background-image: linear-gradient(90deg, transparent, rgb(24, 37, 82));
+    border: 0;
+    height: 1px;
+	transform: rotate(90deg);
+
+}
+.ics{
+	color: red;
+}
+.btnopt{
+	position: relative;
+	left:200px;
+	bottom:35px;
+	
+}
+.btncnt{
+	margin-left:11px;
+}
+.btnconectare{
+	position: relative;
+	top:33px;
+	left:250px;
+	
+}
+.titluS{
+	font-family: 'Roboto', 'serif';
+	color: #000000;
+	font-size: 38px;
+	font-weight: 600;
+	margin-top: -400px;
+	margin-right:60px;
+	text-align: right;
+}
+
