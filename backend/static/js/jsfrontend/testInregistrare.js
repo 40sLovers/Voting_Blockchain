@@ -1,6 +1,7 @@
 //let { sha256 } = await import("../../../templates/inregistrare.html");
 
 const validateEmail = (email) => {
+  return true; // de sters
   return String(email)
     .toLowerCase()
     .match(/[a-zA-Z]*.[a-zA-Z]*[0-9]*@e-uvt.ro/);
@@ -37,7 +38,8 @@ butonInregistrare.addEventListener("click", function () {
       var adresa = document.getElementById("ad").value;
       var numarMatricol = document.getElementById("nrm").value;
       var cuvantCheie = document.getElementById("pass").value;
-      var adresaCriptata = SHA256(adresa);
+      var adresaCriptata = CryptoJS.SHA256(adresa);
+      adresaCriptata = adresaCriptata.toString();
       const concatenare = adresa.concat(numarMatricol, cuvantCheie);
       var criptare = CryptoJS.SHA256(concatenare);
       criptare = criptare.toString();
