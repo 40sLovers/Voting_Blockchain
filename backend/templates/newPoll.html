@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&family=Open+Sans&display=swap"
     rel="stylesheet" />
   <title>VoteBoat</title>
 </head>
@@ -50,20 +50,42 @@
                 <div id="login" class="poll">
                               <div id="titluri">
                                 <p class="titluP">Creare vot</p>
+                                <hr>
                                 <p class="titluS">Participă la vot</p>
                               </div>
                               
                               <div id="newContent">
                                 <div class="vot">
-                                  <form onsubmit="return false;">
+                                  <form style="width: 350px;" onsubmit="return false;">
                                     <div class="form-group">
-                                      <label for="titluPoll" class="forum">Titlu</label>
+                                      <label for="titluPoll" class="voteOpt">Titlu</label>
                                       <input type="text" id="titluPoll" class="form-control" name="PollTitle" placeholder="Titlu" />
                                     </div>
                                     <div class="form-group optionsSCR">
                                       <ul class="lista">
                                         <li>
                                           <span class="numeopt">Gusi si mama lui onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
+                                        </li>
+                                        <li>
+                                          <span class="numeopt">Onisim presedinte</span>
                                         </li>
                                         <li>
                                           <span class="numeopt">Onisim presedinte</span>
@@ -93,10 +115,14 @@
                                 </div>
                                 
                                 <div class="conectarevot">
-                                  
+                                  <div id="ballot">
+                                    <img class="svgWhite"src="{{ url_for('static',filename='images/voting.svg') }}" width="150px"/>
+                                  </div>
+                                  <br><br>
                                   <div class="btnconectare">
                                     <input type="text" id="conectare" class="form-control" placeholder="Cod vot">
-                                    <button type="button" id="addBtn" class="btn btn-primary btncnt">Conectare</button>
+                                    <br>
+                                    <button type="button" id="connect" class="btn btn-primary btncnt">Conectare</button>
                                   </div>
                                 </div>
                               </div>

@@ -1,6 +1,11 @@
+/*
+	https://codepen.io/sosuke/pen/Pjoqqp
+	Godsend pentru schimbat culori in svg-uri :D
+*/
+
 ::-webkit-scrollbar
 {
-	width: 12px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-track
@@ -154,10 +159,9 @@ ul#menu li a.current
 {
 	border-radius: 5px;
 	background-color: rgba(255,255,255,0.6);
-	height: 500px;
-	width: 850px;
+	height: 550px;
+	width: 900px;
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
@@ -191,12 +195,13 @@ ul#menu li a.current
 {
 	display: flex;
 	flex-direction: row;
-	margin-top: -50px;
+	margin-top: 15px;
+	margin-bottom: -20px;
 }
 
 .titluP
 {
-	font-family: 'Roboto', 'serif';
+	font-family: "Open Sans", 'Roboto', 'serif';
 	color: #000000;
 	font-size: 38px;
 	font-weight: 600;
@@ -205,7 +210,7 @@ ul#menu li a.current
 
 .titluS
 {
-	font-family: 'Roboto', 'serif';
+	font-family: "Open Sans", 'Roboto', 'serif';
 	color: #000000;
 	font-size: 38px;
 	font-weight: 600;
@@ -233,6 +238,16 @@ ul#menu li a.current
 .svgGreen
 {
 	filter: invert(40%) sepia(92%) saturate(3132%) hue-rotate(97deg) brightness(91%) contrast(101%);
+}
+
+.svgBlue
+{
+	filter: invert(62%) sepia(81%) saturate(2999%) hue-rotate(149deg) brightness(87%) contrast(101%);
+}
+
+.svgWhite
+{
+	filter: invert(100%) sepia(0%) saturate(7448%) hue-rotate(111deg) brightness(113%) contrast(100%);
 }
 
 .nameLogo
@@ -562,8 +577,8 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 
 .barasep
 {
-	width: 1px;
-	height: auto;
+	width: 2px;
+	height: 100%;
 	background-image: linear-gradient(transparent, rgb(24, 37, 82));
 	margin-left: 5%;
 	margin-right: 5%;
@@ -572,7 +587,9 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 .conectarevot
 {
 	width: 50%;
-	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	margin-right: 50px;
 }
 
@@ -595,7 +612,7 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 
 .btncnt
 {
-	margin-left:11px;
+	margin-top: 20px;
 }
 
 .btnconectare
@@ -604,31 +621,25 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 	flex-direction: column;
 }
 
-#addBtn
-{
-	margin-top: 25px;
-}
-
 .btnAlignLNP
 {
 	margin-left: 0px;
-	margin-top: 25px;
-	width: 200px;
+	width: 250px;
 	height: fit-content;
 }
 
 .btnAlignRNP
 {
 	margin-left: 90px;
-	margin-top: 25px;
-	width: 100px;
+	width: 150px;
 	height: fit-content;
 }
 
 .optionsSCR
 {
+	overflow-x: auto;
 	overflow-y: auto;
-	overflow-y: hidden;
+	height: 250px;
 }
 
 .lista
@@ -636,4 +647,10 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 	color: #000000;
 	list-style-type: none;
 	font-size: 18px;
+}
+
+.voteOpt
+{
+	font-size: 22px;
+	color: #000000;
 }
