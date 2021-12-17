@@ -48,84 +48,87 @@
             <div id="continut2">
               <div style="padding: 0px 20px 20px 20px">
                 <div id="login" class="poll">
-                              <div id="titluri">
-                                <p class="titluP">Creare vot</p>
-                                <hr>
-                                <p class="titluS">Participă la vot</p>
-                              </div>
-                              
-                              <div id="newContent">
-                                <div class="vot">
-                                  <form style="width: 350px;" onsubmit="return false;">
-                                    <div class="form-group">
-                                      <label for="titluPoll" class="voteOpt">Titlu</label>
-                                      <input type="text" id="titluPoll" class="form-control" name="PollTitle" placeholder="Titlu" />
-                                    </div>
-                                    <div class="form-group optionsSCR">
-                                      <ul class="lista">
-                                        <li>
-                                          <span class="numeopt">Gusi si mama lui onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Onisim presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Paul presedinte</span>
-                                        </li>
-                                        <li>
-                                          <span class="numeopt">Thomas presedinte</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="formbutoane">
-                                      <div class="inputopt">
-                                        <input type="text" id="addoptiune" class="form-control" placeholder="Adaugă o opțiune">
-                                      </div>
-                                      <div class="btnopt">
-                                        <button type="button" id="addBtn" class="btn btn-primary btnAlignLNP">Adăugare Opțiune</button>
-                                        <button type="submit" id="createVote" class="btn btn-primary btnAlignRNP">Creare Vot</button>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
+                  <div id="titluri">
+                    <p class="titluP">Creare vot</p>
+                    <hr>
+                    <p class="titluS">Participă la vot</p>
+                  </div>
 
-                                <div class="barasep">
-                                  <hr>
-                                </div>
-                                
-                                <div class="conectarevot">
-                                  <div id="ballot">
-                                    <img class="svgWhite"src="{{ url_for('static',filename='images/voting.svg') }}" width="150px"/>
-                                  </div>
-                                  <br><br>
-                                  <div class="btnconectare">
-                                    <input type="text" id="conectare" class="form-control" placeholder="Cod vot">
-                                    <br>
-                                    <button type="button" id="connect" class="btn btn-primary btncnt">Conectare</button>
-                                  </div>
-                                </div>
-                              </div>
+                  <div id="newContent">
+                    <div class="vot">
+                      <form style="width: 350px;" onsubmit="return false;">
+                        <div class="form-group">
+                          <label for="titluPoll" class="voteOpt">Titlu</label>
+                          <input type="text" id="titluPoll" class="form-control" name="PollTitle" placeholder="Titlu" />
+                        </div>
+                        <div class="form-group optionsSCR">
+                          <ul class="lista">
+                            <li>
+                              <span class="numeopt">Gusi si mama lui onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Onisim presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Paul presedinte</span>
+                            </li>
+                            <li>
+                              <span class="numeopt">Thomas presedinte</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="formbutoane">
+                          <div class="inputopt">
+                            <input type="text" id="addoptiune" class="form-control" placeholder="Adaugă o opțiune">
+                          </div>
+                          <div class="btnopt">
+                            <button type="button" id="addBtn" class="btn btn-primary btnAlignLNP">Adăugare
+                              Opțiune</button>
+                            <button type="submit" id="createVote" class="btn btn-primary btnAlignRNP">Creare
+                              Vot</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+                    <div class="barasep">
+                      <hr>
+                    </div>
+
+                    <div class="conectarevot">
+                      <div id="ballot">
+                        <img class="svgWhite" src="{{ url_for('static',filename='images/voting.svg') }}"
+                          width="150px" />
+                      </div>
+                      <br><br>
+                      <div class="btnconectare">
+                        <input type="text" id="conectare" class="form-control" placeholder="Cod vot">
+                        <br>
+                        <button type="button" id="connect" class="btn btn-primary btncnt">Conectare</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
