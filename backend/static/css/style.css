@@ -654,3 +654,17 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active
 	font-size: 22px;
 	color: #000000;
 }
+.lista button
+{
+margin-left: 200px;
+font-family:default;
+font-size:medium;
+background-color: rgb(11, 123, 235);
+color:white;
+height:25px;
+width: 60px;
+border-radius: 5px;
+border:none;
+cursor:pointer;
+outline: none;
+}
