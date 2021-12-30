@@ -67,6 +67,10 @@ def login(name):
         return render_template("newPoll.html")
     elif name=='verificaEmail':
         return render_template("verificaEmail.html")
+    elif name == 'Votare':
+        return render_template("Votare.html")
+    elif name == 'confirmarevot':
+        return render_template("confirmarevot.html")
     else:
         return render_template("error404.html")
 
