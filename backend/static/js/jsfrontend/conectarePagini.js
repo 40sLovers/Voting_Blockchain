@@ -18,9 +18,12 @@ async function postData(url = "", data = {}) {
 const conectareVotare = document.getElementById("connect");
 
 conectareVotare.addEventListener("click", function () {
-  const CodConectare = document.getElementById("conectare").value;
+  var CodConectare = document.getElementById("conectare").value;
   postData(
-    window.location.protocol + "//" + window.location.host + "/newPoll",
+    window.location.protocol +
+      "//" +
+      window.location.host +
+      "/newPollVerificare",
     {
       CodConectare: CodConectare,
     }
@@ -28,9 +31,8 @@ conectareVotare.addEventListener("click", function () {
     console.log(data);
     if (data == "ok") {
       window.location.href =
-        window.location.protocol + "//" + window.location.host + "/votPoll";
-    }
-    if (data == "notok") {
+        window.location.protocol + "//" + window.location.host + "/Votare";
+    } else {
       alert("Codul introdus este gresit!");
     }
   });

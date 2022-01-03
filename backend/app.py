@@ -49,20 +49,27 @@ def autentificare():
     else:
         return json.dumps("notok")
 
-@app.route("/newPoll", methods = ['GET', 'POST'])
+@app.route("/newPoll", methods = ['POST', 'GET'])
+
 def codConectare():
     data = request.get_json()
-    cod = data['cod']
-    CoduriList.append(cod)
-    return json.dumps(cod)
+    if data != None:
+        cod = data['cod']
+        CoduriList.append(cod)
+        return json.dumps("ok")
+    return render_template("newPoll.html")
 
-#def verificaCod():
-   #data = request.get_json()
-   #codConectare = data['codConectare']
-   #if codConectare in CoduriList:
-        #return json.dumps("ok")
-   #else:
-        #return json.dumps("notok")
+
+@app.route("/newPollVerificare", methods = ['POST', 'GET'])
+
+def verificaCod():
+    data = request.get_json()
+    if data != None:
+        CodConectare = data['CodConectare']
+        if CodConectare in CoduriList:
+                return json.dumps("ok")
+    return render_template("newPoll.html")
+
 
 @app.route('/<name>')
 def login(name):
@@ -77,7 +84,7 @@ def login(name):
     elif name=='rezultate':
         return render_template("rezultate.html")
     elif name=='votPoll':
-        return render_template("votPoll.html")
+        return render_template("Votare.html")
     elif name=='newPoll':
         return render_template("newPoll.html")
     elif name=='verificaEmail':

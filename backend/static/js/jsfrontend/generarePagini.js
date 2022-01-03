@@ -15,7 +15,7 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-const butonGenerarePagina = document.getElementsById("createVote");
+const butonGenerarePagina = document.getElementById("createVote");
 
 butonGenerarePagina.addEventListener("click", function () {
   let cod = (Math.random() + 1).toString(36).substring(7);
