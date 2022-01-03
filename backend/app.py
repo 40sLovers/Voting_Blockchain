@@ -6,7 +6,7 @@ from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
 from GoodToUseScripts import keyFromHash,updatehash
 WhiteList = []
 EmailList = []
-
+CoduriList = []
 app = Flask(__name__)
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
@@ -48,6 +48,21 @@ def autentificare():
         return json.dumps("ok")
     else:
         return json.dumps("notok")
+
+@app.route("/newPoll", methods = ['GET', 'POST'])
+def codConectare():
+    data = request.get_json()
+    cod = data['cod']
+    CoduriList.append(cod)
+    return json.dumps(cod)
+
+#def verificaCod():
+   #data = request.get_json()
+   #codConectare = data['codConectare']
+   #if codConectare in CoduriList:
+        #return json.dumps("ok")
+   #else:
+        #return json.dumps("notok")
 
 @app.route('/<name>')
 def login(name):
