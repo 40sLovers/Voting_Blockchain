@@ -547,3 +547,12 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
 .confVot p{
 	color: rgb(24, 37, 82);
 }
+.item
+{
+}
+.item:hover
+{
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.5);
+}

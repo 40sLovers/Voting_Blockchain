@@ -17,7 +17,7 @@ document.querySelector('#addBtn').onclick = function(){
                 li.remove();
             })
         }
-        if(items.length>50)
+        if(curentopt.length>50)
         {
             alert("Ai adăugat numărul maxim de opțiuni!");
         }
