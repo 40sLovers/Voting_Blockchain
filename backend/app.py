@@ -18,7 +18,7 @@ IACoin = Blockchain()
 
 @app.route('/')
 def login3():
-    return render_template('logareC.html')
+    return render_template('index.html')
 
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
@@ -79,8 +79,6 @@ def login(name):
         return render_template('Despre.html')
     elif name=='confirmare':
         return render_template("confirmare.html")
-    elif name=='index':
-        return render_template("index.html")
     elif name=='rezultate':
         return render_template("rezultate.html")
     elif name=='votPoll':
