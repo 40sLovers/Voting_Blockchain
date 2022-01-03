@@ -1,7 +1,7 @@
 //let { sha256 } = await import("../../../templates/inregistrare.html");
 
 const validateEmail = (email) => {
-  return true; // de sters
+  return true; // de sters...
   return String(email)
     .toLowerCase()
     .match(/[a-zA-Z]*.[a-zA-Z]*[0-9]*@e-uvt.ro/);

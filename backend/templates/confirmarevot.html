@@ -77,12 +77,19 @@
 					<div style="padding:210px 210px 110px 210px;z-index: 10000">
 						<div id="continut2">
 							<div style="padding:0px 20px 20px 20px;">
-								<div id="login" class="confirm confVot">
-									<p class="titlu">A?i creat cu succes votul!</p>
+								<div id="login" class="confirm">
+									<p class="titlu">Ați creat cu succes votul!</p>
 									<img src= "{{ url_for('static',filename='images/check.svg') }}" height="80px" />
-									<div class="linkvot">
-									<h5>Linkul catre pagina de vot:</h5>
-										</div>
+                  <form class="form-inline">
+                    <div class="form-group mb-2">
+                      <h5>Link către pagina de vot: </h5>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                      <label for="linkVot" class="sr-only">Link</label>
+                      <input type="text" class="form-control-plaintext" id="linkVot" value="somelinktosome.site" readonly>
+                    </div>
+                    <img id="copytoclipboard" src="{{ url_for('static',filename='images/copyClipboard.svg') }}" height="24px" />
+                  </form>
 								</div>
 							</div>
 						</div>
