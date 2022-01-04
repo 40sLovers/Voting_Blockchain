@@ -54,7 +54,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
 <title>VoteBoat</title>
 </head>
-
 <body class="noScroll">
 <div>
   <div id="container">
@@ -74,33 +73,68 @@
       <div id="continut1">
         <div id="listavotare">
           <div id="detaliivot">
-            <h3>Optiunile pentru votul -Titlu- </h3>
+            <h2>Votează — |Nume Vot| </h2>
             <hr>
           </div>
           <div id="optiunivot">
             <input type="radio" id="optVot" name="OPV" value="Opt1">
-             
-            <label for="Opt1">empty</label>
+
+            <label for="Opt1">This</label>
             <br>
             <input type="radio" id="optVot" name="OPV" value="Opt2">
-             
-            <label for="Opt2">empt</label>
+
+            <label for="Opt2">is</label>
             <br>
             <input type="radio" id="optVot" name="OPV" value="Opt3">
-             
-            <label for="Opt3">Mpty</label>
+
+            <label for="Opt3">a</label>
             <br>
             <input type="radio" id="optVot" name="OPV" value="Opt4">
-             
-            <label for="Opt4">MT</label>
+
+            <label for="Opt4">story</label>
             <br>
             <input type="radio" id="optVot" name="OPV" value="Opt5">
-             
-            <label for="Opt5"></label>
-			   <br>
+
+            <label for="Opt5">all</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt6">
+
+            <label for="Opt6">about</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt7">
+
+            <label for="Opt7">how</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt8">
+
+            <label for="Opt8">my</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt9">
+
+            <label for="Opt9">life</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt10">
+
+            <label for="Opt10">got</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt11">
+
+            <label for="Opt11">flip-turned</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt12">
+
+            <label for="Opt12">upside</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt13">
+
+            <label for="Opt13">down</label>
+            <br>
+            <input type="radio" id="optVot" name="OPV" value="Opt14">
+
+            <label for="Opt14">Aceasta este o opțiune extrem de lungă pentru a demonstra scoll orizontal.</label>
           </div>
-			<div class="btnvotare">
-			  <button type="button" class="btn btn-primary">Voteaza</button>
+			  <div class="btnvotare">
+			  <button type="button" class="btn btn-lg btn-primary" disabled="disabled" id="Voteaza">Votează</button>
 			  </div>
         </div>
       </div>
@@ -128,10 +162,8 @@
   </div>
 </div>
 </div>
-
 <!--Header ends--> 
 <!-- partial --> 
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script> 
@@ -141,5 +173,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+<script>
+  $("input:radio").change(function () {$("#Voteaza").prop("disabled", false);});
+</script> <!-- Dezactiveaza butonul pana la selectia unei optiuni din lista -->
 </body>
 </html>

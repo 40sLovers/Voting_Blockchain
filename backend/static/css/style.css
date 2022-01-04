@@ -3,6 +3,7 @@
 	Godsend pentru schimbat culori in svg-uri :D
 */ ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   box-shadow: 0 0 5px grey inset;
@@ -15,6 +16,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(0, 102, 204);
 }
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -22,6 +28,7 @@ body {
   background-attachment: fixed;
   background-color: #FFF;
 }
+
 a {
   color: #FFF;
   text-decoration: none;
@@ -127,6 +134,7 @@ ul#menu li a.current {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: rgb(24, 37, 82);
 }
 .register {
   border-radius: 5px;
@@ -500,59 +508,59 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
 }
 #listavotare {
   color: rgb(0, 0, 0);
-  background-color: rgba(255, 255, 255, 0.9);
-  position: fixed;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
   text-align: center;
-  overflow-y: auto;
-  overflow-x: hidden;
   z-index: 1;
-  border-radius: 5px;
-  height: 55vh;
-  width: 40vw;
-  top: 160px;
+  height: 600px;
+  width: 800px;
 }
 .btnvotare {
-  margin: 25px;
+  margin-top: 25px;
 }
 #detaliivot {
-  margin-top: 25px;
-
+  top: 25px;
+  display: inline-flex;
+  flex-direction: column;
 }
 #detaliivot hr {
-  width: 40%;
+  width: 100%;
   background-image: linear-gradient(9deg, transparent, rgb(24, 37, 82), transparent);
   border: 0;
   height: 1px;
 }
+
+#detaliivot h2 {
+  font-size: 2.5rem;
+}
+
 #optiunivot {
-  margin: auto;
-  width: 30%;
+  width: 80%;
   padding: 10px;
   text-align: left;
+  overflow-x: auto;
+  overflow-y: auto;
+  height: 400px;
+  font-weight: 600;
+  white-space: nowrap;
 }
+
+#optiunivot label {
+  cursor: default;
+  font-size: 18px;
+  color: rgb(24, 37, 82);
+}
+
 #detaliivot h3{
 	color: rgb(24, 37, 82);
 }
-#optiunivot label {
-   cursor: default;
-  font-size: 14px;
-  color: rgb(24, 37, 82);
-}
-.linkvot{
-	margin-right: 50%;
-    text-align: left;
-    margin-top: 10px;
-}
-.confVot p{
-	color: rgb(24, 37, 82);
-}
-.item
-{
-}
-.item:hover
-{
-  border-radius: 2px;
-  cursor: pointer;
-  background-color: rgba(255, 0, 0, 0.5);
+
+.form-control-plaintext {
+  font-size: 18px;
+  color: #06C;
+  font-weight: 600;
 }
