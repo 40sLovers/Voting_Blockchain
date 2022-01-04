@@ -6,7 +6,7 @@ from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
 from GoodToUseScripts import keyFromHash,updatehash
 WhiteList = []
 EmailList = []
-CoduriList = []
+
 app = Flask(__name__)
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
@@ -18,7 +18,7 @@ IACoin = Blockchain()
 
 @app.route('/')
 def login3():
-    return render_template('index.html')
+    return render_template('logareC.html')
 
 @app.route("/inregistrare", methods=['POST','GET'])
 def log():
@@ -49,28 +49,6 @@ def autentificare():
     else:
         return json.dumps("notok")
 
-@app.route("/newPoll", methods = ['POST', 'GET'])
-
-def codConectare():
-    data = request.get_json()
-    if data != None:
-        cod = data['cod']
-        CoduriList.append(cod)
-        return json.dumps("ok")
-    return render_template("newPoll.html")
-
-
-@app.route("/newPollVerificare", methods = ['POST', 'GET'])
-
-def verificaCod():
-    data = request.get_json()
-    if data != None:
-        CodConectare = data['CodConectare']
-        if CodConectare in CoduriList:
-                return json.dumps("ok")
-    return render_template("newPoll.html")
-
-
 @app.route('/<name>')
 def login(name):
     if(name=="inregistrare"):
@@ -79,10 +57,12 @@ def login(name):
         return render_template('Despre.html')
     elif name=='confirmare':
         return render_template("confirmare.html")
+    elif name=='index':
+        return render_template("index.html")
     elif name=='rezultate':
         return render_template("rezultate.html")
     elif name=='votPoll':
-        return render_template("Votare.html")
+        return render_template("votPoll.html")
     elif name=='newPoll':
         return render_template("newPoll.html")
     elif name=='verificaEmail':
