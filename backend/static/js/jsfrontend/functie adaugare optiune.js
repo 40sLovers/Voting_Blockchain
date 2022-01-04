@@ -1,32 +1,45 @@
 //Selectors
-document.querySelector('#addBtn').onclick = function(){
-    if(document.querySelector('#addoptiune').value.length == 0){
-        alert("Te rog introdu o optiune");
-    }
-    else{
-        const ul=document.querySelector('ol');
-        const item=document.querySelector('#addoptiune');
-        const li=document.createElement('li');
-        li.className="item";
-        li.textContent=item.value;
-        ul.appendChild(li);
-        item.value=""; 
-        const items=document.querySelectorAll('li');
-        for (let li of items){
-            li.addEventListener("click",()=>{
-                li.remove();
-            })
-        }
-        if(curentopt.length>50)
-        {
-            alert("Ai adăugat numărul maxim de opțiuni!");
-        }
+var listaOp = [];
 
-    }
+function removeItem(value, htmlItem) {
+  htmlItem.parentNode.remove();
+  let test = listaOp.filter((element) => element != value);
+  listaOp = test;
+  console.log(listaOp);
 }
-document.querySelector('#addoptiune').addEventListener('keyup', (e) => {
-    if (e.keyCode === 13 ) {
-        console.log(addoptiune.value);
-        document.querySelector('#addBtn').click();
+
+function addOptiune() {
+  if (document.querySelector("#addoptiune").value.length == 0) {
+    alert("Te rog introdu o optiune");
+  } else {
+    document.querySelector(".lista").innerHTML += `
+           <li>
+              <span id="listaname">
+                  ${document.querySelector("#addoptiune").value}
+              </span>  
+              <button class="delete" onclick="removeItem(${
+                document.querySelector("#addoptiune").value
+              }, this)">
+                   <i>Sterge</i>
+              </button>
+            </li>
+        `;
+    listaOp.push(document.querySelector("#addoptiune").value);
+    var curentopt = document.querySelectorAll(".delete");
+    if (curentopt.length > 50) {
+      alert("Ai adăugat numărul maxim de opțiuni!");
     }
+  }
+}
+
+document.querySelector("#addBtn").onclick = function () {
+  addOptiune();
+};
+
+const addVar = document.getElementById("addoptiune");
+
+document.querySelector("#addoptiune").addEventListener("keyup", (e) => {
+  if (e.keyCode === 13) {
+    addOptiune();
+  }
 });
