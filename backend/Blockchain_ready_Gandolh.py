@@ -109,7 +109,7 @@ class Blockchain:
         return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
 
 class Block:
-    def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4())):
+    def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4()),PoolOptions=[]):
         # timestamp = cand a fost creat
         self.timestamp = timestamp
         self.transactions = transactions
@@ -117,6 +117,7 @@ class Block:
         self.guid= guid
         self.nonce = 0
         self.hash = self.calculateHash()
+        self.PoolOptions=PoolOptions
 
     def calculateHash(self):
         return updatehash(self.timestamp, self.transactions, self.previousHash,self.nonce,self.guid)

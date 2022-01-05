@@ -3,20 +3,26 @@ from flask_mail import Mail,Message
 import socket
 import json
 from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import keyFromHash,updatehash
+from GoodToUseScripts import *
 WhiteList = []
 EmailList = []
 CoduriList = []
 ListaOp = []
 app = Flask(__name__)
+
+################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
                    MAIL_PASSWORD = "Project123")
 mail=Mail(app)
+
+################################ initializare blockchain
+#
 IACoin = Blockchain()
+initializareLantDeBlocuri(IACoin)
 
 
-
+################################ routes
 @app.route('/')
 def login3():
     return render_template('index.html')
