@@ -624,9 +624,26 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   font-weight: 600;
 }
 
+.linkTitle {
+  vertical-align: middle;
+  margin-top: 6px;
+}
+
+#linkVot {
+  text-align: left;
+  vertical-align: middle;
+  height: 20px;
+}
+
 #titluVot {
   font-size: 32px;
   width: auto;
   text-align: center;
   color:rgb(37, 59, 136);
+}
+
+#copyICN {
+  display: inline-flex;
+  margin-top: -6px;
+  cursor: pointer;
 }
