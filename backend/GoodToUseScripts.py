@@ -4,22 +4,9 @@ from ecpy.keys       import ECPublicKey, ECPrivateKey
 from ecpy.curves     import Curve,Point
 import os, sys
 import csv
+from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
+
 path_to_database = "backend/database/"
-def updatehash(*args):
-    hashing = ""
-    h = sha256()
-    for arg in args:
-        hashing += str(arg)
-    h.update(hashing.encode('utf-8'))
-    return h.hexdigest()
-
-
-def keyFromHash(hash):
-    cv= Curve.get_curve('secp256k1')
-    hashInteger=hash.encode('utf-8').hex()
-    userPvKey= ECPrivateKey(hashInteger,
-                      cv)
-    return userPvKey
 
 def createCSVFile(new_file, list_of_header):
     if new_file in os.listdir(path_to_database):
@@ -43,6 +30,20 @@ def appendCSVFile(file, dict_values_forCSV):
             writer = csv.writer(f2)
             writer.writerow(list_date)
 
-def 
+def initializareLantDeBlocuri(blockChain):
+    for i in range(0,20):
+        now = datetime.now()
+        # strftime=string format time
+        now = now.strftime("%d/%m/%Y %H:%M:%S")
+
+        block_nou = Block(now, [], blockChain.getLatestBlock().hash)
+        block_nou.mineBlock(3)
+
+        blockChain.chain.append(block_nou)
+        #print(len(blockChain.chain))
+
 #createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
 #appendCSVFile("test1.csv", {"Nume": "Bradea", "Prenume": "Vlad", "Data": "Azi"})
+#IAcoin=Blockchain()
+#initializareLantDeBlocuri(IAcoin)
+#print(IAcoin)

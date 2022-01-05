@@ -1,7 +1,27 @@
 from datetime import datetime
 from ecpy.ecdsa import ECDSA
-import GoodToUseScripts
 import uuid
+from hashlib import sha256
+from datetime import datetime
+from ecpy.keys       import ECPublicKey, ECPrivateKey
+from ecpy.curves     import Curve,Point
+
+def updatehash(*args):
+    hashing = ""
+    h = sha256()
+    for arg in args:
+        hashing += str(arg)
+    h.update(hashing.encode('utf-8'))
+    return h.hexdigest()
+
+
+def keyFromHash(hash):
+    cv= Curve.get_curve('secp256k1')
+    hashInteger=hash.encode('utf-8').hex()
+    userPvKey= ECPrivateKey(hashInteger,
+                      cv)
+    return userPvKey
+
 class Blockchain:
     def __init__(self):
         self.chain = [self.createGenesisBlock(),]
@@ -99,7 +119,7 @@ class Block:
         self.hash = self.calculateHash()
 
     def calculateHash(self):
-        return GoodToUseScripts.updatehash(self.timestamp, self.transactions, self.previousHash,self.nonce,self.guid)
+        return updatehash(self.timestamp, self.transactions, self.previousHash,self.nonce,self.guid)
 
     def mineBlock(self, difficulty=2):
         difficulty= int(difficulty)
@@ -131,7 +151,7 @@ class Transaction:
 
     def calculateHash(self):
         concatenatedString= str(self.fromAdress)+str(self.toAdress)+str(self.amount)+str(self.timestamp)
-        return str.encode(GoodToUseScripts.updatehash(concatenatedString))
+        return str.encode(updatehash(concatenatedString))
 
     def SignTransaction(self,signingKey):
         #signingKey e o cheie privata.
