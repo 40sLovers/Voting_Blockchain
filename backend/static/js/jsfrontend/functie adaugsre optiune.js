@@ -1,10 +1,19 @@
 //Selectors
+var listaOp = [];
+
+function stergeEl(value) {
+  listaOp = listaOp.filter((element) => element != value);
+  console.log(listaOp);
+}
+
 document.querySelector("#addBtn").onclick = function () {
   if (document.querySelector("#addoptiune").value.length == 0) {
     alert("Te rog introdu o optiune");
   } else {
     const ul = document.querySelector("ol");
     const item = document.querySelector("#addoptiune");
+    listaOp.push(item.value);
+    console.log(listaOp);
     const li = document.createElement("li");
     li.className = "item";
     li.textContent = item.value;
@@ -13,6 +22,7 @@ document.querySelector("#addBtn").onclick = function () {
     const items = document.querySelectorAll("li");
     for (let li of items) {
       li.addEventListener("click", () => {
+        stergeEl(li.textContent);
         li.remove();
       });
     }

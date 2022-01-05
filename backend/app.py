@@ -7,6 +7,7 @@ from GoodToUseScripts import keyFromHash,updatehash
 WhiteList = []
 EmailList = []
 CoduriList = []
+ListaOp = []
 app = Flask(__name__)
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
@@ -55,6 +56,8 @@ def codConectare():
     data = request.get_json()
     if data != None:
         cod = data['cod']
+        listaOp = data['listaOp']
+        numePoll = data['numePoll']
         CoduriList.append(cod)
         return json.dumps("ok")
     return render_template("newPoll.html")

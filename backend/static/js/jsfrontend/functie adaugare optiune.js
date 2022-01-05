@@ -3,8 +3,7 @@ var listaOp = [];
 
 function removeItem(value, htmlItem) {
   htmlItem.parentNode.remove();
-  let test = listaOp.filter((element) => element != value);
-  listaOp = test;
+  listaOp = listaOp.filter((element) => element != value);
   console.log(listaOp);
 }
 

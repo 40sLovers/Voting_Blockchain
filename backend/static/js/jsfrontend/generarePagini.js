@@ -16,13 +16,50 @@ async function postData(url = "", data = {}) {
 }
 
 //const butonGenerarePagina = document.getElementById("createVote");
+var listaOp = [];
+
+function stergeEl(value) {
+  listaOp = listaOp.filter((element) => element != value);
+  console.log(listaOp);
+}
+
+document.querySelector("#addBtn").onclick = function () {
+  if (document.querySelector("#addoptiune").value.length == 0) {
+    alert("Te rog introdu o optiune");
+  } else {
+    const ul = document.querySelector("ol");
+    const item = document.querySelector("#addoptiune");
+    listaOp.push(item.value);
+    console.log(listaOp);
+    const li = document.createElement("li");
+    li.className = "item";
+    li.textContent = item.value;
+    ul.appendChild(li);
+    item.value = "";
+    const items = document.querySelectorAll("li");
+    for (let li of items) {
+      li.addEventListener("click", () => {
+        stergeEl(li.textContent);
+        li.remove();
+      });
+    }
+    if (items.length > 50) {
+      alert("Ai adăugat numărul maxim de opțiuni!");
+    }
+  }
+};
+
+var numePoll = document.getElementById("titluPoll").value;
 
 document.querySelector("#createVote").addEventListener("click", function () {
   let cod = (Math.random() + 1).toString(36).substring(7);
+  const numeVot = document.getElementById("titluPoll");
   postData(
     window.location.protocol + "//" + window.location.host + "/newPoll",
     {
       cod: cod,
+      numePoll: numePoll,
+      listaOp: listaOp,
     }
   ).then((data) => {
     console.log(data);
