@@ -359,6 +359,7 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
 #despreTL table {
   font-family: "Lato", sans-serif;
   font-size: 14px;
+  letter-spacing: 1px;
   color: rgb(24, 37, 82);
 }
 #despreTL td.r {
@@ -373,35 +374,56 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   width: 50%;
   text-align: right;
 }
-#despreTeam {
+#despreTeamTop {
   display: flex;
   align-items: center;
   flex-direction: row;
   margin-left: 50px;
   margin-right: 50px;
 }
-#despreFE {
-  width: 33%;
+
+#despreTeamMid {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  right: 0;
+  left: 0;
+  bottom: -125px;
+  justify-content: center;
+  width: 100%;
+}
+
+#despreTeamBot {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#despreUI {
+  width: 50%;
   text-align: left;
   flex-direction: column;
 }
-#despreFE hr {
-  width: 80%;
+#despreUI hr {
+  width: 50%;
   margin-left: 0;
   background-image: linear-gradient(90deg, rgb(24, 37, 82), transparent);
   border: 0;
   height: 1px;
 }
-#despreFE p {
+#despreUI p {
   text-align: left;
 }
 #despreBK {
-  width: 33%;
+  width: 50%;
   text-align: right;
   flex-direction: column;
 }
 #despreBK hr {
-  width: 80%;
+  width: 50%;
   margin-right: 0;
   background-image: linear-gradient(90deg, transparent, rgb(24, 37, 82));
   border: 0;
@@ -412,7 +434,6 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   text-align: right;
 }
 #despreBC {
-  width: 34%;
   text-align: center;
   flex-direction: column;
 }
@@ -425,6 +446,44 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
 #despreBC p {
   text-align: center;
 }
+
+#despreKY {
+  width: 50%;
+  text-align: left;
+  flex-direction: column;
+}
+
+#despreKY hr {
+  width: 25%;
+  margin-left: 0;
+  background-image: linear-gradient(90deg, rgb(24, 37, 82), transparent);
+  border: 0;
+  height: 1px;
+}
+
+#despreKY p {
+  text-align: left;
+}
+
+#despreTS {
+  width: 50%;
+  text-align: right;
+  flex-direction: column;
+}
+
+#despreTS hr {
+  width: 25%;
+  margin-right: 0;
+  background-image: linear-gradient(90deg, transparent, rgb(24, 37, 82));
+  border: 0;
+  height: 1px;
+  margin-right: -5px;
+}
+
+#despreTS p {
+  text-align: right;
+}
+
 .vot {
   text-align: left;
   margin-left: 50px;
