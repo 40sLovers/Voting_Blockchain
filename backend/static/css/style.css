@@ -623,3 +623,10 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   color: #06C;
   font-weight: 600;
 }
+
+#titluVot {
+  font-size: 32px;
+  width: auto;
+  text-align: center;
+  color:rgb(37, 59, 136);
+}
