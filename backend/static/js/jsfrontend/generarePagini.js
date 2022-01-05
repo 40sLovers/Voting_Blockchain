@@ -15,7 +15,7 @@ async function postData(url = "", data = {}) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-//const butonGenerarePagina = document.getElementById("createVote");
+// //const butonGenerarePagina = document.getElementById("createVote");
 var listaOp = [];
 
 function stergeEl(value) {
@@ -48,12 +48,11 @@ document.querySelector("#addBtn").onclick = function () {
     }
   }
 };
-
 var numePoll = document.getElementById("titluPoll").value;
 
 document.querySelector("#createVote").addEventListener("click", function () {
   let cod = (Math.random() + 1).toString(36).substring(7);
-  const numeVot = document.getElementById("titluPoll");
+  const numeVot = document.getElementById("titluPoll").value;
   postData(
     window.location.protocol + "//" + window.location.host + "/newPoll",
     {
@@ -63,6 +62,8 @@ document.querySelector("#createVote").addEventListener("click", function () {
     }
   ).then((data) => {
     console.log(data);
-    if (data == "ok") alert(cod);
+    if (data == "ok"  && numeVot!="" && listaOp.length!=0) alert(cod);
+    else
+     { alert("Completeaza formularul!");}
   });
 });
