@@ -1,181 +1,165 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+ 
 <head>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!--Favicon code-->
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="{{ url_for('static',filename='images/apple-touch-icon.png') }}"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href="{{ url_for('static',filename='images/favicon-32x32.png') }}"
-/>
-<link
-  rel="icon"
-  type="image/png"
-  sizes="16x16"
-  href="{{ url_for('static',filename='images/favicon-16x16.png') }}"
-/>
-<link
-  rel="manifest"
-  href="{{ url_for('static',filename='images/site.webmanifest') }}"
-/>
-<link
-  rel="mask-icon"
-  href="{{ url_for('static',filename='images/safari-pinned-tab.svg') }}"
-  color="#0066cc"
-/>
-<link
-  rel="shortcut icon"
-  href="{{ url_for('static',filename='images/favicon.ico') }}"
-/>
-<meta name="apple-mobile-web-app-title" content="VoteBoat" />
-<meta name="application-name" content="VoteBoat" />
-<meta name="msapplication-TileColor" content="#0066cc" />
-<meta
-  name="msapplication-config"
-  content="{{ url_for('static',filename='images/browserconfig.xml') }}"
-/>
-<meta name="theme-color" content="#ffffff" />
-<!--Favicon code end-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--Favicon code-->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static',filename='images/apple-touch-icon.png') }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static',filename='images/favicon-32x32.png') }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static',filename='images/favicon-16x16.png') }}" />
+  <link rel="manifest" href="{{ url_for('static',filename='images/site.webmanifest') }}" />
+  <link rel="mask-icon" href="{{ url_for('static',filename='images/safari-pinned-tab.svg') }}" color="#0066cc" />
+  <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.ico') }}" />
+  <meta name="apple-mobile-web-app-title" content="VoteBoat" />
+  <meta name="application-name" content="VoteBoat" />
+  <meta name="msapplication-TileColor" content="#0066cc" />
+  <meta name="msapplication-config" content="{{ url_for('static',filename='images/browserconfig.xml') }}" />
+  <meta name="theme-color" content="#ffffff" />
+  <!--Favicon code end-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="stylesheet" href= "{{ url_for('static',filename='css/style.css') }}" type="text/css" media="all" />
-<link rel="stylesheet" href= "{{ url_for('static',filename='css/animatie.css') }}" type="text/css" media="all" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
-<title>VoteBoat</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/animatie.css') }}" type="text/css" media="all" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Raleway:wght@400;500&family=Roboto&display=swap"
+    rel="stylesheet">
+  <title>VoteBoat</title>
 </head>
+ 
 <body class="noScroll">
-<div>
-  <div id="container">
-    <div id="banner"></div>
-    <div class="menu"> <a href="/" class="linkLogo"> <img src="{{ url_for('static',filename='images/logo.svg') }}" height="72px" />
-      <div class="nameLogo">VoteBoat</div>
-      </a>
-      <div class="menuItems"> <a href="newPoll" title="Creează un vot nou"> <img src="{{ url_for('static',filename='images/addPoll.svg') }}" height="50px" class="svgGreen"/> </a>
-        <p>Creează un vot nou</p>
-      </div>
-    </div>
-    <!-- End of Nav Div -->
-    <div class="header"> 
-      
-      <!-- Pagina de rezultate -->
-      
-      <div id="continut1">
-        <div id="listavotare">
-          <div id="detaliivot">
-              <label for="titluVot" class="sr-only">Titlu</label>
-              <input type="text" class="form-control-plaintext" id="titluVot" value="Title go here" readonly disabled>
-            <hr>
-          </div>
-          <div id="optiunivot">
-            <input type="radio" id="optVot" name="OPV" value="Opt1">
-
-            <label for="Opt1">This</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt2">
-
-            <label for="Opt2">is</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt3">
-
-            <label for="Opt3">a</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt4">
-
-            <label for="Opt4">story</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt5">
-
-            <label for="Opt5">all</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt6">
-
-            <label for="Opt6">about</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt7">
-
-            <label for="Opt7">how</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt8">
-
-            <label for="Opt8">my</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt9">
-
-            <label for="Opt9">life</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt10">
-
-            <label for="Opt10">got</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt11">
-
-            <label for="Opt11">flip-turned</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt12">
-
-            <label for="Opt12">upside</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt13">
-
-            <label for="Opt13">down</label>
-            <br>
-            <input type="radio" id="optVot" name="OPV" value="Opt14">
-
-            <label for="Opt14">Aceasta este o opțiune extrem de lungă pentru a demonstra scoll orizontal.</label>
-          </div>
-			  <div class="btnvotare">
-			  <button type="button" class="btn btn-lg btn-primary" disabled="disabled" id="Voteaza">Votează</button>
-			  </div>
+  <div>
+    <div id="container">
+      <div id="banner"></div>
+      <div class="menu"> <a href="/" class="linkLogo"> <img src="{{ url_for('static',filename='images/logo.svg') }}"
+            height="72px" />
+          <div class="nameLogo">VoteBoat</div>
+        </a>
+        <div class="menuItems"> <a href="newPoll" title="Creează un vot nou"> <img
+              src="{{ url_for('static',filename='images/addPoll.svg') }}" height="50px" class="svgGreen" /> </a>
+          <p>Creează un vot nou</p>
         </div>
       </div>
-      
-      <!--Waves Container-->
-      <div>
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-          <defs>
-            <path id="gentle-wave"
-                                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-          </defs>
-          <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-          </g>
-        </svg>
+      <!-- End of Nav Div -->
+      <div class="header">
+ 
+        <!-- Pagina de rezultate -->
+ 
+        <div id="continut1">
+          <div id="listavotare">
+            <div id="detaliivot">
+              <label for="titluVot" class="sr-only">Titlu</label>
+              <input type="text" class="form-control-plaintext" id="titluVot" value="{{title}}" readonly disabled>
+              <hr>
+            </div>
+            <div id="optiunivot">
+              <input type="radio" id="optVot" name="OPV" value="Opt1">
+ 
+              <label for="Opt1">This</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt2">
+ 
+              <label for="Opt2">is</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt3">
+ 
+              <label for="Opt3">a</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt4">
+ 
+              <label for="Opt4">story</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt5">
+ 
+              <label for="Opt5">all</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt6">
+ 
+              <label for="Opt6">about</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt7">
+ 
+              <label for="Opt7">how</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt8">
+ 
+              <label for="Opt8">my</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt9">
+ 
+              <label for="Opt9">life</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt10">
+ 
+              <label for="Opt10">got</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt11">
+ 
+              <label for="Opt11">flip-turned</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt12">
+ 
+              <label for="Opt12">upside</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt13">
+ 
+              <label for="Opt13">down</label>
+              <br>
+              <input type="radio" id="optVot" name="OPV" value="Opt14">
+ 
+              <label for="Opt14">Aceasta este o opțiune extrem de lungă pentru a demonstra scoll orizontal.</label>
+            </div>
+            <div class="btnvotare">
+              <button type="button" class="btn btn-lg btn-primary" disabled="disabled" id="Voteaza">Votează</button>
+            </div>
+          </div>
+        </div>
+ 
+        <!--Waves Container-->
+        <div>
+          <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+              <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+              <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+              <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+              <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+              <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+          </svg>
+        </div>
       </div>
+ 
+      <!--Waves end aici a fost Denis-->
+ 
     </div>
-    
-    <!--Waves end aici a fost Denis--> 
-    
   </div>
-</div>
-</div>
-<!--Header ends--> 
-<!-- partial --> 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script> 
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script> 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-<script>
-  $("input:radio").change(function () {$("#Voteaza").prop("disabled", false);});
-</script> <!-- Dezactiveaza butonul pana la selectia unei optiuni din lista -->
+  </div>
+  <!--Header ends-->
+  <!-- partial -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script>
+    $("input:radio").change(function () { $("#Voteaza").prop("disabled", false); });
+  </script> <!-- Dezactiveaza butonul pana la selectia unei optiuni din lista -->
+ 
+  <script type="text/javascript">
+    var voteCod = "{{ cod }}";
+    var votingModule = new VotingModule(voteCod);
+  </script>
 </body>
+ 
 </html>
