@@ -154,25 +154,23 @@ def getRandomOptions():
 def Vote(poolId,privateKeyUser, option,IAcoin):
     #se realizeaza actiunea de votare
     #iau adresa publica a optiunii
-    hash=updatehash(option,poolId) #to combine em both
-    publicKey=keyFromHash(hash).get_public_key()
     CurrentPool = [p for p in IAcoin.openedPools if p.guid== poolId]
     if len(CurrentPool)==0:
         return 'imposibil'
     CurrentPool=CurrentPool[0]
-    poolPublicKeys=[ keyFromHash(updatehash(cp)).get_public_key() for cp in CurrentPool.PoolOptions]
-    optionPicked = [p for p in poolPublicKeys if str(p)==str(publicKey)]
-    if len(optionPicked)==0:
-        return 'imposibil'
-    optionPicked=optionPicked[0]
+    #gaseste varianta in poolOptions, creaza adresa publica
+    #fa tranzactia din privateKeyUser la varianta
+    #modificare la AddTransaction
+    #si la pending transactions
+
 
 def InitializePoolVote(poolId,IAcoin):
     #createBlock with poolId and predefined list of options
-    poolPublicKeys=[]
     now = datetime.now()
     #strftime=string format time
     now = now.strftime("%d/%m/%Y %H:%M:%S")
     guid=poolId
+    #poolOptions dictionar {"varianta": "cheie publica cu noce si random stuff sa nu se afle cheia publica"}
     Block_comunist = Block(now,[],IAcoin.getLatestBlock().hash,guid=guid, PoolOptions=['a','b','c','d','e'])
     IAcoin.openedPools.append(Block_comunist)
     return None
