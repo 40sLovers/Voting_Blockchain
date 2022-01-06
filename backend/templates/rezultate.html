@@ -78,35 +78,35 @@
                 <!-- Pagina de rezultate -->
 
                 <div id="continut1">
-                    <div id="continutRezultate">
-                        <h1>Rezultate</h1>
-                        <h3>Alegeri pentru postul de manager</h3>
-                        <hr>
-                        <p>Acest vot a fost creat cu scopul de a alege cel mai favorabil candidat pentru postul de
-                            manager. Candidații sunt: Ion, Dan, Elena, Ana.</p>
-                        <h5>Diagramă</h5>
-                        
 
-                        <!-- Container chart -->
-                        <div>
+                        <div id="continutRezultate">
 
-                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                            <canvas id="chart_voturi">
-                        </div>
-                        
-                        <h5>Detalii</h5>
-                        <div id="continutRezultate_detalii">
-                            <p>Nr. total de voturi: <span id="nrTotalVoturi">test</span> </p>
-                            <p>Voturi</p>
-                            <ul id="listaCandidati">
-                            </ul>
-                            <p>Castigator: Ana</p>
-                        </div>
+                          <h1>Rezultate</h1>
+                          <h3>Titlu</h3>
+                          <hr>
+                          <h5>Diagramă</h5>
+                          
+  
+                          <!-- Container chart -->
+                          <div>
+  
+                              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                              <canvas id="chart_voturi">
+                          </div>
+                          
+                          <h5>Detalii</h5>
+                          <div id="continutRezultate_detalii">
+                              <p>Nr. total de voturi: <span id="nrTotalVoturi"></span> </p>
+                              <p>Voturi: </p>
+                              <ul id="listaCandidati">
+                              </ul>
+                              <p>Castigator:</p>
 
 
-                        <!-- Chart script -->
-                        <script>
-                                                        
+                              <!-- Chart script -->
+
+                          <script>
+                                                          
                             // exemplu pentru query parameters
                             // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
 
@@ -116,19 +116,29 @@
                             let chart = document.getElementById('chart_voturi').getContext('2d');
 
                             let urlParams = new URLSearchParams(window.location.search);
-                            let vot_itemi = urlParams.get('vot_itemi');
-                            let vot_numar = urlParams.get('vot_numar');
-                            vot_itemi=JSON.parse(vot_itemi);
-                            vot_numar=JSON.parse(vot_numar);
+
+                            let vot_title = "Titlu vot";
+
+
+                          /*
+                              Aici sunt valori PLACEHOLDER
+                              Este doar o simulare pentru afisarea rezultatelor
+                          */
+                            let vot_itemi =
+                              {
+                                "optiune1":34,
+                                "optiune2":46,
+                                "optiune3":42
+                              }
 
                             
                             let votesChart = new Chart(chart, {
                                 type:'bar',
                                 data:{
-                                    labels:vot_itemi,
+                                    labels:Object.keys(vot_itemi),
                                     datasets:[{
                                         label:'Voturi',
-                                        data:vot_numar,
+                                        data:Object.values(vot_itemi),
 
                                         backgroundColor: [
                                             'rgba(89, 133, 255, 0.5)',
@@ -158,10 +168,12 @@
                             // Numarul total de voturi
                             var nrTotalVoturi = 0;
 
-                            for(let i in vot_numar)
-                                nrTotalVoturi += vot_numar[i];
+                            for(let i in vot_itemi)
+                                nrTotalVoturi += vot_itemi[i];
 
-                            document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
+                            console.log(nrTotalVoturi);
+
+                            //document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 
                             /*
                             let listaCandidati = document.getElementById("listaCandidati");
@@ -182,6 +194,9 @@
                         </script>
                         <!-- End of Chart script -->
 
+
+
+                          </div>
 
 
                     </div>

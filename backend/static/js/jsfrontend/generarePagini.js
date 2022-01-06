@@ -57,22 +57,31 @@ document.querySelector("#addBtn").onclick = function () {
     }
   }
 };
-var numePoll = document.getElementById("titluPoll").value;
 
 document.querySelector("#createVote").addEventListener("click", function () {
-  let cod = crypto.randomUUID();
+  //let cod = crypto.randomUUID();
   const numeVot = document.getElementById("titluPoll").value;
+
+  if (
+    typeof numeVot != "string" ||
+    !numeVot ||
+    numeVot.trim().length == 0 ||
+    listaOp.length <= 1
+  ) {
+    alert("Completeaza formularul!");
+    return;
+  }
+
   postData(
     window.location.protocol + "//" + window.location.host + "/newPoll",
     {
-      cod: cod,
-      numePoll: numePoll,
+      numePoll: numeVot,
       listaOp: listaOp,
     }
   ).then((data) => {
     console.log(data);
-    if (data.succes == true && numeVot != "" && listaOp.length != 0) {
-      alert(cod);
+    if (data.succes == true) {
+      window.location.href = "/doVote?cod=" + data.cod;
     } else {
       alert("Completeaza formularul!");
     }
