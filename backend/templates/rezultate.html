@@ -97,16 +97,14 @@
                           <h5>Detalii</h5>
                           <div id="continutRezultate_detalii">
                               <p>Nr. total de voturi: <span id="nrTotalVoturi"></span> </p>
-                              <p>Voturi: </p>
-                              <ul id="listaCandidati">
-                              </ul>
-                              <p>Castigator:</p>
+                              <p>Castigator: <span id="castigatori"></span></p>
 
 
                               <!-- Chart script -->
 
                           <script>
-                                                          
+
+                            // VECHI!!! Nu stiu daca mai e nevoie de asta.
                             // exemplu pentru query parameters
                             // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
 
@@ -123,15 +121,27 @@
                           /*
                               Aici sunt valori PLACEHOLDER
                               Este doar o simulare pentru afisarea rezultatelor
+                              Datele trebuie luate din backend
+
+                              (Momentan datele sunt stocate intr-un dictionar. Nu stiu cum vor fi memorate in final...)
                           */
                             let vot_itemi =
                               {
-                                "optiune1":34,
-                                "optiune2":46,
-                                "optiune3":42
+                                "Ionel":34,
+                                "Dan":46,
+                                "Maria":42,
+                                "Ioana":44,
+                                "Johnny":35,
+                                "Jane":46
                               }
 
+
+                            // Sortare dictionar
+                              // TO-DO!!!
                             
+
+                            // Chart.js
+
                             let votesChart = new Chart(chart, {
                                 type:'bar',
                                 data:{
@@ -169,27 +179,32 @@
                             var nrTotalVoturi = 0;
 
                             for(let i in vot_itemi)
-                                nrTotalVoturi += vot_itemi[i];
+                              nrTotalVoturi += vot_itemi[i];
 
-                            console.log(nrTotalVoturi);
+                            document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 
-                            //document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 
-                            /*
-                            let listaCandidati = document.getElementById("listaCandidati");
-                            var node = document.createElement("li");
-                            var textnode = document.createTextNode("Test");
-                            node.appendChild(textnode);
-                            listaCandidati.appendChild(node);
-                            */
+                            // Caștigator
+                            var nrMaximVoturi = -1;
+                            var castigatori = "";
 
-                            /*
-                            for(let item in vot_itemi)
-                                var node = document.createElement("LI");
-                                var textnode = document.createTextNode(String(item));
-                                node.appendChild(textnode);
-                                listaCandidati.appendChild(node);
-                            */
+                            for(let i in vot_itemi)
+                              if(vot_itemi[i] > nrMaximVoturi)
+                                nrMaximVoturi = vot_itemi[i];
+
+                            for(let i in vot_itemi)
+                              if(vot_itemi[i] == nrMaximVoturi)
+                              {
+                                console.log(i);
+                                if(castigatori.localeCompare("") != 0)
+                                  castigatori = castigatori.concat(", ");
+
+                                castigatori = castigatori.concat(String(i));
+                              }
+
+                            console.log(castigatori);
+
+                            document.getElementById("castigatori").innerText = String(castigatori);
 
                         </script>
                         <!-- End of Chart script -->
