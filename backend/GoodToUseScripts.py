@@ -112,6 +112,40 @@ def readAllUsers(in_file):
             all_users.append(x)
     return all_users
 
+#merge doar pentru naturale
+import math
+def is_prim(x):
+    if x==0 or x==1:
+        return False
+    if x==2:
+        return True
+    if x%2==0:
+        return False
+    for d in range(3,int(x**0.5)+1,2):
+        if x%d==0:
+            return False
+    return True
+
+#x=int(input())
+#print(is_prim(x))
+
+
+def cautbinar (x,v,s ,d ):
+    x=int(x)
+    while s<=d:
+            mij=int((s+d)//2)
+            if v[mij]==x:
+                return mij
+            if v[mij]>x:
+                d=mij-1
+            else:
+                s=mij+1
+    if s==d and v[s]==x:
+        return s
+    return -1
+#v = [0, 40, 50, 80]
+#print(cautbinar(0,v,0,3))
+
 
 if __name__=='__main__':
     #createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
@@ -135,3 +169,4 @@ if __name__=='__main__':
     #     createTestingUsers("whitelist.csv", i)
 
     # print(readAllUsers("whitelist.csv"))
+
