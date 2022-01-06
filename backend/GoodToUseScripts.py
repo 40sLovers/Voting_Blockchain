@@ -10,6 +10,18 @@ from Blockchain_ready_Gandolh import Blockchain,Block,Transaction,updatehash,key
 
 path_to_database = "backend/database/"
 
+def isInCSVFile(file, value):
+    #verifica daca textul value este prezent in csv
+    if os.path.isfile(file):
+        with open(file, 'r') as f:
+            reader = csv.reader(f)
+            for rows in reader:
+                for cell in rows:
+                    if value in cell:
+                        return True
+            return False
+    else: raise Exception("File not found")
+
 def createCSVFile(new_file, list_of_header):
     #creaza un csv file cu denumirea {new_file} si creaza header-ul din list_of_header
     if new_file in os.listdir(path_to_database):
