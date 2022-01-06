@@ -23,6 +23,15 @@ function stergeEl(value) {
   console.log(listaOp);
 }
 
+function getParameterByName(name, url = window.location.href) {
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return "";
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 document.querySelector("#addBtn").onclick = function () {
   if (document.querySelector("#addoptiune").value.length == 0) {
     alert("Te rog introdu o optiune");
@@ -51,7 +60,7 @@ document.querySelector("#addBtn").onclick = function () {
 var numePoll = document.getElementById("titluPoll").value;
 
 document.querySelector("#createVote").addEventListener("click", function () {
-  let cod = (Math.random() + 1).toString(36).substring(7);
+  let cod = crypto.randomUUID();
   const numeVot = document.getElementById("titluPoll").value;
   postData(
     window.location.protocol + "//" + window.location.host + "/newPoll",
@@ -62,8 +71,11 @@ document.querySelector("#createVote").addEventListener("click", function () {
     }
   ).then((data) => {
     console.log(data);
-    if (data == "ok"  && numeVot!="" && listaOp.length!=0) alert(cod);
-    else
-     { alert("Completeaza formularul!");}
+    if (data.succes == true && numeVot != "" && listaOp.length != 0) {
+      alert(cod);
+    } else {
+      alert("Completeaza formularul!");
+    }
+    document.getElementById("titluPoll").value = "";
   });
 });

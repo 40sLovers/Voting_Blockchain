@@ -1,5 +1,3 @@
-//let { sha256 } = await import("../../../templates/inregistrare.html");
-
 const validateEmail = (email) => {
   return true; // de sters
   return String(email)

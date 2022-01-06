@@ -35,5 +35,6 @@ conectareVotare.addEventListener("click", function () {
     } else {
       alert("Codul introdus este gresit!");
     }
+    document.getElementById("conectare").value = "";
   });
 });

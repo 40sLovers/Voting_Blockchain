@@ -56,18 +56,22 @@ def autentificare():
     else:
         return json.dumps("notok")
 
-@app.route("/newPoll", methods = ['POST', 'GET'])
+@app.route("/newPoll", methods = ['GET'])
 
 def codConectare():
+    return render_template("newPoll.html")
+
+@app.route("/newPoll", methods = ['POST'])
+
+def codConectarePOST():
     data = request.get_json()
     if data != None:
         cod = data['cod']
         listaOp = data['listaOp']
         numePoll = data['numePoll']
         CoduriList.append(cod)
-        return json.dumps("ok")
-    return render_template("newPoll.html")
-
+        return json.dumps("{\"succes\": true}")
+    return json.dumps("{\"succes\": false}")
 
 @app.route("/newPollVerificare", methods = ['POST', 'GET'])
 
