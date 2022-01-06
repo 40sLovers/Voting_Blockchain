@@ -93,6 +93,59 @@ def sortOptions(l):
                 l[j] = var
     return l
 
+def createTestingUsers(in_file, i):
+    letter = chr(ord("a") + i) + "_user"
+    letter_hash = updatehash(letter)
+    private_key = keyFromHash(letter_hash)
+    public_key = private_key.get_public_key()
+    appendCSVFile(in_file, {"public_key_x": public_key.W.x, "public_key_y": public_key.W.y})
+
+def readAllUsers(in_file):
+    with open(path_to_database + in_file, "r") as f:
+        reader = csv.reader(f)
+        line = next(reader)
+        print(line)
+        all_users = []
+        for x in reader:
+            x[0] = int(x[0])
+            x[1] = int(x[1])
+            all_users.append(x)
+    return all_users
+
+#merge doar pentru naturale
+import math
+def is_prim(x):
+    if x==0 or x==1:
+        return False
+    if x==2:
+        return True
+    if x%2==0:
+        return False
+    for d in range(3,int(x**0.5)+1,2):
+        if x%d==0:
+            return False
+    return True
+
+#x=int(input())
+#print(is_prim(x))
+
+
+def cautbinar (x,v,s ,d ):
+    x=int(x)
+    while s<=d:
+            mij=int((s+d)//2)
+            if v[mij]==x:
+                return mij
+            if v[mij]>x:
+                d=mij-1
+            else:
+                s=mij+1
+    if s==d and v[s]==x:
+        return s
+    return -1
+#v = [0, 40, 50, 80]
+#print(cautbinar(0,v,0,3))
+
 
 if __name__=='__main__':
     #createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
@@ -105,9 +158,15 @@ if __name__=='__main__':
     # print(poolPublicKeys)
     # Vote(poolId,'','c')
 
-    l = []
-    for i in range(20):
-        dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
-        l.append(dict)
+    # l = []
+    # for i in range(20):
+    #     dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
+    #     l.append(dict)
+    # print(sortOptions(l))
 
-    print(sortOptions(l))
+    # createCSVFile("whitelist.csv", ["public_key_x", "public_key_y"])
+    # for i in range(20):
+    #     createTestingUsers("whitelist.csv", i)
+
+    # print(readAllUsers("whitelist.csv"))
+
