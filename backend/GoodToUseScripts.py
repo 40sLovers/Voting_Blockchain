@@ -1,7 +1,7 @@
 from hashlib import sha256
 from datetime import datetime
 from ecpy.keys      import ECPublicKey, ECPrivateKey
-from ecpy.curves     import Curve,Point
+from ecpy.curves     import  Curve,Point
 import os, sys
 import csv
 import random
@@ -78,18 +78,6 @@ def getWalletsForPoolOptions(options,poolId):
     return publicKeys
 
 
-
-def Vote(poolId,privateKeyUser, option):
-    #se realizeaza actiunea de votare
-    #iau adresa publica a optiunii
-    hash=updatehash(option,poolId) #to combine em both
-    publicKey=keyFromHash(hash).get_public_key()
-    optionPicked = [p for p in poolPublicKeys if str(p)==str(publicKey)]
-    if len(optionPicked)!=0:
-        optionPicked=optionPicked[0]
-        
-
-
 def sortOptions(l):
     for i in range(len(l) - 1):
         for j in range(i + 1, len(l)):
@@ -162,13 +150,32 @@ def getRandomOptions():
         l.append(dict)
     return json.dumps(sortOptions(l))
 
-def InitializePoolVote(poolId):
+
+def Vote(poolId,privateKeyUser, option,IAcoin):
+    #se realizeaza actiunea de votare
+    #iau adresa publica a optiunii
+    hash=updatehash(option,poolId) #to combine em both
+    publicKey=keyFromHash(hash).get_public_key()
+    CurrentPool = [p for p in IAcoin.openedPools if p.guid== poolId]
+    if len(CurrentPool)==0:
+        return 'imposibil'
+    CurrentPool=CurrentPool[0]
+    poolPublicKeys=[ keyFromHash(updatehash(cp)).get_public_key() for cp in CurrentPool.PoolOptions]
+    optionPicked = [p for p in poolPublicKeys if str(p)==str(publicKey)]
+    if len(optionPicked)==0:
+        return 'imposibil'
+    optionPicked=optionPicked[0]
+
+def InitializePoolVote(poolId,IAcoin):
     #createBlock with poolId and predefined list of options
     poolPublicKeys=[]
-    poolPublicKeys=getWalletsForPoolOptions(['a','b','c','d','e'],poolId)
-    print(poolPublicKeys)
-    pass
-
+    now = datetime.now()
+    #strftime=string format time
+    now = now.strftime("%d/%m/%Y %H:%M:%S")
+    guid=poolId
+    Block_comunist = Block(now,[],IAcoin.getLatestBlock().hash,guid=guid, PoolOptions=['a','b','c','d','e'])
+    IAcoin.openedPools.append(Block_comunist)
+    return None
 
 
 if __name__=='__main__':
@@ -180,8 +187,8 @@ if __name__=='__main__':
 
 
     poolId=str(uuid.uuid4())
-    InitializePoolVote(poolId)
-    Vote(poolId,'','c')
+    InitializePoolVote(poolId,IAcoin)
+    Vote(poolId,'','c',IAcoin)
 
     # l = []
     # for i in range(20):

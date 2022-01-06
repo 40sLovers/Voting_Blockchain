@@ -28,6 +28,7 @@ class Blockchain:
         self.pendingTransactions = []
         self.difficulty=2
         self.miningReward=100
+        self.openedPools=[]
     def createGenesisBlock(self):
         bloc_geneza = Block("26/07/2002 00:00:00", [], None)
         return bloc_geneza
