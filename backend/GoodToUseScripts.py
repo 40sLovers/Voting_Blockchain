@@ -1,6 +1,6 @@
 from hashlib import sha256
 from datetime import datetime
-from ecpy.keys       import ECPublicKey, ECPrivateKey
+from ecpy.keys      import ECPublicKey, ECPrivateKey
 from ecpy.curves     import Curve,Point
 import os, sys
 import csv
@@ -82,6 +82,17 @@ def Vote(poolId,privateKeyUser, option):
         optionPicked=optionPicked[0]
         #work in progress
 
+def sortOptions(l):
+    for i in range(len(l) - 1):
+        for j in range(i + 1, len(l)):
+            x = list(l[i].keys())[0]
+            y = list(l[j].keys())[0]
+            if l[i][x] < l[j][y]:
+                var = l[i]
+                l[i] = l[j]
+                l[j] = var
+    return l
+
 
 if __name__=='__main__':
     #createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
@@ -89,7 +100,14 @@ if __name__=='__main__':
     IAcoin=Blockchain()
     # initializareLantDeBlocuri(IAcoin)
     # print(IAcoin)
-    poolId=str(uuid.uuid4())
-    poolPublicKeys=getWalletsForPoolOptions(['a','b','c','d','e'],poolId)
-    print(poolPublicKeys)
-    Vote(poolId,'','c')
+    # poolId=str(uuid.uuid4())
+    # poolPublicKeys=getWalletsForPoolOptions(['a','b','c','d','e'],poolId)
+    # print(poolPublicKeys)
+    # Vote(poolId,'','c')
+
+    l = []
+    for i in range(20):
+        dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
+        l.append(dict)
+
+    print(sortOptions(l))
