@@ -145,5 +145,12 @@ def login(name):
     else:
         return render_template("error404.html")
  
+
+@app.route('/getPoolResults',methods =['GET'])
+def getPoolResults():
+    #http://127.0.0.1:5000/getPoolResults?pool_id=123 --example
+    pool_id=request.args.get('pool_id')
+    return getRandomOptions() #temporar, pana rezolvam cu poolurile
+
 if __name__=="__main__":
     app.run(debug=True)

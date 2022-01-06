@@ -7,6 +7,8 @@ import csv
 import random
 import uuid
 from Blockchain_ready_Gandolh import Blockchain,Block,Transaction,updatehash,keyFromHash;
+import math
+import json
 
 path_to_database = "backend/database/"
 
@@ -22,6 +24,7 @@ def isInCSVFile(file, value):
             return False
     else: raise Exception("File not found")
 
+
 def createCSVFile(new_file, list_of_header):
     #creaza un csv file cu denumirea {new_file} si creaza header-ul din list_of_header
     if new_file in os.listdir(path_to_database):
@@ -30,6 +33,7 @@ def createCSVFile(new_file, list_of_header):
         with open(path_to_database + new_file, 'w', newline="") as f:
             writer = csv.writer(f)
             writer.writerow(list_of_header)
+
 
 def appendCSVFile(file, dict_values_forCSV):
     #primeste ca parametrii numele unui fisier si un dictionar cu care s-ar completa csv-ul
@@ -46,6 +50,7 @@ def appendCSVFile(file, dict_values_forCSV):
                 list_date[header.index(key)] = dict_values_forCSV[key]
             writer = csv.writer(f2)
             writer.writerow(list_date)
+
 
 def initializareLantDeBlocuri(blockChain):
     #initializeaza 20 de blocuri de start in blockchain. Acest lucru scade posibilitatea de a
@@ -71,16 +76,19 @@ def getWalletsForPoolOptions(options,poolId):
         privateKey=keyFromHash(hash)
         publicKeys.append(privateKey.get_public_key())
     return publicKeys
-poolPublicKeys=[]
+
+
+
 def Vote(poolId,privateKeyUser, option):
     #se realizeaza actiunea de votare
     #iau adresa publica a optiunii
     hash=updatehash(option,poolId) #to combine em both
     publicKey=keyFromHash(hash).get_public_key()
     optionPicked = [p for p in poolPublicKeys if str(p)==str(publicKey)]
-    if optionPicked.length!=0:
+    if len(optionPicked)!=0:
         optionPicked=optionPicked[0]
-        #work in progress
+        
+
 
 def sortOptions(l):
     for i in range(len(l) - 1):
@@ -93,12 +101,14 @@ def sortOptions(l):
                 l[j] = var
     return l
 
+
 def createTestingUsers(in_file, i):
     letter = chr(ord("a") + i) + "_user"
     letter_hash = updatehash(letter)
     private_key = keyFromHash(letter_hash)
     public_key = private_key.get_public_key()
     appendCSVFile(in_file, {"public_key_x": public_key.W.x, "public_key_y": public_key.W.y})
+
 
 def readAllUsers(in_file):
     with open(path_to_database + in_file, "r") as f:
@@ -113,7 +123,6 @@ def readAllUsers(in_file):
     return all_users
 
 #merge doar pentru naturale
-import math
 def is_prim(x):
     if x==0 or x==1:
         return False
@@ -125,9 +134,6 @@ def is_prim(x):
         if x%d==0:
             return False
     return True
-
-#x=int(input())
-#print(is_prim(x))
 
 
 def cautbinar (x,v,s ,d ):
@@ -143,8 +149,26 @@ def cautbinar (x,v,s ,d ):
     if s==d and v[s]==x:
         return s
     return -1
-#v = [0, 40, 50, 80]
-#print(cautbinar(0,v,0,3))
+
+
+def rand_str( str_size):
+    return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
+
+
+def getRandomOptions():
+    l = []
+    for i in range(20):
+        dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
+        l.append(dict)
+    return json.dumps(sortOptions(l))
+
+def InitializePoolVote(poolId):
+    #createBlock with poolId and predefined list of options
+    poolPublicKeys=[]
+    poolPublicKeys=getWalletsForPoolOptions(['a','b','c','d','e'],poolId)
+    print(poolPublicKeys)
+    pass
+
 
 
 if __name__=='__main__':
@@ -153,10 +177,11 @@ if __name__=='__main__':
     IAcoin=Blockchain()
     # initializareLantDeBlocuri(IAcoin)
     # print(IAcoin)
-    # poolId=str(uuid.uuid4())
-    # poolPublicKeys=getWalletsForPoolOptions(['a','b','c','d','e'],poolId)
-    # print(poolPublicKeys)
-    # Vote(poolId,'','c')
+
+
+    poolId=str(uuid.uuid4())
+    InitializePoolVote(poolId)
+    Vote(poolId,'','c')
 
     # l = []
     # for i in range(20):
