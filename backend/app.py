@@ -10,7 +10,9 @@ EmailList = []
 CoduriList = []
 ListaOp = []
 app = Flask(__name__)
- 
+
+#Michelle e cea mai misto fata 
+# +1 
 
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
