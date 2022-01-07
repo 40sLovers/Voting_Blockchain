@@ -10,7 +10,7 @@ class Pool:
         now = now.strftime("%d/%m/%Y %H:%M:%S")
         Block_comunist = Block(now,[],IAcoin.getLatestBlock().hash,guid=poolId, poolOptions=poolOptions)
         self.block=Block_comunist
-        IAcoin.openedPools.append(self)
+        self.IAcoin.openedPools.append(self)
 
     def Vote(self,poolId,privateKeyUser, option):
         #se realizeaza actiunea de votare
@@ -19,14 +19,19 @@ class Pool:
         if len(CurrentPool)==0:
             return 'imposibil'
         CurrentPool=CurrentPool[0]
-        #fa tranzactia din privateKeyUser la varianta
-        #modificare la AddTransaction
-        #si la pending transactions
-        obj=  [value for [key,value] in CurrentPool.poolOptions.items() if key== option]
-        if len(obj)==0:
+        optionPublicKey=  [value for [key,value] in CurrentPool.poolOptions.items() if key== option]
+        if len(optionPublicKey)==0:
             return 'imposibil'
-        obj=obj[0]
+        optionPublicKey=optionPublicKey[0]
+        tx1 = Transaction(privateKeyUser.get_public_key(),optionPublicKey , 1)
+        tx1.SignTransaction(privateKeyUser)
+        self.IAcoin.addTransaction(tx1)
+        print(self.IAcoin.pendingTransactions)
 
+    def endPool(self,rewardAdress):
+        # rewardAdress ---public Key
+        self.IAcoin.minePendingTransactions(rewardA1dress)
+        print(self.IAcoin.chain)
 
 
 class GenerateHelper:
