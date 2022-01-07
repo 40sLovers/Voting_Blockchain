@@ -8,9 +8,6 @@ from Classes import *
 
 
 
-
-
-
 if __name__=='__main__':
     #CSVHelpers.createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
     #CSVHelpers.appendCSVFile("test1.csv", {"Nume": "Bradea", "Prenume": "Vlad", "Data": "Azi"})
@@ -29,18 +26,9 @@ if __name__=='__main__':
     }
     VotePool=Pool(poolId,poolOptions,IAcoin)
     VotePool.Vote(poolId,'','c')
-
+    # my_pu_key=KeyHelpers.getPublicKey('gusi e pe whitelist')
+    # CSVHelpers.appendCSVFile('whitelist.csv',{'public_key_x':my_pu_key.W.x,'public_key_y':my_pu_key.W.y})
     
 
-    # l = []
-    # for i in range(20):
-    #     dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
-    #     l.append(dict)
-    # print(sortOptions(l))
 
-    # createCSVFile("whitelist.csv", ["public_key_x", "public_key_y"])
-    # for i in range(20):
-    #     createTestingUsers("whitelist.csv", i)
-
-    # print(readAllUsers("whitelist.csv"))
 
