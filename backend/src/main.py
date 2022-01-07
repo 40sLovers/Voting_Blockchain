@@ -1,4 +1,4 @@
-from Blockchain_ready_Gandolh import *
+from Blockchain_main import *
 from GoodToUseScripts import *
 pv_key= keyFromHash(updatehash('my totally secret key'))
 pu_key= pv_key.get_public_key()

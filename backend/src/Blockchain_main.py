@@ -29,6 +29,7 @@ class Blockchain:
         self.difficulty=2
         self.miningReward=100
         self.openedPools=[]
+
     def createGenesisBlock(self):
         bloc_geneza = Block("26/07/2002 00:00:00", [], None)
         return bloc_geneza
@@ -37,18 +38,19 @@ class Blockchain:
         return self.chain[-1]
 
     def minePendingTransactions(self,minningRewardAdress):
+        #creaza reward
         rewardTx = Transaction(None,minningRewardAdress.__str__(),self.miningReward)
         self.pendingTransactions.append(rewardTx)
 
+        #creaza block
         now = datetime.now()
-        #strftime=string format time
         now = now.strftime("%d/%m/%Y %H:%M:%S")
 
         block_nou = Block(now, self.pendingTransactions , self.getLatestBlock().hash)
         block_nou.mineBlock(self.difficulty)
 
+        #da append la chain si curata lista de pending
         self.chain.append(block_nou)
-
         self.pendingTransactions = []
 
     def getBallanceFromAdress(self, cheie_publica):
