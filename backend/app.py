@@ -1,10 +1,8 @@
 from flask import Flask,request,render_template, flash, jsonify
 from flask_mail import Mail,Message
-import socket
-import json
-import uuid
+import socket,json,uuid
+from src.Classes import *
 from src.Blockchain_ready_Gandolh import *
-from src.GoodToUseScripts import *
 WhiteList = []
 EmailList = []
 CoduriList = []
@@ -23,7 +21,7 @@ mail=Mail(app)
 ################################ initializare blockchain
 #
 IACoin = Blockchain()
-initializareLantDeBlocuri(IACoin)
+BlockchainHelpers.initializareLantDeBlocuri(IACoin)
  
 class VoteEntry:
   def __init__(self, cod, name, opList):

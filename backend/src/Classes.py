@@ -1,4 +1,4 @@
-from Blockchain_ready_Gandolh import *
+from .Blockchain_ready_Gandolh import *
 import random,os,csv,json
 
 class Pool:
