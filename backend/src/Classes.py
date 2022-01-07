@@ -1,5 +1,8 @@
-from .Blockchain_ready_Gandolh import *
 import random,os,csv,json
+if __name__== 'Classes':
+    from Blockchain_main import *
+elif __name__=='src.Classes':
+    from .Blockchain_main import *
 
 class Pool:
     def __init__(self,poolId,poolOptions,IAcoin):

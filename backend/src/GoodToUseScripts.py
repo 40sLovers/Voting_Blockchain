@@ -3,7 +3,7 @@ from datetime import datetime
 from ecpy.keys      import ECPublicKey, ECPrivateKey
 from ecpy.curves     import  Curve,Point
 import uuid
-from Blockchain_ready_Gandolh import *;
+from Blockchain_main import *;
 from Classes import *
 
 
@@ -33,6 +33,6 @@ if __name__=='__main__':
     # VotePool.endPool(None)
     # CSVHelpers.appendCSVFile('whitelist.csv',{'public_key_x':my_pu_key.W.x,'public_key_y':my_pu_key.W.y})
     
-
-
-
+    
+    
+    pass

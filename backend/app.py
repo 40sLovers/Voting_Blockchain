@@ -2,7 +2,7 @@ from flask import Flask,request,render_template, flash, jsonify
 from flask_mail import Mail,Message
 import socket,json,uuid
 from src.Classes import *
-from src.Blockchain_ready_Gandolh import *
+
 WhiteList = []
 EmailList = []
 CoduriList = []

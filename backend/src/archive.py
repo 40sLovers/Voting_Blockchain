@@ -7,7 +7,7 @@ import os, sys
 import csv
 import random
 import uuid
-from src.Blockchain_ready_Gandolh import *
+from src.Blockchain_main import *
 from src.GoodToUseScripts import *
 
 #

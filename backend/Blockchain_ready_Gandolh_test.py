@@ -1,6 +1,6 @@
 import unittest
 import random
-from src.Blockchain_ready_Gandolh import *
+from src.Blockchain_main import *
 from src.GoodToUseScripts import *
 class TestBlockchain(unittest.TestCase):
 
