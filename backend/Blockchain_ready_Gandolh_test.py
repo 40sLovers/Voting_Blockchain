@@ -1,8 +1,7 @@
-from Blockchain_ready_Gandolh import *
-from GoodToUseScripts import *
 import unittest
 import random
-
+from src.Blockchain_ready_Gandolh import *
+from src.GoodToUseScripts import *
 class TestBlockchain(unittest.TestCase):
 
     @classmethod

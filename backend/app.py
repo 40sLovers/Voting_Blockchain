@@ -3,8 +3,8 @@ from flask_mail import Mail,Message
 import socket
 import json
 import uuid
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import *
+from src.Blockchain_ready_Gandolh import *
+from src.GoodToUseScripts import *
 WhiteList = []
 EmailList = []
 CoduriList = []

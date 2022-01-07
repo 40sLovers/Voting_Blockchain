@@ -1,5 +1,5 @@
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import keyFromHash,updatehash
+from src.Blockchain_ready_Gandolh import *
+from src.GoodToUseScripts import *
 pv_key= keyFromHash(updatehash('my totally secret key'))
 pu_key= pv_key.get_public_key()
 pv_key2= keyFromHash(updatehash('just a random guy'))

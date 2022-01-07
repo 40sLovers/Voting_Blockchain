@@ -1,8 +1,7 @@
 #il iubesc pe ponta
-from Blockchain_ready_Gandolh import *
-from GoodToUseScripts import *
+from src.Blockchain_ready_Gandolh import *
+from src.GoodToUseScripts import *
 import unittest
-
 pv_key= keyFromHash(updatehash('my totally secret key'))
 pu_key= pv_key.get_public_key()
 pv_key2= keyFromHash(updatehash('just a random guy'))
@@ -68,6 +67,6 @@ print('Blockchain valid?', IACoin.isChainValid())
 
 IACoin.isChainValid()
 
-#IaCoin.ceva ca sa testezi
-#IaCoin.chain lista de blocuri
-#TREBUIE SA TESTEZI FRONTEND
+# #IaCoin.ceva ca sa testezi
+# #IaCoin.chain lista de blocuri
+# #TREBUIE SA TESTEZI FRONTEND

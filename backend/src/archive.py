@@ -7,7 +7,8 @@ import os, sys
 import csv
 import random
 import uuid
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction,updatehash,keyFromHash;
+from src.Blockchain_ready_Gandolh import *
+from src.GoodToUseScripts import *
 
 #
 # it doesnt work but it could pls paul,thomas watch this
