@@ -31,12 +31,20 @@ class Pool:
         tx1 = Transaction(privateKeyUser.get_public_key(),optionPublicKey , 1)
         tx1.SignTransaction(privateKeyUser)
         self.addTransaction(tx1)
-        print(self.pendingTransactions)
+        # print(self.pendingTransactions)
 
     def endPool(self):
         # rewardAdress ---public Key
         self.minePendingTransactions()
-        print(self.IAcoin.chain)
+        # print(self.IAcoin.chain)
+
+    def getResults(self):
+        results=[]
+        for [poolOption, pub_key] in self.poolOptions.items():
+            results.append({
+                poolOption: self.getBallanceFromAdress(pub_key)
+                })
+        return results
 
     def addTransaction(self, transaction):
         if transaction.fromAdress == None:
@@ -64,6 +72,12 @@ class Pool:
             return False
         return True
 
+    def getBallanceFromAdress(self,cheie_publica):
+        sold = 0
+        for tx in self.block.transactions:
+            if tx.toAdress == cheie_publica:
+                sold = sold + tx.amount
+        return sold
 
 class GenerateHelper:
     def __init__(self):

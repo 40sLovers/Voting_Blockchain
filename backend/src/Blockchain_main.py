@@ -55,14 +55,12 @@ class Blockchain:
 
     def getBallanceFromAdress(self, cheie_publica):
         sold = 0
-
         for blocuri in self.chain:
             for tx in blocuri.transactions:
                 if tx.fromAdress!=None and tx.fromAdress == cheie_publica.__str__():
                     sold = sold - tx.amount
                 if tx.toAdress == cheie_publica.__str__():
                     sold = sold + tx.amount
-
         return sold
 
     def addTransaction(self, transaction):
@@ -106,10 +104,10 @@ class Blockchain:
             
         return True
 
-    def __repr__(self) -> str:
-        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
-    def ___str__(self):
-        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
+    # def __repr__(self) -> str:
+    #     return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
+    # def ___str__(self):
+    #     return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
 
 class Block:
     def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4()),poolOptions={}):
@@ -138,12 +136,12 @@ class Block:
                 return False
         return True
 
-    def __repr__(self) -> str:
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
-    def ___str__(self):
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+#     def __repr__(self) -> str:
+#         return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
+# previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+#     def ___str__(self):
+#         return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
+# previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
 
 
 class Transaction:
@@ -175,9 +173,9 @@ class Transaction:
             raise Exception("Nici-o semnatura in aceasta tranzactie")
         signer = ECDSA()
         return signer.verify(self.calculateHash(), self.signature, self.fromAdress)
-    def __repr__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
-    def __str__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
+#     def __repr__(self) -> str:
+#         return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
+# timestamp={self.timestamp}\n "
+#     def __str__(self) -> str:
+#         return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
+# timestamp={self.timestamp}\n "

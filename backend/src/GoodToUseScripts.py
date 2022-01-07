@@ -17,7 +17,7 @@ if __name__=='__main__':
     # BlockchainHelpers.initializareLantDeBlocuri(IAcoin)
     # IAcoin.minePendingTransactions(None) #ca sa mineze genesisBlockul
     # print(IAcoin)
-    print(IAcoin.isChainValid())
+    # print(IAcoin.isChainValid())
 
     poolId=uuid.uuid4().hex
     poolOptions={
@@ -30,8 +30,19 @@ if __name__=='__main__':
 
     VotePool=Pool(poolId,poolOptions,IAcoin)
     VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'e')
+    VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'b')
+    VotePool.Vote(poolId,my_pv_key,'a')
+    VotePool.Vote(poolId,my_pv_key,'b')
+    VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,my_pv_key,'c')
     VotePool.endPool()
-    print(IAcoin.isChainValid())
+    print(VotePool.getResults())
+    # print(IAcoin.isChainValid())
     # CSVHelpers.appendCSVFile('whitelist.csv',{'public_key_x':my_pu_key.W.x,'public_key_y':my_pu_key.W.y})
     
     
