@@ -1,5 +1,5 @@
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import keyFromHash,updatehash
+from Blockchain_ready_Gandolh import *
+from GoodToUseScripts import *
 import unittest
 import random
 
