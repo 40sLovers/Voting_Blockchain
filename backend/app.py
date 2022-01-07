@@ -10,8 +10,11 @@ ListaOp = []
 app = Flask(__name__)
 
 #Michelle e cea mai misto fata 
-# +1 
+
 # Gia e net superioara pentru ca asculta IAN!!!
+
+#Dupa ce terminam proiectul, votam!!!!
+
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
