@@ -1,101 +1,90 @@
+// Chart.js
 var chart = document.getElementById('chart_voturi').getContext('2d');
 
-async function javascript_chart()
+// Luam date
+let vot_itemi;
+let dict_voturi = {};
+
+async function luam_date()
 {
-    // VECHI!!! Nu stiu daca mai e nevoie de asta.
-    // exemplu pentru query parameters
-    // ?vot_itemi=["Ion",%20"Maria"]&vot_numar=[325,412]
-
-
-    // ----Afisarea tabelului----
-    // Chart.js
-
-    let vot_title = "Titlu vot";
-
-
-    /*
-        Aici sunt valori PLACEHOLDER
-        Este doar o simulare pentru afisarea rezultatelor
-        Datele trebuie luate din backend
-
-        (Momentan datele sunt stocate intr-un dictionar. Nu stiu cum vor fi memorate in final...)
-    */
-
-    /*
-    let vot_itemi =
-        {
-        "Ionel":34,
-        "Dan":46,
-        "Maria":42,
-        "Ioana":44,
-        "Johnny":35,
-        "Jane":46
-        }*/
-
-    let vot_itemi;
-
     vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123");
     vot_itemi = await vot_itemi.json();
-    console.log(vot_itemi);
 
-    // Sortare dictionar
-        // TO-DO!!!
+    var key, val;
+
+    for(i in vot_itemi)
+    {
+        key = Object.keys(vot_itemi[i])[0];
+        val = Object.values(vot_itemi[i])[0];
+
+        dict_voturi[key] = val;
+    }
+}
+luam_date();
+
+// Creare tabel
+/*
+    Aici sunt valori PLACEHOLDER
+    Este doar o simulare pentru afisarea rezultatelor
+    Datele trebuie luate din backend
+
+    (Momentan datele sunt stocate intr-o lista de dictionare. Nu stiu cum vor fi memorate in final...)
+*/
 
 
-    // Chart.js
+let votesChart = new Chart(chart, {
+    type:'bar',
+    data:{
+        labels:[],
+        datasets:[{
+            label:'Voturi',
+            data:[],
 
-    let votesChart = new Chart(chart, {
-        type:'bar',
-        data:{
-            labels:Object.keys(vot_itemi),
-            datasets:[{
-                label:'Voturi',
-                data:Object.values(vot_itemi),
-
-                backgroundColor: [
-                    'rgba(89, 133, 255, 0.5)',
-                    'rgba(255, 89, 133, 0.5)',
-                ],
-            }],
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Rezultatele votului',
-                    font:{size:18},
-                    padding:{top:30, bottom:20},
-                    color:'#182552'
-                },
-                legend:{
-                    display:false
-                }
+            backgroundColor: [
+                'rgba(89, 133, 255, 0.5)',
+                'rgba(255, 89, 133, 0.5)',
+            ],
+        }],
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Rezultatele votului',
+                font:{size:18},
+                padding:{top:30, bottom:20},
+                color:'#182552'
+            },
+            legend:{
+                display:false
             }
         }
-    })
+    }
+})
 
-
-    // ----Calcularea voturilor----
-
+// Calcule pentru voturi
+async function calcul_nr_total_voturi(dict_voturi)
+{
     // Numarul total de voturi
     var nrTotalVoturi = 0;
 
-    for(let i in vot_itemi)
-        nrTotalVoturi += vot_itemi[i];
+    for(let i in dict_voturi)
+        nrTotalVoturi += dict_voturi[i];
 
     document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
+}
 
-
-    // Castigator
+async function calcul_castigatori(dict_voturi)
+{
     var nrMaximVoturi = -1;
     var castigatori = "";
 
-    for(let i in vot_itemi)
-        if(vot_itemi[i] > nrMaximVoturi)
-        nrMaximVoturi = vot_itemi[i];
+    for(let i in dict_voturi)
+        if(dict_voturi[i] > nrMaximVoturi)
+        nrMaximVoturi = dict_voturi[i];
 
-    for(let i in vot_itemi)
-        if(vot_itemi[i] == nrMaximVoturi)
+    for(let i in dict_voturi)
+        if(dict_voturi[i] == nrMaximVoturi)
         {
         console.log(i);
         if(castigatori.localeCompare("") != 0)
@@ -104,9 +93,38 @@ async function javascript_chart()
         castigatori = castigatori.concat(String(i));
         }
 
-    console.log(castigatori);
-
     document.getElementById("castigatori").innerText = String(castigatori);
+}
+
+// Updatarea tabelului
+async function updatare_tabel()
+{
+    var l = Object.keys(dict_voturi).length;
+    for(var i=0; i<l; i++)
+    {
+        votesChart["data"]["labels"][i] = Object.keys(dict_voturi)[i];
+        votesChart["data"]["datasets"][0]["data"][i] = Object.values(dict_voturi)[i];
+    }
+
+    votesChart.update();
+}
+
+// Functie
+async function javascript_chart()
+{
+    // Luam date
+    luam_date();
+    console.log(dict_voturi);
+    // Sortare dictionar
+        // TO-DO!!!
+
+    updatare_tabel();
+
+    // Calcularea voturilor;
+    calcul_nr_total_voturi(dict_voturi);
+    calcul_castigatori(dict_voturi);
+
+    // Updatare tabel
 }
 
 javascript_chart();
