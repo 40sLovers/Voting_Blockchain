@@ -23,5 +23,5 @@ cv     = Curve.get_curve('secp256k1')
 
 
 
-userPvKey= GoodToUseScripts.keyFromHash("asd")
+userPvKey= keyFromHash("asd")
 print(userPvKey)
