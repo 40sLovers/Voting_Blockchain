@@ -9,9 +9,11 @@ class Pool:
         self.poolId=poolId
         self.poolOptions=poolOptions
         self.IAcoin=IAcoin
+        self.pendingTransactions=[]
+        self.difficulty=2
         now = datetime.now()
         now = now.strftime("%d/%m/%Y %H:%M:%S")
-        Block_comunist = Block(now,[],IAcoin.getLatestBlock().hash,guid=poolId, poolOptions=poolOptions)
+        Block_comunist = Block(now,self.pendingTransactions,None,guid=poolId, poolOptions=poolOptions)
         self.block=Block_comunist
         self.IAcoin.openedPools.append(self)
 
@@ -28,13 +30,39 @@ class Pool:
         optionPublicKey=optionPublicKey[0]
         tx1 = Transaction(privateKeyUser.get_public_key(),optionPublicKey , 1)
         tx1.SignTransaction(privateKeyUser)
-        self.IAcoin.addTransaction(tx1)
-        print(self.IAcoin.pendingTransactions)
+        self.addTransaction(tx1)
+        print(self.pendingTransactions)
 
-    def endPool(self,rewardAdress):
+    def endPool(self):
         # rewardAdress ---public Key
-        self.IAcoin.minePendingTransactions(rewardAdress)
+        self.minePendingTransactions()
         print(self.IAcoin.chain)
+
+    def addTransaction(self, transaction):
+        if transaction.fromAdress == None:
+            raise Exception("nu exista adresa de la care se face transferul")
+        if transaction.toAdress == None:
+            raise Exception("nu exista adresa la care se face transferul")
+        if transaction.isValid() == False:
+            raise Exception("Tranzactie Invalida")
+        if transaction.amount <= 0:
+            raise Exception("Suma invalida")
+        if not self.isBallanceEnoughToVote(transaction.fromAdress) :
+            raise Exception("Fonduri insuficiente")
+
+        self.pendingTransactions.append(transaction)
+
+    def minePendingTransactions(self):
+        self.block.previousHash=self.IAcoin.getLatestBlock().hash
+        self.block.mineBlock(self.difficulty)
+        self.IAcoin.chain.append(self.block)
+        self.pendingTransactions = []
+
+    def isBallanceEnoughToVote(self, cheie_publica):
+        occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress == cheie_publica]
+        if len(occurences):
+            return False
+        return True
 
 
 class GenerateHelper:
@@ -175,10 +203,10 @@ class BlockchainHelpers():
         pass
 
     @staticmethod
-    def initializareLantDeBlocuri(blockChain):
-        #initializeaza 20 de blocuri de start in blockchain. Acest lucru scade posibilitatea de a
+    def initializareLantDeBlocuri(blockChain,initialChainLength=20):
+        #initializeaza [initialChainLength] de blocuri de start in blockchain. Acest lucru scade posibilitatea de a
         # recrea blockchainul de la 0 deoarece ar dura prea mult
-        for i in range(0,20):
+        for i in range(0,initialChainLength):
             now = datetime.now()
             # strftime=string format time
             now = now.strftime("%d/%m/%Y %H:%M:%S")
