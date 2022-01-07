@@ -56,7 +56,7 @@ class Pool:
         if transaction.amount <= 0:
             raise Exception("Suma invalida")
         if not self.isBallanceEnoughToVote(transaction.fromAdress) :
-            raise Exception("Fonduri insuficiente")
+            raise Exception("Ai votat deja")
 
         self.pendingTransactions.append(transaction)
 
@@ -67,7 +67,8 @@ class Pool:
         self.pendingTransactions = []
 
     def isBallanceEnoughToVote(self, cheie_publica):
-        occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress == cheie_publica]
+        occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress.__str__()==cheie_publica.__str__()]
+        print(len(occurences))
         if len(occurences):
             return False
         return True
