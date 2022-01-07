@@ -53,6 +53,15 @@ class TestBlockchain(unittest.TestCase):
         IACoin.addTransaction(tx)
         # Mine block
         # print(IACoin)
+        self.assertEqual(IACoin.isChainValid(),True)
+    def test_default_ammount(self):
+        key_temp=keyFromHash(updatehash(self.rand_str(keylen)))
+        pu_key = key_temp.get_public_key()
+        self.assertEqual(IACoin.getBallanceFromAdress(pu_key),0)
+        IACoin.minePendingTransactions(pu_key)
+        self.assertEqual(IACoin.getBallanceFromAdress(pu_key),100)
+
+
 
 if __name__ == '__main__':
     unittest.main()
