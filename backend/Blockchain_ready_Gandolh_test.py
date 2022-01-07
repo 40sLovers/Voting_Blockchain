@@ -21,6 +21,11 @@ class TestBlockchain(unittest.TestCase):
         key_copy=keyFromHash(updatehash(seed1))
 
         IACoin = Blockchain()
+    def test_transactions_wired_cases(self):
+        tx = Transaction(key.get_public_key(),key2.get_public_key(),"testcucaractere")
+        tx.SignTransaction(key)
+        IACoin.addTransaction(tx)
+
 
     def rand_str(self, str_size):
         return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
@@ -47,7 +52,7 @@ class TestBlockchain(unittest.TestCase):
         tx.SignTransaction(key)
         IACoin.addTransaction(tx)
         # Mine block
-        print(IACoin)
+        # print(IACoin)
 
 if __name__ == '__main__':
     unittest.main()
