@@ -30,7 +30,7 @@ class Pool:
 
     def endPool(self,rewardAdress):
         # rewardAdress ---public Key
-        self.IAcoin.minePendingTransactions(rewardA1dress)
+        self.IAcoin.minePendingTransactions(rewardAdress)
         print(self.IAcoin.chain)
 
 
