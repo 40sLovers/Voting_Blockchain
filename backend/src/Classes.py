@@ -200,3 +200,12 @@ class KeyHelpers():
     def getPublicKey(*args):
         pv_key= KeyHelpers.getPrivateKey(*args)
         return pv_key.get_public_key()
+
+class VoteEntry:
+  def __init__(self, cod, name, opList):
+    self.cod = cod
+    self.name = name
+    self.opList = opList
+    self.bHasVoted = False
+    self.votedOption = None
+ 

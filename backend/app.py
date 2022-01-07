@@ -22,15 +22,7 @@ mail=Mail(app)
 #
 IACoin = Blockchain()
 BlockchainHelpers.initializareLantDeBlocuri(IACoin)
- 
-class VoteEntry:
-  def __init__(self, cod, name, opList):
-    self.cod = cod
-    self.name = name
-    self.opList = opList
-    self.bHasVoted = False
-    self.votedOption = None
- 
+
 ################################ routes
 @app.route('/')
 def login3():
@@ -150,7 +142,7 @@ def login(name):
 def getPoolResults():
     #http://127.0.0.1:5000/getPoolResults?pool_id=123 --example
     pool_id=request.args.get('pool_id')
-    return getRandomOptions() #temporar, pana rezolvam cu poolurile
+    return GenerateHelper.getRandomOptions() #temporar, pana rezolvam cu poolurile
 
 if __name__=="__main__":
     app.run(debug=True)
