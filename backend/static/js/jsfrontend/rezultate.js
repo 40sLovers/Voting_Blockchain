@@ -7,20 +7,8 @@ let dict_voturi = {};
 
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=nume");
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=a");
     vot_itemi = await vot_itemi.json();
-
-    var key, val;
-
-    //console.log(vot_itemi);
-
-    for(i in vot_itemi)
-    {
-        key = Object.keys(vot_itemi[i])[0];
-        val = Object.values(vot_itemi[i])[0];
-
-        dict_voturi[key] = val;
-    }
 }
 luam_date();
 
@@ -68,12 +56,9 @@ let votesChart = new Chart(chart, {
 // Calcule pentru voturi
 async function calcul_nr_total_voturi(dict_voturi)
 {
-    // Numarul total de voturi
-    var nrTotalVoturi = 0;
-
-    for(let i in dict_voturi)
-        nrTotalVoturi += dict_voturi[i];
-
+    var nrTotalVoturi = 
+    vot_itemi.map((el)=> Object.values(el)[0])
+    .reduce((prev,curr)=>prev+curr,0);
     document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 }
 
@@ -81,34 +66,20 @@ async function calcul_castigatori(dict_voturi)
 {
     var nrMaximVoturi = -1;
     var castigatori = "";
+    nrMaximVoturi = Math.max(...vot_itemi.map((el)=>Object.values(el)[0]))
 
-    for(let i in dict_voturi)
-        if(dict_voturi[i] > nrMaximVoturi)
-        nrMaximVoturi = dict_voturi[i];
-
-    for(let i in dict_voturi)
-        if(dict_voturi[i] == nrMaximVoturi)
-        {
-        console.log(i);
-        if(castigatori.localeCompare("") != 0)
-            castigatori = castigatori.concat(", ");
-
-        castigatori = castigatori.concat(String(i));
-        }
-
+    castigatori = 
+    vot_itemi.filter((el)=> Object.values(el)[0] == nrMaximVoturi)
+    .map((el)=>Object.keys(el)[0])
     document.getElementById("castigatori").innerText = String(castigatori);
 }
 
 // Updatarea tabelului
 async function updatare_tabel()
 {
-    var l = Object.keys(dict_voturi).length;
-    for(var i=0; i<l; i++)
-    {
-        votesChart["data"]["labels"][i] = Object.keys(dict_voturi)[i];
-        votesChart["data"]["datasets"][0]["data"][i] = Object.values(dict_voturi)[i];
-    }
-
+    console.log(vot_itemi)
+    votesChart["data"]["labels"]= vot_itemi.map((el)=>Object.keys(el)[0])
+    votesChart["data"]["datasets"][0]["data"]=vot_itemi.map((el)=>Object.values(el)[0])
     votesChart.update();
 }
 
@@ -117,7 +88,6 @@ async function javascript_chart()
 {
     // Luam date
     await luam_date();
-    //console.log(dict_voturi);
 
     // Updatare tabel
     updatare_tabel();

@@ -43,7 +43,7 @@ def log():
         WhiteList.append( criptare )
         if emailCriptat not in EmailList:
             EmailList.append( emailCriptat ) 
-            print(data)
+            # print(data)
             msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
             msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
             mail.send(msg)
@@ -70,7 +70,7 @@ def codConectare():
 def votareGET2():
     cod = request.args.get('cod')
     entry = GVoteEntryStore.GetVoteEntry(cod)
-    print(GVoteEntryStore.TempStore, entry)
+    # print(GVoteEntryStore.TempStore, entry)
     return render_template("Votare.html", entry=entry)
  
 @app.route("/doVote", methods = ['POST'])
@@ -100,9 +100,9 @@ def codConectarePOST():
                     cod = uuid.uuid4()
                     listaOp = data['listaOp']
                     numePoll = data['numePoll']
-                    print(GVoteEntryStore.TempStore)
+                    # print(GVoteEntryStore.TempStore)
                     result = GVoteEntryStore.AddVoteEntry(VoteEntry(cod, numePoll, listaOp))
-                    print(GVoteEntryStore.TempStore)
+                    # print(GVoteEntryStore.TempStore)
                     return jsonify(
                         succes = result,
                         cod = cod,

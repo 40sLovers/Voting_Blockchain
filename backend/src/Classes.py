@@ -122,7 +122,7 @@ class CSVHelpers:
         with open(CSVHelpers.path_to_database + in_file, "r") as f:
             reader = csv.reader(f)
             line = next(reader)
-            print(line)
+            # print(line)
             all_users = []
             for x in reader:
                 x[0] = int(x[0])
@@ -183,7 +183,7 @@ class VoteEntryStore:
         return -1
 
     def AddVoteEntry(self, voteEntry):
-        print(voteEntry.cod)
+        # print(voteEntry.cod)
         eIndex = self.GetVoteEntryIndex(voteEntry.cod)
         if eIndex != -1:
             return False
@@ -235,7 +235,7 @@ class AlgorithmsHelpers:
                 for j in range(i + 1, len(l)):
                     x = list(l[i].keys())[0]
                     y = list(l[j].keys())[0]
-                    print(x,y)
+                    # print(x,y)
                     if x < y:
                         l[i], l[j] = l[j], l[i]
         else:
@@ -327,7 +327,7 @@ class HandMadeCsvHelpers:
                     else:
                         f.write(sublista[i] + ',')
                 f.write('\n')
-        print(f)
+        # print(f)
 
     @staticmethod
     def appendcsv(file, lista):
@@ -339,4 +339,4 @@ class HandMadeCsvHelpers:
                     else:
                         f.write(sublista[i] + ',')
                 f.write('\n')
-        print(f)
+        # print(f)
