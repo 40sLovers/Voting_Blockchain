@@ -99,6 +99,21 @@ def votareGET():
     return jsonify(
             succes = False,
             )
+    
+@app.route("/Votare", methods = ['POST'])
+def yourVote():
+    data = request.get_json()
+    if data != None:
+        VotedOption = data['selectedOption']
+        cod = data['cod']
+        #CurrentPool.Vote(codConectare, privatKey, VotedOption) #privatekey trebuie generat
+        return jsonify(
+            succes = True,
+            cod = cod
+        )
+    return jsonify(
+        succes = False
+    )
 
 @app.route("/newPoll", methods = ['POST'])
 def codConectarePOST():
@@ -131,6 +146,7 @@ def verificaCod():
     if data != None:
         CodConectare = data['CodConectare']
         CurrentPool = [p for p in IACoin.openedPools if p.poolId== CodConectare]
+        #CurrentPool.Vote(codConectare,privateKey, VotedOption) privatekey trebuie generat
         if(len(CurrentPool)!=0):
                 return jsonify(
                     succes = True,
