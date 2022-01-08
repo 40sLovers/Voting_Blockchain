@@ -19,10 +19,16 @@ GVoteEntryStore = VoteEntryStore()
 
 #Hahahah daca merge....
 
+# :(((
+    
+#  cf?
+
+# Hello hello
+
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
-                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
-                   MAIL_PASSWORD = "Project123")
+                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'proiectvoteboat@gmail.com',
+                   MAIL_PASSWORD = "Celmaimistosite0")
 mail=Mail(app)
  
 ################################ initializare blockchain
@@ -99,6 +105,21 @@ def votareGET():
     return jsonify(
             succes = False,
             )
+    
+@app.route("/Votare", methods = ['POST'])
+def yourVote():
+    data = request.get_json()
+    if data != None:
+        VotedOption = data['selectedOption']
+        cod = data['cod']
+        #CurrentPool.Vote(codConectare, privatKey, VotedOption) #privatekey trebuie generat
+        return jsonify(
+            succes = True,
+            cod = cod
+        )
+    return jsonify(
+        succes = False
+    )
 
 @app.route("/newPoll", methods = ['POST'])
 def codConectarePOST():
@@ -131,6 +152,7 @@ def verificaCod():
     if data != None:
         CodConectare = data['CodConectare']
         CurrentPool = [p for p in IACoin.openedPools if p.poolId== CodConectare]
+        #CurrentPool.Vote(codConectare,privateKey, VotedOption) privatekey trebuie generat
         if(len(CurrentPool)!=0):
                 return jsonify(
                     succes = True,
@@ -161,7 +183,13 @@ def login(name):
     elif name=='index':
         return render_template("index.html")
     elif name=='rezultate':
-        return render_template("rezultate.html")
+        pool_id=request.args.get("pool_id")
+        entry=None
+        #CurrentPool = [p for p in IACoin.openedPools if p.poolId==pool_id]
+        #if(len(CurrentPool)!=0):
+            #entry = CurrentPool[0]
+        entry=Pool("-", {}, IACoin, "Pool Title")
+        return render_template("rezultate.html", entry=entry)
     elif name=='Votare':
         return render_template("Votare.html")
     elif name=='newPoll':

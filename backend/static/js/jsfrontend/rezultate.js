@@ -1,23 +1,13 @@
 // Chart.js
 var chart = document.getElementById('chart_voturi').getContext('2d');
 
-// Luam date
-let vot_itemi;
-async function luam_date()
-{
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=a");
-    vot_itemi = await vot_itemi.json();
-}
-luam_date();
-
-
 // Creare tabel
 /*
     Aici sunt valori PLACEHOLDER
     Este doar o simulare pentru afisarea rezultatelor
     Datele trebuie luate din backend
 
-    (Momentan datele sunt stocate intr-o lista de dictionare. Nu stiu cum vor fi memorate in final...)
+    (Momentan datele sunt stocate intr-o lista de dictionare.)
 */
 
 
@@ -52,6 +42,79 @@ let votesChart = new Chart(chart, {
     }
 })
 
+// Luam date
+let vot_itemi;
+async function luam_date()
+{
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123");
+    vot_itemi = await vot_itemi.json();
+}
+luam_date();
+
+function comparare(first,second){
+    console.log(first);
+    console.log(second);
+    console.log((Object.keys(first)[0] > Object.keys(second)[0]));
+    if(Object.keys(first)[0] > Object.keys(second)[0])
+        return true;
+    return false;
+}
+
+function sort_nume()
+{
+    var l = vot_itemi.length;
+    for(var i=0; i<l-1; i++)
+    {
+        for(var j=i+1; j<l; j++)
+        {
+            if(Object.keys(vot_itemi[i])[0] > Object.keys(vot_itemi[j])[0])
+            {
+                var aux=vot_itemi[i];
+                vot_itemi[i] = vot_itemi[j];
+                vot_itemi[j] = aux;
+            }
+        }
+    }
+}
+
+function sort_valori()
+{
+    var l = vot_itemi.length;
+    for(var i=0; i<l-1; i++)
+    {
+        for(var j=i+1; j<l; j++)
+        {
+            if(Object.values(vot_itemi[i])[0] > Object.values(vot_itemi[j])[0])
+            {
+                var aux=vot_itemi[i];
+                vot_itemi[i] = vot_itemi[j];
+                vot_itemi[j] = aux;
+            }
+        }
+    }
+}
+
+function sortari()
+{
+    var checkBox_nume   = document.getElementById('sortAlfabetic');
+    var checkBox_ordine = document.getElementById('sortOrdine');
+
+    if(checkBox_nume.checked)
+    {
+        sort_nume();
+        if(checkBox_ordine.checked)
+            vot_itemi.reverse();
+    }  
+    else
+    {
+        sort_valori();
+        if(checkBox_ordine.checked)
+            vot_itemi.reverse();
+    }
+
+    updatare_tabel();
+}
+
 // Calcule pentru voturi
 async function calcul_nr_total_voturi()
 {
@@ -76,9 +139,8 @@ async function calcul_castigatori()
 // Updatarea tabelului
 async function updatare_tabel()
 {
-    console.log(vot_itemi)
-    votesChart["data"]["labels"]= vot_itemi.map((el)=>Object.keys(el)[0])
-    votesChart["data"]["datasets"][0]["data"]=vot_itemi.map((el)=>Object.values(el)[0])
+    votesChart["data"]["labels"]= vot_itemi.map((el)=>Object.keys(el)[0]);
+    votesChart["data"]["datasets"][0]["data"]=vot_itemi.map((el)=>Object.values(el)[0]);
     votesChart.update();
 }
 
@@ -88,13 +150,16 @@ async function javascript_chart()
     // Luam date
     await luam_date();
 
-    // Updatare tabel
-    updatare_tabel();
+    // Sortare
+    sortari();
 
     // Calcularea voturilor;
     calcul_nr_total_voturi();
     calcul_castigatori();
+
+    // Updatare tabel
+    updatare_tabel();
 }
 
 javascript_chart();
-setInterval(javascript_chart, 2000);
+setInterval(javascript_chart, 5000);
