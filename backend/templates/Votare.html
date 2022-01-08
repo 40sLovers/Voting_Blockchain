@@ -56,7 +56,7 @@
               <label for="titluVot" class="sr-only">Titlu</label>
               <input type="text" class="form-control-plaintext" id="titluVot" readonly disabled>
               <script>
-                var votTitle = "{{entry.name}}";
+                var votTitle = "{{entry.title}}";
                 document.getElementById("titluVot").value = votTitle;
               </script>
               <hr>
@@ -112,7 +112,7 @@
   </script> <!-- Dezactiveaza butonul pana la selectia unei optiuni din lista -->
  
   <script type="text/javascript">
-    var voteCod = "{{ entry.cod }}";
+    var voteCod = "{{ entry.poolId }}";
   </script>
     {% else %}
         <div>

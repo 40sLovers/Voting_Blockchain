@@ -17,6 +17,8 @@ GVoteEntryStore = VoteEntryStore()
 
 #Dupa ce terminam proiectul, votam!!!!
 
+#Hahahah daca merge....
+
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
@@ -69,8 +71,10 @@ def codConectare():
 @app.route("/doVote", methods = ['GET'])
 def votareGET2():
     cod = request.args.get('cod')
-    entry = GVoteEntryStore.GetVoteEntry(cod)
-    # print(GVoteEntryStore.TempStore, entry)
+    entry=None
+    CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
+    if(len(CurrentPool)!=0):
+        entry = CurrentPool[0]
     return render_template("Votare.html", entry=entry)
  
 @app.route("/doVote", methods = ['POST'])
@@ -96,16 +100,17 @@ def votareGET():
 def codConectarePOST():
         try:
             data = request.get_json()
+            print(data)
             if data != None:
-                    cod = uuid.uuid4()
+                    cod = uuid.uuid4().hex
                     listaOp = data['listaOp']
                     numePoll = data['numePoll']
-                    CoduriList.append(cod)
-                    # print(GVoteEntryStore.TempStore)
-                    result = GVoteEntryStore.AddVoteEntry(VoteEntry(cod, numePoll, listaOp))
-                    # print(GVoteEntryStore.TempStore)
+                    poolOptions= {}
+                    for option in listaOp:
+                        poolOptions[option]=GenerateHelper.getRandomPublicKey(option,cod)
+                    PoolVote= Pool(cod,poolOptions,IACoin,numePoll)
                     return jsonify(
-                        succes = result,
+                        succes = True,
                         cod = cod,
                        # CoduriList = CoduriList
                     )
@@ -121,7 +126,8 @@ def verificaCod():
     data = request.get_json()
     if data != None:
         CodConectare = data['CodConectare']
-        if CodConectare in CoduriList:
+        CurrentPool = [p for p in IACoin.openedPools if p.poolId== CodConectare]
+        if(len(CurrentPool)!=0):
                 return jsonify(
                     succes = True,
                     cod = CodConectare
