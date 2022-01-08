@@ -7,7 +7,7 @@ let dict_voturi = {};
 
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=nume");
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=a");
     vot_itemi = await vot_itemi.json();
 }
 luam_date();
@@ -68,7 +68,8 @@ async function calcul_castigatori(dict_voturi)
     var castigatori = "";
     nrMaximVoturi = Math.max(...vot_itemi.map((el)=>Object.values(el)[0]))
 
-    castigatori = vot_itemi.filter((el)=> Object.values(el)[0] == nrMaximVoturi)
+    castigatori = 
+    vot_itemi.filter((el)=> Object.values(el)[0] == nrMaximVoturi)
     .map((el)=>Object.keys(el)[0])
     document.getElementById("castigatori").innerText = String(castigatori);
 }
@@ -76,6 +77,7 @@ async function calcul_castigatori(dict_voturi)
 // Updatarea tabelului
 async function updatare_tabel()
 {
+    console.log(vot_itemi)
     votesChart["data"]["labels"]= vot_itemi.map((el)=>Object.keys(el)[0])
     votesChart["data"]["datasets"][0]["data"]=vot_itemi.map((el)=>Object.values(el)[0])
     votesChart.update();
