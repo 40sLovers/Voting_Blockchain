@@ -32,6 +32,7 @@
 </head>
  
 <body class="noScroll">
+  {% if entry != None %}
   <div>
     <div id="container">
       <div id="banner"></div>
@@ -53,13 +54,19 @@
           <div id="listavotare">
             <div id="detaliivot">
               <label for="titluVot" class="sr-only">Titlu</label>
-              <input type="text" class="form-control-plaintext" id="titluVot" value="{{title}}" readonly disabled>
+              <input type="text" class="form-control-plaintext" id="titluVot" readonly disabled>
+              <script>
+                var votTitle = "{{entry.name}}";
+                document.getElementById("titluVot").value = votTitle;
+              </script>
               <hr>
             </div>
             <div id="optiunivot">
-              <ol id="listaOptiuni">
-
-              </ol>
+              <ul id="listaOptiuni" style="list-style-position: inside;list-style: disc;">
+                {% for i in entry.opList %}
+                   <li>{{i}}</li>
+                {% endfor %}
+              </ul>
             </div>
             <div class="btnvotare">
               <button type="button" class="btn btn-lg btn-primary" disabled="disabled" id="Voteaza">Votează</button>
@@ -105,9 +112,15 @@
   </script> <!-- Dezactiveaza butonul pana la selectia unei optiuni din lista -->
  
   <script type="text/javascript">
-    var voteCod = "{{ cod }}";
-    var votingModule = new VotingModule(voteCod);
+    var voteCod = "{{ entry.cod }}";
   </script>
+    {% else %}
+        <div>
+          <center>
+            <h2>Votul nu exista!</h2>
+          </center>
+        </div>
+    {% endif %}
 </body>
- 
+
 </html>

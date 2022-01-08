@@ -19,6 +19,14 @@ const conectareVotare = document.getElementById("connect");
 
 conectareVotare.addEventListener("click", function () {
   var CodConectare = document.getElementById("conectare").value;
+  if (
+    typeof CodConectare != "string" ||
+    !CodConectare ||
+    CodConectare.trim().length == 0
+  ) {
+    alert("Introduceti codul!");
+    return;
+  }
   postData(
     window.location.protocol +
       "//" +
@@ -29,12 +37,11 @@ conectareVotare.addEventListener("click", function () {
     }
   ).then((data) => {
     console.log(data);
-    if (data == "ok") {
-      window.location.href =
-        window.location.protocol + "//" + window.location.host + "/Votare";
+    if (data.succes == true) {
+      window.location.href = "/doVote?cod=" + data.cod;
     } else {
       alert("Codul introdus este gresit!");
     }
-    document.getElementById("conectare").value = "";
   });
+  document.getElementById("conectare").value = "";
 });
