@@ -1,4 +1,4 @@
-import random,os,csv,json
+import random,os,csv,json,sqlite3
 if __name__== 'Classes':
     from Blockchain_main import *
 elif __name__=='src.Classes':
@@ -68,7 +68,7 @@ class Pool:
 
     def isBallanceEnoughToVote(self, cheie_publica):
         occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress.__str__()==cheie_publica.__str__()]
-        print(len(occurences))
+        # print(len(occurences))
         if len(occurences):
             return False
         return True
@@ -255,3 +255,17 @@ class VoteEntry:
     self.bHasVoted = False
     self.votedOption = None
  
+
+class SqlLiteConnectionHelper:
+    abs_path_to_sqlite=os.path.join(os.path.abspath('..'),'database','SQLite.db')
+    def __init__(self):
+        con = sqlite3.connect(SqlLiteConnectionHelper.abs_path_to_sqlite)
+        self.cur = con.cursor()
+       
+        pass
+    
+    def CreateTable(self,table_name, table_content):
+        #table_content e de forma "(nume_coloana1 tip_coloana1,
+        # nume_coloana2 tip_coloana2,nume_coloana3 tip_coloana3)"
+        self.cur.execute('''CREATE TABLE {}
+        ({})'''.format(table_name,table_content))
