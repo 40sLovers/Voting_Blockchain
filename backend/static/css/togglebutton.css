@@ -1,0 +1,55 @@
+.sort_toggle_container{
+    text-align: left;
+    margin-left: 5vw;
+}
+
+.sort_toggle{
+    --width:40px;
+    --height:20px;
+    display: inline-block;
+    --border-radius: calc(var(--height)/2);
+    cursor:pointer;
+}
+.sort_toggle_input{
+    display:none;
+}
+.sort_toggle_fill{
+    position:relative;
+    width:var(--width);
+    height:var(--height);
+    border-radius: var(--border-radius);
+    background-color: rgb(179, 179, 179);
+    transition: background 0.2s;
+}
+
+.sort_toggle_input:checked ~ .sort_toggle_fill{
+    background-color: dodgerblue;
+}
+
+.sort_toggle_fill::after {
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    width: var(--height);
+    height: var(--height);
+    background-color: white;
+    border-radius: var(--border-radius);
+    transition: transform 0.2s;
+}
+
+.sort_toggle_input:checked ~ .sort_toggle_fill::after{
+    transform: translateX(var(--height));
+}
+
+.sort_toggle_text{
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+    margin-bottom: 13px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0px;
+}

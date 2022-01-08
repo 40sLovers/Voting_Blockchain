@@ -49,6 +49,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href= "{{ url_for('static',filename='css/style.css') }}" type="text/css" media="all" />
+  <link rel="stylesheet" href= "{{ url_for('static',filename='css/togglebutton.css') }}" type="text/css" media="all" />
   <link rel="stylesheet" href= "{{ url_for('static',filename='css/animatie.css') }}" type="text/css" media="all" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,22 +89,39 @@
                           
   
                           <!-- Container chart -->
-                          <div>
-  
+                          <div style="height:500px">
+
                               <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                               <canvas id="chart_voturi">
+
                           </div>
-                          
+
+                          <!-- Sort toggle button -->
+                          <div class="sort_toggle_container">
+                            <label class="sort_toggle" for="sortAlfabetic">
+                              <input class="sort_toggle_input" type="checkbox" id="sortAlfabetic">
+                              <div class="sort_toggle_fill"></div>
+                            </label>
+                            <span class="sort_toggle_text">Ordonează după nume</span>
+                            <br>
+
+                            <label class="sort_toggle" for="sortOrdine">
+                              <input class="sort_toggle_input" type="checkbox" id="sortOrdine">
+                              <div class="sort_toggle_fill"></div>
+                            </label>
+                            <span class="sort_toggle_text">Ordonează descrescător</span>
+                          </div>
+
                           <h5>Detalii</h5>
                           <div id="continutRezultate_detalii">
                               <p>Nr. total de voturi: <span id="nrTotalVoturi"></span> </p>
                               <p>Castigator: <span id="castigatori"></span></p>
 
 
-                              <!-- Chart script -->
-
+                              
+                          <!-- Chart script -->
                           <script src="{{url_for('static',filename='js/jsfrontend/rezultate.js')}}"></script>
-                        <!-- End of Chart script -->
+                          <!-- End of Chart script -->
 
 
 
