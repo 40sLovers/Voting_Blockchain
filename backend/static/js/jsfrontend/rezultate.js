@@ -7,7 +7,7 @@ let dict_voturi = {};
 
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=name");
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=nume");
     vot_itemi = await vot_itemi.json();
 
     var key, val;
