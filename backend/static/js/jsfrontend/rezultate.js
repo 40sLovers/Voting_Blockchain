@@ -36,13 +36,14 @@ let votesChart = new Chart(chart, {
         }],
     },
     options: {
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
                 text: 'Rezultatele votului',
                 font:{size:18},
                 padding:{top:30, bottom:20},
-                color:'#182552'
+                color:'#182552',
             },
             legend:{
                 display:false
