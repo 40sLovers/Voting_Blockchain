@@ -7,10 +7,12 @@ let dict_voturi = {};
 
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123");
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=balv");
     vot_itemi = await vot_itemi.json();
 
     var key, val;
+
+    console.log(vot_itemi);
 
     for(i in vot_itemi)
     {
@@ -21,6 +23,7 @@ async function luam_date()
     }
 }
 luam_date();
+
 
 // Creare tabel
 /*
