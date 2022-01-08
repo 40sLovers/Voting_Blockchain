@@ -83,7 +83,8 @@
                         <div id="continutRezultate">
 
                           <h1>Rezultate</h1>
-                          <h3>Titlu</h3>
+                          <h3>{{entry.title}}</h3>
+                          <p>ID: <span id="pool_id"></span></p>
                           <hr>
                           <h5>Diagramă</h5>
                           
@@ -117,13 +118,15 @@
                               <p>Nr. total de voturi: <span id="nrTotalVoturi"></span> </p>
                               <p>Castigator: <span id="castigatori"></span></p>
 
-
                               
                           <!-- Chart script -->
                           <script src="{{url_for('static',filename='js/jsfrontend/rezultate.js')}}"></script>
-                          <!-- End of Chart script -->
 
-
+                          <!-- Pool id script -->
+                          <script type="text/javascript">
+                            var voteCod = "{{ entry.poolId }}";
+                            document.getElementById("pool_id").innerText = String(voteCod);
+                          </script>
 
                           </div>
 

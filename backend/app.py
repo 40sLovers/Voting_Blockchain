@@ -23,6 +23,8 @@ GVoteEntryStore = VoteEntryStore()
     
 #  cf?
 
+# Hello hello
+
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'proiectvoteboat@gmail.com',
@@ -169,7 +171,13 @@ def login(name):
     elif name=='index':
         return render_template("index.html")
     elif name=='rezultate':
-        return render_template("rezultate.html")
+        pool_id=request.args.get("pool_id")
+        entry=None
+        #CurrentPool = [p for p in IACoin.openedPools if p.poolId==pool_id]
+        #if(len(CurrentPool)!=0):
+            #entry = CurrentPool[0]
+        entry=Pool("-", {}, IACoin, "Pool Title")
+        return render_template("rezultate.html", entry=entry)
     elif name=='Votare':
         return render_template("Votare.html")
     elif name=='newPoll':
