@@ -28,6 +28,8 @@ class Blockchain:
         self.pendingTransactions = []
         self.difficulty=2
         self.miningReward=100
+        self.openedPools=[]
+
     def createGenesisBlock(self):
         bloc_geneza = Block("26/07/2002 00:00:00", [], None)
         return bloc_geneza
@@ -36,30 +38,29 @@ class Blockchain:
         return self.chain[-1]
 
     def minePendingTransactions(self,minningRewardAdress):
+        #creaza reward
         rewardTx = Transaction(None,minningRewardAdress.__str__(),self.miningReward)
         self.pendingTransactions.append(rewardTx)
 
+        #creaza block
         now = datetime.now()
-        #strftime=string format time
         now = now.strftime("%d/%m/%Y %H:%M:%S")
 
         block_nou = Block(now, self.pendingTransactions , self.getLatestBlock().hash)
         block_nou.mineBlock(self.difficulty)
 
+        #da append la chain si curata lista de pending
         self.chain.append(block_nou)
-
         self.pendingTransactions = []
 
     def getBallanceFromAdress(self, cheie_publica):
         sold = 0
-
         for blocuri in self.chain:
             for tx in blocuri.transactions:
                 if tx.fromAdress!=None and tx.fromAdress == cheie_publica.__str__():
                     sold = sold - tx.amount
                 if tx.toAdress == cheie_publica.__str__():
                     sold = sold + tx.amount
-
         return sold
 
     def addTransaction(self, transaction):
@@ -87,10 +88,9 @@ class Blockchain:
 
     def isChainValid(self):
         GenesisBlock = self.createGenesisBlock()
-
+        
         if str(GenesisBlock) != str(self.chain[0]):
             return False
-        
         for i in range(1,len(self.chain)):
             current_block = self.chain[i]
             previous_block = self.chain[i-1]
@@ -109,7 +109,7 @@ class Blockchain:
         return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
 
 class Block:
-    def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4()),PoolOptions=[]):
+    def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4()),poolOptions={}):
         # timestamp = cand a fost creat
         self.timestamp = timestamp
         self.transactions = transactions
@@ -117,7 +117,7 @@ class Block:
         self.guid= guid
         self.nonce = 0
         self.hash = self.calculateHash()
-        self.PoolOptions=PoolOptions
+        self.poolOptions=poolOptions
 
     def calculateHash(self):
         return updatehash(self.timestamp, self.transactions, self.previousHash,self.nonce,self.guid)
@@ -136,11 +136,9 @@ class Block:
         return True
 
     def __repr__(self) -> str:
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+        return f"\nBlock with guid: {self.guid}\n timestamp={self.timestamp} \n"
     def ___str__(self):
-        return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+        return f"\nBlock with guid: {self.guid}\n timestamp={self.timestamp} \n"
 
 
 class Transaction:
@@ -173,8 +171,6 @@ class Transaction:
         signer = ECDSA()
         return signer.verify(self.calculateHash(), self.signature, self.fromAdress)
     def __repr__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
+        return f"Transaction with fromAdress: {self.fromAdress}\n at timestamp={self.timestamp}\n "
     def __str__(self) -> str:
-        return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-timestamp={self.timestamp}\n "
+        return f"Transaction with fromAdress: {self.fromAdress}\n at timestamp={self.timestamp}\n "

@@ -1,8 +1,7 @@
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import keyFromHash,updatehash
 import unittest
 import random
-
+from src.Blockchain_main import *
+from src.GoodToUseScripts import *
 class TestBlockchain(unittest.TestCase):
 
     @classmethod
@@ -21,6 +20,11 @@ class TestBlockchain(unittest.TestCase):
         key_copy=keyFromHash(updatehash(seed1))
 
         IACoin = Blockchain()
+    def test_transactions_wired_cases(self):
+        tx = Transaction(key.get_public_key(),key2.get_public_key(),"testcucaractere")
+        tx.SignTransaction(key)
+        IACoin.addTransaction(tx)
+
 
     def rand_str(self, str_size):
         return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
@@ -47,7 +51,16 @@ class TestBlockchain(unittest.TestCase):
         tx.SignTransaction(key)
         IACoin.addTransaction(tx)
         # Mine block
-        print(IACoin)
+        # print(IACoin)
+        self.assertEqual(IACoin.isChainValid(),True)
+    def test_default_ammount(self):
+        key_temp=keyFromHash(updatehash(self.rand_str(keylen)))
+        pu_key = key_temp.get_public_key()
+        self.assertEqual(IACoin.getBallanceFromAdress(pu_key),0)
+        IACoin.minePendingTransactions(pu_key)
+        self.assertEqual(IACoin.getBallanceFromAdress(pu_key),100)
+
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -4,7 +4,8 @@
 from ecpy.curves     import Curve,Point
 from ecpy.keys       import ECPublicKey, ECPrivateKey
 from ecpy.ecdsa      import ECDSA
-import GoodToUseScripts
+from Blockchain_main import *
+from GoodToUseScripts import *
 cv     = Curve.get_curve('secp256k1')
 # pu_key = ECPublicKey(Point(0x65d5b8bf9ab1801c9f168d4815994ad35f1dcb6ae6c7a1a303966b677b813b00,
 
@@ -22,5 +23,5 @@ cv     = Curve.get_curve('secp256k1')
 
 
 
-userPvKey= GoodToUseScripts.keyFromHash("asd")
+userPvKey= keyFromHash("asd")
 print(userPvKey)

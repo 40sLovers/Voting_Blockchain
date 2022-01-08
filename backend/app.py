@@ -1,16 +1,19 @@
 from flask import Flask,request,render_template, flash, jsonify
 from flask_mail import Mail,Message
-import socket
-import json
-import uuid
-from Blockchain_ready_Gandolh import Blockchain,Block,Transaction
-from GoodToUseScripts import *
+import socket,json,uuid
+from src.Classes import *
+
 WhiteList = []
 EmailList = []
 CoduriList = []
 ListaOp = []
 app = Flask(__name__)
- 
+
+#Michelle e cea mai misto fata 
+
+# Gia e net superioara pentru ca asculta IAN!!!
+
+#Dupa ce terminam proiectul, votam!!!!
 
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
@@ -21,16 +24,8 @@ mail=Mail(app)
 ################################ initializare blockchain
 #
 IACoin = Blockchain()
-initializareLantDeBlocuri(IACoin)
- 
-class VoteEntry:
-  def __init__(self, cod, name, opList):
-    self.cod = cod
-    self.name = name
-    self.opList = opList
-    self.bHasVoted = False
-    self.votedOption = None
- 
+BlockchainHelpers.initializareLantDeBlocuri(IACoin)
+
 ################################ routes
 @app.route('/')
 def login3():
@@ -145,5 +140,12 @@ def login(name):
     else:
         return render_template("error404.html")
  
+
+@app.route('/getPoolResults',methods =['GET'])
+def getPoolResults():
+    #http://127.0.0.1:5000/getPoolResults?pool_id=123 --example
+    pool_id=request.args.get('pool_id')
+    return GenerateHelper.getRandomOptions() #temporar, pana rezolvam cu poolurile
+
 if __name__=="__main__":
     app.run(debug=True)
