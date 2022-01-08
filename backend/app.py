@@ -158,9 +158,11 @@ def login(name):
 
 @app.route('/getPoolResults',methods =['GET'])
 def getPoolResults():
-    #http://127.0.0.1:5000/getPoolResults?pool_id=123 --example
+    #http://127.0.0.1:5000/getPoolResults?pool_id=1234&order_by=nume --example
     pool_id=request.args.get('pool_id')
-    return GenerateHelper.getRandomOptions() #temporar, pana rezolvam cu poolurile
+    order_by=request.args.get('order_by') #nume sau altceva
+    return GenerateHelper.getRandomOptions(order_by) #temporar, pana rezolvam cu poolurile
+
 
 
 

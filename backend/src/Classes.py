@@ -1,4 +1,4 @@
-import random,os,csv,json
+import random,os,csv,json,sqlite3
 if __name__== 'Classes':
     from Blockchain_main import *
 elif __name__=='src.Classes':
@@ -40,10 +40,17 @@ class Pool:
         # print(self.IAcoin.chain)
 
     def getResults(self):
+        dict = {}
+        for x in self.poolOptions.values():
+            dict[x] = 0
+
+        for tx in self.block.transactions:
+            dict[tx.toAdress] += int(tx.amount)
+
         results=[]
         for [poolOption, pub_key] in self.poolOptions.items():
             results.append({
-                poolOption: self.getBallanceFromAdress(pub_key)
+                poolOption: dict[pub_key]
                 })
         return results
 
@@ -57,7 +64,7 @@ class Pool:
         if transaction.amount <= 0:
             raise Exception("Suma invalida")
         if not self.isBallanceEnoughToVote(transaction.fromAdress) :
-            raise Exception("Fonduri insuficiente")
+            raise Exception("Ai votat deja")
 
         self.pendingTransactions.append(transaction)
 
@@ -68,17 +75,12 @@ class Pool:
         self.pendingTransactions = []
 
     def isBallanceEnoughToVote(self, cheie_publica):
-        occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress == cheie_publica]
+        occurences= [ pub_key for pub_key in self.block.transactions if pub_key.fromAdress.__str__()==cheie_publica.__str__()]
+        # print(len(occurences))
         if len(occurences):
             return False
         return True
 
-    def getBallanceFromAdress(self,cheie_publica):
-        sold = 0
-        for tx in self.block.transactions:
-            if tx.toAdress == cheie_publica:
-                sold = sold + tx.amount
-        return sold
 
 class GenerateHelper:
     def __init__(self):
@@ -91,16 +93,16 @@ class GenerateHelper:
         return privateKey.get_public_key()
 
     @staticmethod
-    def rand_str(self, str_size):
+    def rand_str(str_size):
         return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
 
     @staticmethod
-    def getRandomOptions():
+    def getRandomOptions(order_by):
         l = []
         for i in range(20):
             dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
             l.append(dict)
-        return json.dumps(AlgorithmsHelpers.sortOptions(l))
+        return json.dumps(AlgorithmsHelpers.sortOptions(l,order_by))
         
     def createTestingUsers(self,in_file, i):
         letter = chr(ord("a") + i) + "_user"
@@ -227,15 +229,22 @@ class AlgorithmsHelpers:
             return s
         return -1
     @staticmethod
-    def sortOptions(l):
-        for i in range(len(l) - 1):
-            for j in range(i + 1, len(l)):
-                x = list(l[i].keys())[0]
-                y = list(l[j].keys())[0]
-                if l[i][x] < l[j][y]:
-                    var = l[i]
-                    l[i] = l[j]
-                    l[j] = var
+    def sortOptions(l,order_by):
+        if order_by=='nume':
+            for i in range(len(l) - 1):
+                for j in range(i + 1, len(l)):
+                    x = list(l[i].keys())[0]
+                    y = list(l[j].keys())[0]
+                    print(x,y)
+                    if x < y:
+                        l[i], l[j] = l[j], l[i]
+        else:
+            for i in range(len(l) - 1):
+                for j in range(i + 1, len(l)):
+                    x = list(l[i].keys())[0]
+                    y = list(l[j].keys())[0]
+                    if l[i][x] < l[j][y]:
+                        l[i], l[j] = l[j], l[i]
         return l
 
 
@@ -281,3 +290,53 @@ class VoteEntry:
     self.bHasVoted = False
     self.votedOption = None
  
+
+class SqlLiteConnectionHelper:
+    abs_path_to_sqlite=os.path.join(os.path.abspath('..'),'database','SQLite.db')
+    def __init__(self):
+        con = sqlite3.connect(SqlLiteConnectionHelper.abs_path_to_sqlite)
+        self.cur = con.cursor()
+       
+        pass
+    
+    def CreateTable(self,table_name, table_content):
+        #table_content e de forma "(nume_coloana1 tip_coloana1,
+        # nume_coloana2 tip_coloana2,nume_coloana3 tip_coloana3)"
+        self.cur.execute('''CREATE TABLE {}
+        ({})'''.format(table_name,table_content))
+
+class HandMadeCsvHelpers:
+    def __init__(self):
+        pass
+    @staticmethod
+    def readcsv(file):
+        v = []
+        with open(CSVHelpers.path_to_database + file, 'r') as f:
+            for line in f.readlines():
+                line = line.strip('\n')
+                v.append(line.split(','))
+        return v
+
+    @staticmethod
+    def writecsv(file, lista):
+        with open(CSVHelpers.path_to_database + file, 'w') as f:
+            for sublista in lista:
+                for i in range(len(sublista)):
+                    if i == len(sublista) - 1:
+                        f.write(sublista[i])
+                    else:
+                        f.write(sublista[i] + ',')
+                f.write('\n')
+        print(f)
+
+    @staticmethod
+    def appendcsv(file, lista):
+        with open(CSVHelpers.path_to_database + file, 'a') as f:
+            for sublista in lista:
+                for i in range(len(sublista)):
+                    if i == len(sublista) - 1:
+                        f.write(sublista[i])
+                    else:
+                        f.write(sublista[i] + ',')
+                f.write('\n')
+        print(f)

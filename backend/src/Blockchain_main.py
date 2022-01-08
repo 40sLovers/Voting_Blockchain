@@ -88,10 +88,9 @@ class Blockchain:
 
     def isChainValid(self):
         GenesisBlock = self.createGenesisBlock()
-
+        
         if str(GenesisBlock) != str(self.chain[0]):
             return False
-        
         for i in range(1,len(self.chain)):
             current_block = self.chain[i]
             previous_block = self.chain[i-1]
@@ -104,10 +103,10 @@ class Blockchain:
             
         return True
 
-    # def __repr__(self) -> str:
-    #     return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
-    # def ___str__(self):
-    #     return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
+    def __repr__(self) -> str:
+        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
+    def ___str__(self):
+        return f"Blockchain with chain= {self.chain};\n pendingTransactions= {self.pendingTransactions}"
 
 class Block:
     def __init__(self, timestamp, transactions, previousHash,guid = str(uuid.uuid4()),poolOptions={}):
@@ -136,12 +135,10 @@ class Block:
                 return False
         return True
 
-#     def __repr__(self) -> str:
-#         return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-# previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
-#     def ___str__(self):
-#         return f"\nBlock with guid: {self.guid}\n hash={self.hash}\n  \
-# previousHash={self.previousHash}\n timestamp={self.timestamp} \n transactions={self.transactions}"
+    def __repr__(self) -> str:
+        return f"\nBlock with guid: {self.guid}\n timestamp={self.timestamp} \n"
+    def ___str__(self):
+        return f"\nBlock with guid: {self.guid}\n timestamp={self.timestamp} \n"
 
 
 class Transaction:
@@ -173,9 +170,7 @@ class Transaction:
             raise Exception("Nici-o semnatura in aceasta tranzactie")
         signer = ECDSA()
         return signer.verify(self.calculateHash(), self.signature, self.fromAdress)
-#     def __repr__(self) -> str:
-#         return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-# timestamp={self.timestamp}\n "
-#     def __str__(self) -> str:
-#         return f"Transaction with fromAdress: {self.fromAdress}\n toAdress={self.toAdress}\n amount={self.amount} \
-# timestamp={self.timestamp}\n "
+    def __repr__(self) -> str:
+        return f"Transaction with fromAdress: {self.fromAdress}\n at timestamp={self.timestamp}\n "
+    def __str__(self) -> str:
+        return f"Transaction with fromAdress: {self.fromAdress}\n at timestamp={self.timestamp}\n "
