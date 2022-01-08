@@ -25,8 +25,8 @@ GVoteEntryStore = VoteEntryStore()
 
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
-                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
-                   MAIL_PASSWORD = "Project123")
+                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'proiectvoteboat@gmail.com',
+                   MAIL_PASSWORD = "Celmaimistosite0")
 mail=Mail(app)
  
 ################################ initializare blockchain
@@ -50,7 +50,7 @@ def log():
         if emailCriptat not in EmailList:
             EmailList.append( emailCriptat ) 
             # print(data)
-            msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
+            msg=Message("hi",sender="proiectvoteboat@gmail.com",recipients=[email,])
             msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
             mail.send(msg)
             return json.dumps("ok")
