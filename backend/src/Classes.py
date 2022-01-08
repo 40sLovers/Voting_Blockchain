@@ -96,12 +96,12 @@ class GenerateHelper:
         return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
 
     @staticmethod
-    def getRandomOptions():
+    def getRandomOptions(order_by):
         l = []
         for i in range(20):
             dict = {"optiune{}".format(i + 1): random.randint(1, 200)}
             l.append(dict)
-        return json.dumps(AlgorithmsHelpers.sortOptions(l))
+        return json.dumps(AlgorithmsHelpers.sortOptions(l,order_by))
         
     def createTestingUsers(self,in_file, i):
         letter = chr(ord("a") + i) + "_user"
@@ -202,13 +202,22 @@ class AlgorithmsHelpers:
             return s
         return -1
     @staticmethod
-    def sortOptions(l):
-        for i in range(len(l) - 1):
-            for j in range(i + 1, len(l)):
-                x = list(l[i].keys())[0]
-                y = list(l[j].keys())[0]
-                if l[i][x] < l[j][y]:
-                    l[i], l[j] = l[j], l[i]
+    def sortOptions(l,order_by):
+        if order_by=='nume':
+            for i in range(len(l) - 1):
+                for j in range(i + 1, len(l)):
+                    x = list(l[i].keys())[0]
+                    y = list(l[j].keys())[0]
+                    print(x,y)
+                    if x < y:
+                        l[i], l[j] = l[j], l[i]
+        else:
+            for i in range(len(l) - 1):
+                for j in range(i + 1, len(l)):
+                    x = list(l[i].keys())[0]
+                    y = list(l[j].keys())[0]
+                    if l[i][x] < l[j][y]:
+                        l[i], l[j] = l[j], l[i]
         return l
 
 

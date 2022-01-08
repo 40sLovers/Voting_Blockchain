@@ -11,6 +11,7 @@ from Classes import *
 if __name__=='__main__':
     #CSVHelpers.createCSVFile("test1.csv", ["Nume", "Prenume", "Data"])
     #CSVHelpers.appendCSVFile("test1.csv", {"Nume": "Bradea", "Prenume": "Vlad", "Data": "Azi"})
+    # print(GenerateHelper.getRandomOptions('nume'))
     my_pu_key=KeyHelpers.getPublicKey('gusi e pe whitelist')
     my_pv_key=KeyHelpers.getPrivateKey('gusi e pe whitelist')
     IAcoin=Blockchain()
