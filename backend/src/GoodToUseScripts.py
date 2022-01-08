@@ -27,7 +27,8 @@ if __name__=='__main__':
         'd':GenerateHelper.getRandomPublicKey('d',poolId),
         'e':GenerateHelper.getRandomPublicKey('e',poolId)
     }
-
+    #se cauta in iacoin.openedPools dupa PoolId daca e nevoie de
+    #o metoda din el
     VotePool=Pool(poolId,poolOptions,IAcoin)
     VotePool.Vote(poolId,my_pv_key,'c')
     # VotePool.Vote(poolId,my_pv_key,'e')
