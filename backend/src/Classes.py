@@ -5,8 +5,9 @@ elif __name__=='src.Classes':
     from .Blockchain_main import *
 
 class Pool:
-    def __init__(self,poolId,poolOptions,IAcoin):
+    def __init__(self,poolId,poolOptions,IAcoin,title):
         self.poolId=poolId
+        self.title=title
         self.poolOptions=poolOptions
         self.IAcoin=IAcoin
         self.pendingTransactions=[]
@@ -169,7 +170,33 @@ class CSVHelpers:
                 writer = csv.writer(f2)
                 writer.writerow(list_date)
 
+class VoteEntryStore:
+    def __init__(self):
+        self.TempStore = []
+    
+    def GetVoteEntryIndex(self, cod):
+        i=0
+        while i < len(self.TempStore):
+            if self.TempStore[i].cod == cod:
+                return i 
+            i+=1
+        return -1
 
+    def AddVoteEntry(self, voteEntry):
+        print(voteEntry.cod)
+        eIndex = self.GetVoteEntryIndex(voteEntry.cod)
+        if eIndex != -1:
+            return False
+        self.TempStore.append(voteEntry)
+        return True
+
+    def GetVoteEntry(self, cod):
+        i=0
+        while i < len(self.TempStore):
+            if str(self.TempStore[i].cod) == str(cod):
+                return self.TempStore[i] 
+            i+=1
+        return None
 
 
 

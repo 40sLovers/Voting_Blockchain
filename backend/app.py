@@ -6,9 +6,11 @@ from src.Classes import *
 WhiteList = []
 EmailList = []
 CoduriList = []
-ListaOp = []
+
 app = Flask(__name__)
 
+
+GVoteEntryStore = VoteEntryStore()
 #Michelle e cea mai misto fata 
 
 # Gia e net superioara pentru ca asculta IAN!!!
@@ -67,8 +69,9 @@ def codConectare():
 @app.route("/doVote", methods = ['GET'])
 def votareGET2():
     cod = request.args.get('cod')
-    title = "titlu"
-    return render_template("Votare.html", cod=cod, title = title)
+    entry = GVoteEntryStore.GetVoteEntry(cod)
+    print(GVoteEntryStore.TempStore, entry)
+    return render_template("Votare.html", entry=entry)
  
 @app.route("/doVote", methods = ['POST'])
 def votareGET():
@@ -76,13 +79,15 @@ def votareGET():
     if data != None:
         cod = data['cod']
         voteOption = data['voteOption']
-        for v in CoduriList:
-            if v.cod == cod:
-                v.bHasVoted = True
-                v.voteOption = voteOption
-                return jsonify(
-                        succes = True,
-                    )
+        entry = GVoteEntryStore.GetVoteEntry(cod)
+        if entry != None:
+            result = entry.bHasVoted
+            if result == False:
+                entry.bHasVoted = True
+                entry.voteOption = voteOption
+            return jsonify(
+                    succes = result == False
+                   )
     return jsonify(
             succes = False,
             )
@@ -95,16 +100,20 @@ def codConectarePOST():
                     cod = uuid.uuid4()
                     listaOp = data['listaOp']
                     numePoll = data['numePoll']
-                    CoduriList.append(VoteEntry(cod, numePoll, listaOp))
+                    CoduriList.append(cod)
+                    print(GVoteEntryStore.TempStore)
+                    result = GVoteEntryStore.AddVoteEntry(VoteEntry(cod, numePoll, listaOp))
+                    print(GVoteEntryStore.TempStore)
                     return jsonify(
-                        succes = True,
-                        cod = cod
+                        succes = result,
+                        cod = cod,
+                       # CoduriList = CoduriList
                     )
             return jsonify(
                     succes = False,
                 )
         except Exception as e:
-            return e
+            return str(e)
  
 @app.route("/newPollVerificare", methods = ['POST', 'GET'])
  
@@ -113,7 +122,13 @@ def verificaCod():
     if data != None:
         CodConectare = data['CodConectare']
         if CodConectare in CoduriList:
-                return json.dumps("ok")
+                return jsonify(
+                    succes = True,
+                    cod = CodConectare
+                )
+        return jsonify(
+                succes = False,
+            )
     return render_template("newPoll.html")
  
  
@@ -147,6 +162,8 @@ def getPoolResults():
     pool_id=request.args.get('pool_id')
     order_by=request.args.get('order_by') #nume sau altceva
     return GenerateHelper.getRandomOptions(order_by) #temporar, pana rezolvam cu poolurile
+
+
 
 
 if __name__=="__main__":
