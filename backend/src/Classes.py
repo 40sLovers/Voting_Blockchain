@@ -268,3 +268,39 @@ class SqlLiteConnectionHelper:
         # nume_coloana2 tip_coloana2,nume_coloana3 tip_coloana3)"
         self.cur.execute('''CREATE TABLE {}
         ({})'''.format(table_name,table_content))
+
+class HandMadeCsvHelpers:
+    def __init__(self):
+        pass
+    @staticmethod
+    def readcsv(file):
+        v = []
+        with open(CSVHelpers.path_to_database + file, 'r') as f:
+            for line in f.readlines():
+                line = line.strip('\n')
+                v.append(line.split(','))
+        return v
+
+    @staticmethod
+    def writecsv(file, lista):
+        with open(CSVHelpers.path_to_database + file, 'w') as f:
+            for sublista in lista:
+                for i in range(len(sublista)):
+                    if i == len(sublista) - 1:
+                        f.write(sublista[i])
+                    else:
+                        f.write(sublista[i] + ',')
+                f.write('\n')
+        print(f)
+
+    @staticmethod
+    def appendcsv(file, lista):
+        with open(CSVHelpers.path_to_database + file, 'a') as f:
+            for sublista in lista:
+                for i in range(len(sublista)):
+                    if i == len(sublista) - 1:
+                        f.write(sublista[i])
+                    else:
+                        f.write(sublista[i] + ',')
+                f.write('\n')
+        print(f)
