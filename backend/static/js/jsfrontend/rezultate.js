@@ -7,12 +7,12 @@ let dict_voturi = {};
 
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=balv");
+    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=name");
     vot_itemi = await vot_itemi.json();
 
     var key, val;
 
-    console.log(vot_itemi);
+    //console.log(vot_itemi);
 
     for(i in vot_itemi)
     {
@@ -116,19 +116,16 @@ async function updatare_tabel()
 async function javascript_chart()
 {
     // Luam date
-    luam_date();
-    console.log(dict_voturi);
-    // Sortare dictionar
-        // TO-DO!!!
+    await luam_date();
+    //console.log(dict_voturi);
 
+    // Updatare tabel
     updatare_tabel();
 
     // Calcularea voturilor;
     calcul_nr_total_voturi(dict_voturi);
     calcul_castigatori(dict_voturi);
-
-    // Updatare tabel
 }
 
 javascript_chart();
-setInterval(javascript_chart, 5000);
+setInterval(javascript_chart, 2000);
