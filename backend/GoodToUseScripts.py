@@ -88,9 +88,7 @@ def sortOptions(l):
             x = list(l[i].keys())[0]
             y = list(l[j].keys())[0]
             if l[i][x] < l[j][y]:
-                var = l[i]
-                l[i] = l[j]
-                l[j] = var
+                l[i], l[j] = l[j], l[i]
     return l
 
 def createTestingUsers(in_file, i):
