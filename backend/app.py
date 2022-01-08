@@ -1,14 +1,14 @@
-from flask import Flask,request,render_template, flash, jsonify
+from flask import Flask,request,render_template, flash, jsonify,make_response
 from flask_mail import Mail,Message
 import socket,json,uuid
 from src.Classes import *
 
 WhiteList = []
 EmailList = []
-
+randTokens={}
 
 app = Flask(__name__)
-
+rootDomain= "http://127.0.0.1:5000/"
 
 GVoteEntryStore = VoteEntryStore()
 #Michelle e cea mai misto fata 
@@ -39,21 +39,25 @@ def login3():
 def log():
     if request.method == 'POST':
         data = request.get_json()
-        email = data['adresa']
-        criptare = data['criptare']
-        emailCriptat = data['adresaCriptata']
-        WhiteList.append( criptare )
-        if emailCriptat not in EmailList:
-            EmailList.append( emailCriptat ) 
-            # print(data)
-            msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-            msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
-            mail.send(msg)
-            return json.dumps("ok")
-        else:
-            return json.dumps("EmailFolosit")    
-    else: 
+        privateKey=data['cheiePrivata']
+        randToken=  uuid.uuid4().hex
+        #Emailist va fi un csv
+        # if emailCriptat not in EmailList:
+        #     EmailList.append( emailCriptat ) 
+        #     # print(data)
+        #     msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
+        #     msg.html="\"<div>   \\n<p>\\nCineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?  \\n</p>\\n<a href="http://127.0.0.1:5000/confirmEmail?token=randToken" type=\\\"button\\\" style=\\\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;\\\">Confirma</a>\\n  </div>\""
+        #     mail.send(msg)
+        randTokens[randToken]={
+            'email':data['adresaCriptata'],
+            'privateKey':privateKey
+        }
+        resp = make_response(json.dumps("ok"))
+        resp.set_cookie('randToken',randToken)
+        return resp
+    else:
         return render_template("inregistrare.html")
+        # return render_template("inregistrare.html")
  
 @app.route("/",methods=['POST', 'GET'])
 def autentificare():
@@ -145,7 +149,15 @@ def login(name):
     elif name=='Despre':
         return render_template('Despre.html')
     elif name=='confirmare':
-        return render_template("confirmare.html")
+        randToken=request.cookies.get('randToken')
+        email=randTokens[randToken]['email']
+        privateKeyHex=randTokens[randToken]['privateKey']
+        privateKey= keyFromHash( privateKeyHex)
+        SaveHelper.saveEmailList("database/EmailList.csv",email)
+        SaveHelper.saveWhitelist("database/Whitelist.csv",privateKey.get_public_key())
+        resp = make_response(render_template("confirmare.html"))
+        resp.set_cookie('privateKey', privateKeyHex )
+        return resp
     elif name=='index':
         return render_template("index.html")
     elif name=='rezultate':
@@ -168,8 +180,6 @@ def getPoolResults():
     pool_id=request.args.get('pool_id')
     order_by=request.args.get('order_by') #nume sau altceva
     return GenerateHelper.getRandomOptions(order_by) #temporar, pana rezolvam cu poolurile
-
-
 
 
 if __name__=="__main__":

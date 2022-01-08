@@ -114,13 +114,13 @@ class GenerateHelper:
 
 
 class CSVHelpers:
-    path_to_database = "../database/"
+    # path_to_database = "../database/"
     def __init__(self):
         pass
 
     @staticmethod
     def readAllUsers(in_file):
-        with open(CSVHelpers.path_to_database + in_file, "r") as f:
+        with open(in_file, "r") as f:
             reader = csv.reader(f)
             line = next(reader)
             # print(line)
@@ -147,10 +147,10 @@ class CSVHelpers:
     @staticmethod
     def createCSVFile(new_file, list_of_header):
         #creaza un csv file cu denumirea {new_file} si creaza header-ul din list_of_header
-        if new_file in os.listdir(CSVHelpers.path_to_database):
+        if os.path.isfile(new_file):
             raise "Fisierul se afla deja in baza de date!"
         else:
-            with open(CSVHelpers.path_to_database + new_file, 'w', newline="") as f:
+            with open(new_file, 'w', newline="") as f:
                 writer = csv.writer(f)
                 writer.writerow(list_of_header)
 
@@ -158,13 +158,13 @@ class CSVHelpers:
     def appendCSVFile(file, dict_values_forCSV):
         #primeste ca parametrii numele unui fisier si un dictionar cu care s-ar completa csv-ul
         #da append fisierului cu datele corespunzatoare.
-        if not(file in os.listdir(CSVHelpers.path_to_database)):
+        if not(os.path.isfile(file)):
             raise "Fisierul nu se afla in baza de  date!"
         else:
-            with open(CSVHelpers.path_to_database + file, 'r', newline="") as f:
+            with open(file, 'r', newline="") as f:
                 reader = csv.reader(f)
                 header = next(reader)
-            with open(CSVHelpers.path_to_database + file, 'a', newline="") as f2:
+            with open(file, 'a', newline="") as f2:
                 list_date = [0,] * len(header)
                 for key in dict_values_forCSV.keys():
                     list_date[header.index(key)] = dict_values_forCSV[key]
@@ -312,7 +312,7 @@ class HandMadeCsvHelpers:
     @staticmethod
     def readcsv(file):
         v = []
-        with open(CSVHelpers.path_to_database + file, 'r') as f:
+        with open(file, 'r') as f:
             for line in f.readlines():
                 line = line.strip('\n')
                 v.append(line.split(','))
@@ -320,7 +320,7 @@ class HandMadeCsvHelpers:
 
     @staticmethod
     def writecsv(file, lista):
-        with open(CSVHelpers.path_to_database + file, 'w') as f:
+        with open(file, 'w') as f:
             for sublista in lista:
                 for i in range(len(sublista)):
                     if i == len(sublista) - 1:
@@ -332,7 +332,7 @@ class HandMadeCsvHelpers:
 
     @staticmethod
     def appendcsv(file, lista):
-        with open(CSVHelpers.path_to_database + file, 'a') as f:
+        with open(file, 'a') as f:
             for sublista in lista:
                 for i in range(len(sublista)):
                     if i == len(sublista) - 1:
@@ -341,3 +341,16 @@ class HandMadeCsvHelpers:
                         f.write(sublista[i] + ',')
                 f.write('\n')
         # print(f)
+
+class SaveHelper:
+    def __init__(self):
+        pass
+    @staticmethod
+    def saveEmailList(file,email):
+        CSVHelpers.appendCSVFile(file,{'email':email})
+        pass
+
+    @staticmethod
+    def saveWhitelist(file, public_key):
+        CSVHelpers.appendCSVFile(file,{'public_key_x':public_key.W.x,'public_key_y':public_key.W.y})
+        pass

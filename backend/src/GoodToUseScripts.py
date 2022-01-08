@@ -44,6 +44,9 @@ if __name__=='__main__':
     VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
     VotePool.endPool()
     print(VotePool.getResults())
+
+    # CSVHelpers.createCSVFile('EmailList.csv',['email'])
+    # CSVHelpers.appendCSVFile('EmailList.csv',{'email':'asd'})
     # print(IAcoin.isChainValid())
     # CSVHelpers.appendCSVFile('whitelist.csv',{'public_key_x':my_pu_key.W.x,'public_key_y':my_pu_key.W.y})
     # conHelper=SqlLiteConnectionHelper()

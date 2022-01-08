@@ -41,15 +41,15 @@ butonInregistrare.addEventListener("click", function () {
       const concatenare = adresa.concat(numarMatricol, cuvantCheie);
       var criptare = CryptoJS.SHA256(concatenare);
       criptare = criptare.toString();
+      cheiePrivata=criptare;
       postData(
         window.location.protocol +
           "//" +
           window.location.host +
           "/inregistrare",
         {
-          adresa: adresa,
-          adresaCriptata: adresaCriptata,
-          criptare: criptare,
+          cheiePrivata:cheiePrivata,
+          adresaCriptata:adresaCriptata
         }
       ).then((data) => {
         console.log(data);
