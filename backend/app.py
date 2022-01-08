@@ -5,7 +5,7 @@ from src.Classes import *
 
 WhiteList = []
 EmailList = []
-CoduriList = []
+
 
 app = Flask(__name__)
 
