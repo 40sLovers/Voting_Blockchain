@@ -84,19 +84,22 @@ async function calcul_castigatori(dict_voturi)
 
     for(let i in dict_voturi)
         if(dict_voturi[i] > nrMaximVoturi)
-        nrMaximVoturi = dict_voturi[i];
+            nrMaximVoturi = dict_voturi[i];
 
     for(let i in dict_voturi)
         if(dict_voturi[i] == nrMaximVoturi)
         {
-        console.log(i);
-        if(castigatori.localeCompare("") != 0)
-            castigatori = castigatori.concat(", ");
+            //console.log(i);
+            if(castigatori.localeCompare("") != 0)
+                castigatori = castigatori.concat(", ");
 
-        castigatori = castigatori.concat(String(i));
+            castigatori = castigatori.concat(String(i));
         }
 
-    document.getElementById("castigatori").innerText = String(castigatori);
+    if(nrMaximVoturi != 0)
+        document.getElementById("castigatori").innerText = String(castigatori);
+    else
+        document.getElementById("castigatori").innerText = String("-");
 }
 
 // Updatarea tabelului
