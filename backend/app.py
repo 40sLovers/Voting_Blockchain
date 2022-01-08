@@ -5,7 +5,7 @@ from src.Classes import *
 
 WhiteList = []
 EmailList = []
-CoduriList = []
+
 
 app = Flask(__name__)
 
@@ -100,7 +100,6 @@ def codConectarePOST():
                     cod = uuid.uuid4()
                     listaOp = data['listaOp']
                     numePoll = data['numePoll']
-                    CoduriList.append(cod)
                     print(GVoteEntryStore.TempStore)
                     result = GVoteEntryStore.AddVoteEntry(VoteEntry(cod, numePoll, listaOp))
                     print(GVoteEntryStore.TempStore)
@@ -121,7 +120,7 @@ def verificaCod():
     data = request.get_json()
     if data != None:
         CodConectare = data['CodConectare']
-        if CodConectare in CoduriList:
+        if CodConectare in GVoteEntryStore.cod:
                 return jsonify(
                     succes = True,
                     cod = CodConectare
