@@ -21,7 +21,7 @@ if __name__=='__main__':
 
     poolId=uuid.uuid4().hex
     poolOptions={
-        'a': GenerateHelper.getRandomPublicKey('a',poolId),
+        'a':GenerateHelper.getRandomPublicKey('a',poolId),
         'b':GenerateHelper.getRandomPublicKey('b',poolId),
         'c':GenerateHelper.getRandomPublicKey('c',poolId),
         'd':GenerateHelper.getRandomPublicKey('d',poolId),
@@ -30,17 +30,17 @@ if __name__=='__main__':
     #se cauta in iacoin.openedPools dupa PoolId daca e nevoie de
     #o metoda din el
     VotePool=Pool(poolId,poolOptions,IAcoin)
-    VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'e')
-    # VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'b')
-    # VotePool.Vote(poolId,my_pv_key,'a')
-    # VotePool.Vote(poolId,my_pv_key,'b')
-    # VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'c')
-    # VotePool.Vote(poolId,my_pv_key,'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'e')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'b')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'a')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'b')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
+    VotePool.Vote(poolId,KeyHelpers.getPrivateKey(GenerateHelper.rand_str(10)),'c')
     VotePool.endPool()
     print(VotePool.getResults())
     # print(IAcoin.isChainValid())

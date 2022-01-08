@@ -39,10 +39,17 @@ class Pool:
         # print(self.IAcoin.chain)
 
     def getResults(self):
+        dict = {}
+        for x in self.poolOptions.values():
+            dict[x] = 0
+
+        for tx in self.block.transactions:
+            dict[tx.toAdress] += int(tx.amount)
+
         results=[]
         for [poolOption, pub_key] in self.poolOptions.items():
             results.append({
-                poolOption: self.getBallanceFromAdress(pub_key)
+                poolOption: dict[pub_key]
                 })
         return results
 
@@ -73,12 +80,6 @@ class Pool:
             return False
         return True
 
-    def getBallanceFromAdress(self,cheie_publica):
-        sold = 0
-        for tx in self.block.transactions:
-            if tx.toAdress == cheie_publica:
-                sold = sold + tx.amount
-        return sold
 
 class GenerateHelper:
     def __init__(self):
@@ -91,7 +92,7 @@ class GenerateHelper:
         return privateKey.get_public_key()
 
     @staticmethod
-    def rand_str(self, str_size):
+    def rand_str(str_size):
         return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(str_size))
 
     @staticmethod
@@ -207,9 +208,7 @@ class AlgorithmsHelpers:
                 x = list(l[i].keys())[0]
                 y = list(l[j].keys())[0]
                 if l[i][x] < l[j][y]:
-                    var = l[i]
-                    l[i] = l[j]
-                    l[j] = var
+                    l[i], l[j] = l[j], l[i]
         return l
 
 
