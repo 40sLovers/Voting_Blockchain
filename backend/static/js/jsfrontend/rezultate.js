@@ -3,8 +3,6 @@ var chart = document.getElementById('chart_voturi').getContext('2d');
 
 // Luam date
 let vot_itemi;
-let dict_voturi = {};
-
 async function luam_date()
 {
     vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123&order_by=a");
@@ -54,7 +52,7 @@ let votesChart = new Chart(chart, {
 })
 
 // Calcule pentru voturi
-async function calcul_nr_total_voturi(dict_voturi)
+async function calcul_nr_total_voturi()
 {
     var nrTotalVoturi = 
     vot_itemi.map((el)=> Object.values(el)[0])
@@ -62,7 +60,7 @@ async function calcul_nr_total_voturi(dict_voturi)
     document.getElementById("nrTotalVoturi").innerText = String(nrTotalVoturi);
 }
 
-async function calcul_castigatori(dict_voturi)
+async function calcul_castigatori()
 {
     var nrMaximVoturi = -1;
     var castigatori = "";
@@ -93,8 +91,8 @@ async function javascript_chart()
     updatare_tabel();
 
     // Calcularea voturilor;
-    calcul_nr_total_voturi(dict_voturi);
-    calcul_castigatori(dict_voturi);
+    calcul_nr_total_voturi();
+    calcul_castigatori();
 }
 
 javascript_chart();
