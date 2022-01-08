@@ -38,23 +38,28 @@ document.querySelector("#addBtn").onclick = function () {
   } else {
     const ul = document.querySelector("ol");
     const item = document.querySelector("#addoptiune");
-    listaOp.push(item.value);
-    console.log(listaOp);
-    const li = document.createElement("li");
-    li.className = "item";
-    li.textContent = item.value;
-    ul.appendChild(li);
-    item.value = "";
-    const items = document.querySelectorAll("li");
-    for (let li of items) {
-      li.addEventListener("click", () => {
-        stergeEl(li.textContent);
-        li.remove();
-      });
+    if (listaOp.includes(item.value)) {
+      alert("Optiunea a fost deja introdusa!");
+    } else {
+      listaOp.push(item.value);
+      console.log(listaOp);
+      const li = document.createElement("li");
+      li.className = "item";
+      li.textContent = item.value;
+      ul.appendChild(li);
+      item.value = "";
+      const items = document.querySelectorAll("li");
+      for (let li of items) {
+        li.addEventListener("click", () => {
+          stergeEl(li.textContent);
+          li.remove();
+        });
+      }
+      if (items.length > 50) {
+        alert("Ai adăugat numărul maxim de opțiuni!");
+      }
     }
-    if (items.length > 50) {
-      alert("Ai adăugat numărul maxim de opțiuni!");
-    }
+    document.getElementById("addoptiune").value = "";
   }
 };
 

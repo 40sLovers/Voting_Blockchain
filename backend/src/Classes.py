@@ -5,10 +5,11 @@ elif __name__=='src.Classes':
     from .Blockchain_main import *
 
 class Pool:
-    def __init__(self,poolId,poolOptions,IAcoin,title):
+    def __init__(self,poolId,poolOptions,IAcoin,title=''):
         self.poolId=poolId
         self.title=title
         self.poolOptions=poolOptions
+        self.opList = poolOptions.keys()
         self.IAcoin=IAcoin
         self.pendingTransactions=[]
         self.difficulty=2
