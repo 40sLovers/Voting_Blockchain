@@ -19,10 +19,14 @@ GVoteEntryStore = VoteEntryStore()
 
 #Hahahah daca merge....
 
+# :(((
+    
+#  cf?
+
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
-                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'p1projectprogram@gmail.com',
-                   MAIL_PASSWORD = "Project123")
+                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'proiectvoteboat@gmail.com',
+                   MAIL_PASSWORD = "Celmaimistosite0")
 mail=Mail(app)
  
 ################################ initializare blockchain
@@ -46,7 +50,7 @@ def log():
         if emailCriptat not in EmailList:
             EmailList.append( emailCriptat ) 
             # print(data)
-            msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
+            msg=Message("hi",sender="proiectvoteboat@gmail.com",recipients=[email,])
             msg.html="<a style=\"background-color: #2d6cdf;color: white;padding: 10px;border-radius: 20px;\" href= windows.location.protocol + \"//\"+ windows.location.href +\"/confirmare?email={email}\"> Apasa-ma</a>"
             mail.send(msg)
             return json.dumps("ok")
@@ -95,6 +99,21 @@ def votareGET():
     return jsonify(
             succes = False,
             )
+    
+@app.route("/Votare", methods = ['POST'])
+def yourVote():
+    data = request.get_json()
+    if data != None:
+        VotedOption = data['selectedOption']
+        cod = data['cod']
+        #CurrentPool.Vote(codConectare, privatKey, VotedOption) #privatekey trebuie generat
+        return jsonify(
+            succes = True,
+            cod = cod
+        )
+    return jsonify(
+        succes = False
+    )
 
 @app.route("/newPoll", methods = ['POST'])
 def codConectarePOST():
@@ -127,6 +146,7 @@ def verificaCod():
     if data != None:
         CodConectare = data['CodConectare']
         CurrentPool = [p for p in IACoin.openedPools if p.poolId== CodConectare]
+        #CurrentPool.Vote(codConectare,privateKey, VotedOption) privatekey trebuie generat
         if(len(CurrentPool)!=0):
                 return jsonify(
                     succes = True,
