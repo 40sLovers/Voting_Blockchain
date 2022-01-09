@@ -105,7 +105,7 @@ def votareGET2():
     CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
     if(len(CurrentPool)!=0):
         entry = CurrentPool[0]
-    return render_template("Votare.html", entry=entry)
+    return render_template("rezultate.html", entry=entry)
  
 @app.route("/doVote", methods = ['POST'])
 def votareGET():
