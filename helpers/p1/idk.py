@@ -154,7 +154,148 @@ for sep in seps:
 s=s.replace("  "," ")
 print(s)
 
+s= input()
+print(" ".join([i for i in s.split(" ") if len(i)%2==1]))
+
+# put your python code here
+
+s= input()
+print(" ".join([i for i in s.split(" ") if len(i)%2==1]))
+
+s=input()
+ls= s.split(" ")
+print("ID: {} BP={} BC={}".format(ls[0],ls[1],ls[2]))
+
+
+s= input()
+
+ls= s.split(" ")
+ls = [int(i) for i in ls]
+ls= sorted(ls,key=lambda x:-x)
+s = "{:" + str(len(str(ls[0]))) + "d}"
+for x in ls:
+    print(s.format(x))
+
+s= input()
+result=""
+for i in range(len(s)):
+    if s[i]>='a' and s[i]<='z':
+       result+= chr(ord(s[i])- 32)
+    else: result+=s[i]
+    
+print(result)
+
+n=int(input())
+toDelete= [",",".","'"]
+dict={}
+for i in range(n):
+    s=input()
+    for td in toDelete:
+        s=s.replace(td,"")
+    ls=s.split(" ")
+    for word in ls:
+        if word not in dict.keys():
+            dict[word]=0
+        dict[word]+=1
+
+for i in dict.keys():
+    if dict[i]>1:
+        print(i,dict[i])
+a=input()
+b=input()
+print ( str(sorted(a.lower()))==str(sorted(b.lower())))
+
+
+for i in range(3):
+    for j in range(3):
+        x=input()
+        if i==j:print(x)
+
+n = int(input())
+result_matrix=[[0 for i in range(n)] for j in range(n)]
+for k in range(2):
+    for i in range(n):
+        for j in range(n):
+            x= int(input())
+            result_matrix[i][j]+=x
+
+
+for row in result_matrix:
+    print(row)
+
+n = int(input())
+matrix1=[[0 for i in range(n)] for j in range(n)]
+matrix2=[[0 for i in range(n)] for j in range(n)]
+result_matrix=[[0 for i in range(n)] for j in range(n)]
+
+
+for i in range(n):
+    for j in range(n):
+        matrix1[i][j]+=int(input())
+for i in range(n):
+    for j in range(n):
+        matrix2[i][j]=int(input())
 
 
 
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            result_matrix[i][j]+= (matrix1[i][k] * matrix2[k][j])
+for row in result_matrix:
+    print(row)
 
+sum1=0
+sum2=0
+sum3=0
+for row in lt:
+    sum3+= row[1]
+    sum1 = sum1+ row[1] * row[2]
+    sum2+= row[2]
+print(sum3//len(lt))
+print(sum1/sum2)
+
+n=int(input())
+
+d=2
+prime_divs=[]
+while n>1:
+    p=0
+    while n%d==0:
+        p+=1
+        n/=d
+    if p>0:
+        prime_divs.append((d,p))
+    d+=1
+
+print(prime_divs)
+
+dict={}
+for word in ls:
+    if len(word) not in dict.keys():
+        dict[len(word)]=[word]
+    else: 
+        if word not in dict[len(word)]:
+           dict[len(word)].append(word)
+
+for [key,value] in dict.items():
+    print(str(key) + ' = '+str(value))
+
+
+
+n= int(input())
+dict={}
+
+
+for word in range(n):
+    x=int(input())
+    dict[x]=[]
+    for d in range(2,x):
+        if x%d==0:
+            dict[x].append(d)
+    if str(dict[x])==str([]):
+        dict[x]=None
+
+for [key,value] in sorted(dict.items()):
+    if value!=None:
+        print(str(key) + ': '+str(value))
