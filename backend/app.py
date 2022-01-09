@@ -1,3 +1,4 @@
+from threading import current_thread
 from flask import Flask,request,render_template, flash, jsonify,make_response
 from flask_mail import Mail,Message
 import socket,json,uuid,os
@@ -112,23 +113,25 @@ def votareGET():
     else:
         privateKey= keyFromHash(request.cookies.get('privateKey'))
         succes=CurrentPool.Vote(privateKey,voteOption)
+    print(CurrentPool.pendingTransactions)
     return jsonify(succes = succes)
 
     
 @app.route("/Votare", methods = ['POST'])
 def yourVote():
     data = request.get_json()
+    succes=False
     if data != None:
-        VotedOption = data['selectedOption']
         cod = data['cod']
-        #CurrentPool.Vote(codConectare, privatKey, VotedOption) #privatekey trebuie generat
-        return jsonify(
-            succes = True,
-            cod = cod
-        )
-    return jsonify(
-        succes = False
-    )
+        voteOption = data['selectedOption']
+        CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
+        print(CurrentPool)
+        if(len(CurrentPool)!=0):
+            CurrentPool=CurrentPool[0]
+            privateKey= keyFromHash(request.cookies.get('privateKey'))
+            succes=CurrentPool.Vote(privateKey,voteOption)
+            print(CurrentPool.pendingTransactions)
+    return jsonify(succes = succes)
 
 @app.route("/newPoll", methods = ['POST'])
 def codConectarePOST():

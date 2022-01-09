@@ -32,6 +32,7 @@ class Pool:
         tx1.SignTransaction(privateKeyUser)
         self.addTransaction(tx1)
         # print(self.pendingTransactions)
+        return True
 
     def endPool(self):
         # rewardAdress ---public Key
