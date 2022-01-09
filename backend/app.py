@@ -1,8 +1,11 @@
 from flask import Flask,request,render_template, flash, jsonify,make_response
 from flask_mail import Mail,Message
-import socket,json,uuid
+import socket,json,uuid,os
 from src.Classes import *
-
+from dotenv import load_dotenv
+load_dotenv()
+MAIL_USERNAME=os.getenv('MAIL_USERNAME')
+MAIL_PASSWORD= os.getenv('MAIL_PASSWORD')
 WhiteList = []
 EmailList = []
 randTokens={}
@@ -27,8 +30,8 @@ GVoteEntryStore = VoteEntryStore()
 
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
-                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = 'proiectvoteboat@gmail.com',
-                   MAIL_PASSWORD = "Celmaimistosite0")
+                   MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = MAIL_USERNAME,
+                   MAIL_PASSWORD = MAIL_PASSWORD)
 mail=Mail(app)
  
 ################################ initializare blockchain
@@ -52,7 +55,7 @@ def log():
         #Emailist va fi un csv
         if not CSVHelpers.isInCSVFile('database/EmailList.csv',emailCriptat):
             print(email)
-            msg=Message("hi",sender="proiectvoteboat@gmail.com",recipients=[email,])
+            msg=Message("hi",sender=MAIL_USERNAME,recipients=[email,])
             msg.html=f"<div><p>Cineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?</p><a href=\"http://127.0.0.1:5000/confirmare?token={randToken}\" type=\"button\" style=\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;text-decoration: none;\">Confirma</a></div>"
             mail.send(msg)
             randTokens[randToken]={
