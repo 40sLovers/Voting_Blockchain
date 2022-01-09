@@ -12,7 +12,7 @@ EmailList = []
 randTokens={}
 
 app = Flask(__name__)
-rootDomain= "http://127.0.0.1:5000/"
+rootDomain = "http://40s.negro.systems"
 
 GVoteEntryStore = VoteEntryStore()
 #Michelle e cea mai misto fata 
@@ -60,7 +60,7 @@ def log():
         if not CSVHelpers.isInCSVFile('database/EmailList.csv',emailCriptat):
             # print(email)
             msg=Message("hi",sender=MAIL_USERNAME,recipients=[email,])
-            msg.html=f"<div><p>Cineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?</p><a href=\"http://127.0.0.1:5000/confirmare?token={randToken}\" type=\"button\" style=\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;text-decoration: none;\">Confirma</a></div>"
+            msg.html=f"<div><p>Cineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?</p><a href=\"{rootDomain}/confirmare?token={randToken}\" type=\"button\" style=\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;text-decoration: none;\">Confirma</a></div>"
             mail.send(msg)
             randTokens[randToken]={
                 'email':data['adresaCriptata'],
@@ -82,8 +82,8 @@ def autentificare():
     criptare = data['criptare']
     prv_key=keyFromHash(criptare)
     pub_key = prv_key.get_public_key()
-    if CSVHelpers.isInCSVFile("database/whitelist.csv",str(pub_key.W.x)) and \
-    CSVHelpers.isInCSVFile("database/whitelist.csv",str(pub_key.W.y)):
+    if CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.x)) and \
+    CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.y)):
         return json.dumps("ok")
     else:
         return json.dumps("notok")
