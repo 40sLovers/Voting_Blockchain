@@ -44,7 +44,7 @@ document.querySelector("#addBtn").onclick = function () {
       listaOp.push(item.value);
       console.log(listaOp);
       const li = document.createElement("li");
-      li.className = "item";
+      li.className = "item_lista";
       li.textContent = item.value;
       ul.appendChild(li);
       item.value = "";
@@ -66,7 +66,6 @@ document.querySelector("#addBtn").onclick = function () {
 document.querySelector("#createVote").addEventListener("click", function () {
   //let cod = crypto.randomUUID();
   const numeVot = document.getElementById("titluPoll").value;
-
   if (
     typeof numeVot != "string" ||
     !numeVot ||
@@ -76,7 +75,6 @@ document.querySelector("#createVote").addEventListener("click", function () {
     alert("Completeaza formularul!");
     return;
   }
-
   postData(
     window.location.protocol + "//" + window.location.host + "/newPoll",
     {
@@ -86,7 +84,7 @@ document.querySelector("#createVote").addEventListener("click", function () {
   ).then((data) => {
     console.log(data);
     if (data.succes == true) {
-      window.location.href = "/doVote?cod=" + data.cod;
+      window.location.href = "/rezultate?cod=" + data.cod;
     } else {
       alert("Completeaza formularul!");
     }

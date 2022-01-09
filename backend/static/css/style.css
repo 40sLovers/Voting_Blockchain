@@ -547,6 +547,9 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   color: #000000;
   list-style-type: none;
   font-size: 18px;
+  list-style-position: inside;
+  margin: 2px;
+  padding: 0px;
 }
 .voteOpt {
   font-size: 22px;
@@ -585,6 +588,7 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   top: 25px;
   display: inline-flex;
   flex-direction: column;
+  width: 700px;
 }
 #detaliivot hr {
   width: 100%;
@@ -622,6 +626,8 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   font-size: 18px;
   color: #06C;
   font-weight: 600;
+  max-height: max-content;
+  min-height: min-content;
 }
 
 .linkTitle {
@@ -646,4 +652,12 @@ a.linkLogo:link, a.linkLogo:visited, a.linkLogo:hover, a.linkLogo:active {
   display: inline-flex;
   margin-top: -6px;
   cursor: pointer;
+}
+.item_lista{
+  padding: 3px;
+  margin-left: 5px;
+}
+.item_lista:hover{
+  background-color: rgba(248, 61, 61, 0.507);
+  border-radius: 3px;
 }
