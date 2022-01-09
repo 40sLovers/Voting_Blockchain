@@ -83,14 +83,15 @@ def log():
  
 @app.route("/",methods=['POST', 'GET'])
 def autentificare():
-    #aici sa modifici gusi
     data = request.get_json()
     criptare = data['criptare']
     prv_key=keyFromHash(criptare)
     pub_key = prv_key.get_public_key()
     if CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.x)) and \
     CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.y)):
-        return json.dumps("ok")
+        resp = make_response(json.dumps("ok"))
+        resp.set_cookie('privateKey', criptare )
+        return resp
     else:
         return json.dumps("notok")
  
@@ -137,7 +138,10 @@ def yourVote():
         if(len(CurrentPool)!=0):
             CurrentPool=CurrentPool[0]
             privateKey= keyFromHash(request.cookies.get('privateKey'))
-            succes=CurrentPool.Vote(privateKey,voteOption)
+            pub_key = privateKey.get_public_key()
+            if CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.x)) and \
+            CSVHelpers.isInCSVFile("database/Whitelist.csv",str(pub_key.W.y)):
+                succes=CurrentPool.Vote(privateKey,voteOption)
             # print(CurrentPool.pendingTransactions)
     return jsonify(succes = succes, cod=CurrentPool.poolId)
 
