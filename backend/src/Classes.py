@@ -20,16 +20,13 @@ class Pool:
         self.block=Block_comunist
         self.IAcoin.openedPools.append(self)
 
-    def Vote(self,poolId,privateKeyUser, option):
+    def Vote(self,privateKeyUser, option):
         #se realizeaza actiunea de votare
         #iau adresa publica a optiunii
-        CurrentPool = [p for p in self.IAcoin.openedPools if p.poolId== poolId]
-        if len(CurrentPool)==0:
-            return 'imposibil'
-        CurrentPool=CurrentPool[0]
+        CurrentPool = self
         optionPublicKey=  [value for [key,value] in CurrentPool.poolOptions.items() if key== option]
         if len(optionPublicKey)==0:
-            return 'imposibil'
+            return False
         optionPublicKey=optionPublicKey[0]
         tx1 = Transaction(privateKeyUser.get_public_key(),optionPublicKey , 1)
         tx1.SignTransaction(privateKeyUser)

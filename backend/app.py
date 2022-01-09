@@ -79,7 +79,10 @@ def autentificare():
     #aici sa modifici gusi
     data = request.get_json()
     criptare = data['criptare']
-    if criptare in WhiteList:
+    prv_key=keyFromHash(criptare)
+    pub_key = prv_key.get_public_key()
+    if CSVHelpers.isInCSVFile("database/whitelist.csv",str(pub_key.W.x)) and \
+    CSVHelpers.isInCSVFile("database/whitelist.csv",str(pub_key.W.y)):
         return json.dumps("ok")
     else:
         return json.dumps("notok")
@@ -103,18 +106,14 @@ def votareGET():
     if data != None:
         cod = data['cod']
         voteOption = data['voteOption']
-        entry = GVoteEntryStore.GetVoteEntry(cod)
-        if entry != None:
-            result = entry.bHasVoted
-            if result == False:
-                entry.bHasVoted = True
-                entry.voteOption = voteOption
-            return jsonify(
-                    succes = result == False
-                   )
-    return jsonify(
-            succes = False,
-            )
+    CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
+    if(len(CurrentPool)==0):
+        success=False
+    else:
+        privateKey= keyFromHash(request.cookies.get('privateKey'))
+        succes=CurrentPool.Vote(privateKey,voteOption)
+    return jsonify(succes = succes)
+
     
 @app.route("/Votare", methods = ['POST'])
 def yourVote():
