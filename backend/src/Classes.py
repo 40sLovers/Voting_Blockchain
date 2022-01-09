@@ -5,8 +5,9 @@ elif __name__=='src.Classes':
     from .Blockchain_main import *
 
 class Pool:
-    def __init__(self,poolId,poolOptions,IAcoin,title=''):
+    def __init__(self,poolId,poolOptions,IAcoin,title='',poolCreator=None):
         self.poolId=poolId
+        self.poolCreator=poolCreator
         self.title=title
         self.poolOptions=poolOptions
         self.opList = poolOptions.keys()

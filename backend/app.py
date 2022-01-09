@@ -28,6 +28,9 @@ GVoteEntryStore = VoteEntryStore()
 
 # Hello hello
 
+# Man im so lonely, despite i'm surrounded by people
+
+# :')
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = MAIL_USERNAME,
@@ -73,6 +76,7 @@ def log():
  
 @app.route("/",methods=['POST', 'GET'])
 def autentificare():
+    #aici sa modifici gusi
     data = request.get_json()
     criptare = data['criptare']
     if criptare in WhiteList:
@@ -136,10 +140,11 @@ def codConectarePOST():
                     cod = uuid.uuid4().hex
                     listaOp = data['listaOp']
                     numePoll = data['numePoll']
+                    poolCreator= request.cookies.get('privateKey')
                     poolOptions= {}
                     for option in listaOp:
                         poolOptions[option]=GenerateHelper.getRandomPublicKey(option,cod)
-                    PoolVote= Pool(cod,poolOptions,IACoin,numePoll)
+                    PoolVote= Pool(cod,poolOptions,IACoin,numePoll,poolCreator)
                     return jsonify(
                         succes = True,
                         cod = cod,
