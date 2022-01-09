@@ -104,21 +104,23 @@ def votareGET2():
 @app.route("/doVote", methods = ['POST'])
 def votareGET():
     data = request.get_json()
+    succes=False
     if data != None:
         cod = data['cod']
-        voteOption = data['voteOption']
-    CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
-    if(len(CurrentPool)==0):
-        success=False
-    else:
-        privateKey= keyFromHash(request.cookies.get('privateKey'))
-        succes=CurrentPool.Vote(privateKey,voteOption)
-    print(CurrentPool.pendingTransactions)
+        voteOption = data['selectedOption']
+        CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
+        print(CurrentPool)
+        if(len(CurrentPool)!=0):
+            CurrentPool=CurrentPool[0]
+            privateKey= keyFromHash(request.cookies.get('privateKey'))
+            succes=CurrentPool.Vote(privateKey,voteOption)
+            print(CurrentPool.pendingTransactions)
     return jsonify(succes = succes)
 
     
 @app.route("/Votare", methods = ['POST'])
 def yourVote():
+    #asta e a buna acum
     data = request.get_json()
     succes=False
     if data != None:
