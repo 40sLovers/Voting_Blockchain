@@ -36,6 +36,8 @@ GVoteEntryStore = VoteEntryStore()
 # Man im so lonely, despite i'm surrounded by people
 
 # :')
+
+#:"(
 ################################ configurare server smtp pentru trimitere emailuri
 app.config.update( DEBUG=True, MAIL_SERVER='smtp.gmail.com',
                    MAIL_PORT=587, MAIL_USE_SSL=False, MAIL_USE_TLS=True, MAIL_USERNAME = MAIL_USERNAME,
