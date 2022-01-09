@@ -7,12 +7,16 @@ from dotenv import load_dotenv
 load_dotenv()
 MAIL_USERNAME=os.getenv('MAIL_USERNAME')
 MAIL_PASSWORD= os.getenv('MAIL_PASSWORD')
+SERVER_TYPE=os.getenv('SERVER_TYPE')
 WhiteList = []
 EmailList = []
 randTokens={}
 
 app = Flask(__name__)
-rootDomain = "http://40s.negro.systems"
+if SERVER_TYPE=="PRODUCTION":
+    rootDomain = "http://40s.negro.systems"
+else:
+	rootDomain = "http://127.0.0.1:5000"
 
 GVoteEntryStore = VoteEntryStore()
 #Michelle e cea mai misto fata 
