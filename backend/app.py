@@ -58,7 +58,7 @@ def log():
         randToken=  uuid.uuid4().hex
         #Emailist va fi un csv
         if not CSVHelpers.isInCSVFile('database/EmailList.csv',emailCriptat):
-            print(email)
+            # print(email)
             msg=Message("hi",sender=MAIL_USERNAME,recipients=[email,])
             msg.html=f"<div><p>Cineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?</p><a href=\"http://127.0.0.1:5000/confirmare?token={randToken}\" type=\"button\" style=\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;text-decoration: none;\">Confirma</a></div>"
             mail.send(msg)
@@ -109,13 +109,13 @@ def votareGET():
         cod = data['cod']
         voteOption = data['selectedOption']
         CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
-        print(CurrentPool)
+        # print(CurrentPool)
         if(len(CurrentPool)!=0):
             CurrentPool=CurrentPool[0]
             privateKey= keyFromHash(request.cookies.get('privateKey'))
             succes=CurrentPool.Vote(privateKey,voteOption)
-            print(CurrentPool.pendingTransactions)
-    return jsonify(succes = succes)
+            # print(CurrentPool.pendingTransactions)
+    return jsonify(succes = succes, cod=CurrentPool.poolId)
 
     
 @app.route("/Votare", methods = ['POST'])
@@ -127,19 +127,19 @@ def yourVote():
         cod = data['cod']
         voteOption = data['selectedOption']
         CurrentPool = [p for p in IACoin.openedPools if p.poolId== cod]
-        print(CurrentPool)
+        # print(CurrentPool)
         if(len(CurrentPool)!=0):
             CurrentPool=CurrentPool[0]
             privateKey= keyFromHash(request.cookies.get('privateKey'))
             succes=CurrentPool.Vote(privateKey,voteOption)
-            print(CurrentPool.pendingTransactions)
-    return jsonify(succes = succes)
+            # print(CurrentPool.pendingTransactions)
+    return jsonify(succes = succes, cod=CurrentPool.poolId)
 
 @app.route("/newPoll", methods = ['POST'])
 def codConectarePOST():
         try:
             data = request.get_json()
-            print(data)
+            # print(data)
             if data != None:
                     cod = uuid.uuid4().hex
                     listaOp = data['listaOp']
@@ -198,12 +198,13 @@ def login(name):
     elif name=='index':
         return render_template("index.html")
     elif name=='rezultate':
-        pool_id=request.args.get("pool_id")
+        pool_id=request.args.get("cod")
         entry=None
-        #CurrentPool = [p for p in IACoin.openedPools if p.poolId==pool_id]
-        #if(len(CurrentPool)!=0):
-            #entry = CurrentPool[0]
-        entry=Pool("-", {}, IACoin, "Pool Title")
+        # print(IACoin.openedPools[0].poolId,pool_id)
+        CurrentPool = [p for p in IACoin.openedPools if p.poolId==pool_id]
+        if(len(CurrentPool)!=0):
+            entry = CurrentPool[0]
+        # print("entry======",entry)
         return render_template("rezultate.html", entry=entry)
     elif name=='Votare':
         return render_template("Votare.html")
@@ -216,14 +217,25 @@ def login(name):
     else:
         return render_template("error404.html")
  
+#pentru randomGenerari
+# @app.route('/getPoolResults',methods =['GET'])
+# def getPoolResults():
+#     #http://127.0.0.1:5000/getPoolResults?pool_id=1234&order_by=nume --example
+#     pool_id=request.args.get('pool_id')
+#     order_by=request.args.get('order_by') #nume sau altceva
+#     return GenerateHelper.getRandomOptions(order_by) #temporar, pana rezolvam cu poolurile
 
 @app.route('/getPoolResults',methods =['GET'])
 def getPoolResults():
     #http://127.0.0.1:5000/getPoolResults?pool_id=1234&order_by=nume --example
     pool_id=request.args.get('pool_id')
-    order_by=request.args.get('order_by') #nume sau altceva
-    return GenerateHelper.getRandomOptions(order_by) #temporar, pana rezolvam cu poolurile
-
+    CurrentPool = [p for p in IACoin.openedPools if p.poolId==pool_id]
+    print(pool_id)
+    if(len(CurrentPool)!=0):
+        CurrentPool=CurrentPool[0]
+        results= CurrentPool.getResults()
+        return jsonify(results)
+    return jsonify([])
 
 if __name__=="__main__":
     app.run(debug=True)

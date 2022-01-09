@@ -46,7 +46,9 @@ let votesChart = new Chart(chart, {
 let vot_itemi;
 async function luam_date()
 {
-    vot_itemi = await fetch("http://127.0.0.1:5000/getPoolResults?pool_id=123");
+    const urlParams = new URLSearchParams(window.location.search);
+    let cod = urlParams.get('cod');
+    vot_itemi = await fetch(`http://127.0.0.1:5000/getPoolResults?pool_id=${cod}`);
     vot_itemi = await vot_itemi.json();
 }
 luam_date();
