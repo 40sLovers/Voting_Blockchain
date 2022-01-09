@@ -49,7 +49,8 @@ butonInregistrare.addEventListener("click", function () {
           "/inregistrare",
         {
           cheiePrivata:cheiePrivata,
-          adresaCriptata:adresaCriptata
+          adresaCriptata:adresaCriptata,
+          email: adresa
         }
       ).then((data) => {
         console.log(data);

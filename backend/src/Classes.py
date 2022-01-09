@@ -132,6 +132,17 @@ class CSVHelpers:
         return all_users
 
     @staticmethod
+    def readAllEmails(in_file):
+        with open(in_file, "r") as f:
+            reader = csv.reader(f)
+            line = next(reader)
+            # print(line)
+            all_users = []
+            for x in reader:
+                all_users.append(x)
+        return all_users
+
+    @staticmethod
     def isInCSVFile(file, value):
         #verifica daca textul value este prezent in csv
         if os.path.isfile(file):

@@ -46,24 +46,27 @@ def log():
     if request.method == 'POST':
         data = request.get_json()
         privateKey=data['cheiePrivata']
+        emailCriptat=data['adresaCriptata']
+        email= data['email']
         randToken=  uuid.uuid4().hex
         #Emailist va fi un csv
-        # if emailCriptat not in EmailList:
-        #     EmailList.append( emailCriptat ) 
-        #     # print(data)
-        #     msg=Message("hi",sender="p1projectprogram@gmail.com",recipients=[email,])
-        #     msg.html="\"<div>   \\n<p>\\nCineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?  \\n</p>\\n<a href="http://127.0.0.1:5000/confirmEmail?token=randToken" type=\\\"button\\\" style=\\\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;\\\">Confirma</a>\\n  </div>\""
-        #     mail.send(msg)
-        randTokens[randToken]={
-            'email':data['adresaCriptata'],
-            'privateKey':privateKey
-        }
-        resp = make_response(json.dumps("ok"))
-        resp.set_cookie('randToken',randToken)
-        return resp
+        if not CSVHelpers.isInCSVFile('database/EmailList.csv',emailCriptat):
+            print(email)
+            msg=Message("hi",sender="proiectvoteboat@gmail.com",recipients=[email,])
+            msg.html=f"<div><p>Cineva a incercat sa creeze un cont pe adresa dumneavoastra de email, ati fost dumneavoastra?</p><a href=\"http://127.0.0.1:5000/confirmare?token={randToken}\" type=\"button\" style=\"background-color: #007bff;border-color: #007bff;padding: .375rem .75rem;border-radius: .25rem;color: white;text-decoration: none;\">Confirma</a></div>"
+            mail.send(msg)
+            randTokens[randToken]={
+                'email':data['adresaCriptata'],
+                'privateKey':privateKey
+            }
+            resp = make_response(json.dumps("ok"))
+            resp.set_cookie('randToken',randToken)
+            return resp
+        else:
+            return json.dumps("EmailFolosit")
     else:
         return render_template("inregistrare.html")
-        # return render_template("inregistrare.html")
+
  
 @app.route("/",methods=['POST', 'GET'])
 def autentificare():
