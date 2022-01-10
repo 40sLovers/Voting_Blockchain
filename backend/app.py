@@ -19,7 +19,9 @@ else:
 	rootDomain = "http://127.0.0.1:5000"
 
 GVoteEntryStore = VoteEntryStore()
-#Michelle nu e cea mai misto fata 
+#Scuze Michelle te-am confundat cand am facut commit-ul :/
+
+#Michelle e cea mai misto fata 
 
 # Gia e net superioara pentru ca asculta IAN!!!
 
