@@ -20,7 +20,7 @@ else:
 
 GVoteEntryStore = VoteEntryStore()
 #Scuze Michelle te-am confundat cand am facut commit-ul :/
-
+# 💕💕💕 pentru ca a cerut grig
 #Michelle e cea mai misto fata 
 
 # Gia e net superioara pentru ca asculta IAN!!!
