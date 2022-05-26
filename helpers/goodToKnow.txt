@@ -1,0 +1,2 @@
+lisp is not case-sensitive for variables
+global variables are declared as *name*
